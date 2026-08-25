@@ -8,10 +8,12 @@ This repo contains no code. The behavior it documents lives in [ocp-viewer-core]
 
 ## Building locally
 
+The site is built with [Zensical](https://zensical.org/), the successor of Material for MkDocs by the same team, reading the unchanged `mkdocs.yml`:
+
 ```bash
 pip install -r requirements.txt
-mkdocs serve          # live preview at http://127.0.0.1:8000
-mkdocs build --strict # what CI runs
+zensical serve          # live preview at http://127.0.0.1:8000
+zensical build --strict # what CI runs
 ```
 
-Every push to `main` deploys the site to GitHub Pages via the workflow in `.github/workflows/docs.yml`.
+Every push to `main` builds the site and deploys it to GitHub Pages via the workflow in `.github/workflows/docs.yml`.
