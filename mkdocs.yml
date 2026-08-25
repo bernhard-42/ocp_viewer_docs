@@ -30,6 +30,10 @@ theme:
     - content.code.copy
     - content.tabs.link
 
+plugins:
+  - search
+  - glightbox
+
 markdown_extensions:
   - admonition
   - attr_list

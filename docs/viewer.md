@@ -6,10 +6,13 @@ Almost everything described here can also be driven from Python: the initial sta
 
 ## Layout
 
+![viewer overview](assets/viewer-overview.png#only-light)
+![viewer overview](assets/viewer-overview-dark.png#only-dark)
+
 The window has four areas:
 
 - the **canvas**, where the CAD objects are rendered. Before the first `show`, it displays the OCP splash logo.
-- the **tree panel** on the left, with five tabs: the navigation tree and the Clip, Zebra, Material and Studio tools — see [Tabs](#tabs).
+- the **tree panel** on the left, with five tabs: the navigation tree (_Tree_) and the _Clip_, _Zebra_, _Material_ and _Studio_ tools — see [Tabs](#tabs).
 - the **info box** below the tree panel. On startup it reports the viewer version and control mode; later it logs what you pick — see [The info box](#the-info-box).
 - the **toolbar** above the canvas, with view toggles, camera presets and tools.
 
@@ -40,14 +43,6 @@ Two control styles exist: **trackball** (the default — free rotation, no fixed
 | Set camera target   | `shift` + `meta` + double-click on the object              |
 
 Picking an element highlights it, draws its axis-aligned bounding box, and writes its path, name and bounding box into the info box. Setting the camera target re-aims the camera at the picked element's bounding-box center (also logged in the info box) — useful for rotating around a detail instead of the whole assembly.
-
-## The navigation tree
-
-One node per object or assembly level. Each leaf carries two toggle icons: the first for the object's **faces**, the second for its **edges** — so an object can be shown as solid, as wireframe (edges only), or not at all. Clicking an icon on a group node toggles everything below it; a group whose children differ shows a mixed state.
-
-Four small buttons above the tree control its shape, matching the `collapse=` keyword: `1` collapses all nodes with a single leaf (`Collapse.LEAVES`), `R` expands the root only (`Collapse.ROOT`), `C` collapses everything (`Collapse.ALL`) and `E` expands everything (`Collapse.NONE`).
-
-Clicking a node's **label** (not its icons) picks the object, with the `shift`/`meta` combinations from the table above.
 
 ## The toolbar
 
@@ -94,7 +89,28 @@ Fold it away with the **Info** toggle when you need the vertical space.
 
 ## Tabs
 
-The tree panel's header switches between five tabs. From Python, select one with `tab=` on any `show*` command or `set_viewer_config(tab=...)`, using the [UiTab](enums.md) enum. Each tab has an `R` button to reset its settings to the defaults.
+The tree panel's header switches between five tabs. From Python, select one with `tab=` on any `show*` command or `set_viewer_config(tab=...)`, using the [UiTab](enums.md) enum. Each tool tab has an `R` button to reset its settings to the defaults.
+
+### Tree
+
+The navigation tree, one node per object or assembly level. Each node carries two toggle icons: an **eye** for the object and a **mesh icon** for its wireframe.
+
+- The **eye** hides the object entirely — it disables the wireframe, too.
+- To see only the faces and no edges, click the **mesh icon** while the object is shown; the icon turns empty and the wireframe disappears.
+- To see only the wireframe, first hide the object with the **eye**, then click the empty **mesh icon** — the wireframe comes back alone.
+- The clicking works hierarchically: changing leaves adapts the parent icons (a group whose children differ shows a mixed state), and changing a parent lets the whole hierarchy below follow.
+
+![faces-only](assets/viewer-faces-only.png#only-light){ width="32%" }
+![mesh-only](assets/viewer-mesh-only.png#only-light){ width="32%" }
+![mixed](assets/viewer-mixed.png#only-light){ width="32%" }
+
+![mesh-only-dark](assets/viewer-mesh-only-dark.png#only-dark){ width="32%" }
+![faces-only-dark](assets/viewer-faces-only-dark.png#only-dark){ width="32%" }
+![mixed-dark](assets/viewer-mixed-dark.png#only-dark){ width="32%" }
+
+Four small buttons above the tree control its shape, matching the `collapse=` keyword: `1` collapses all nodes with a single leaf (`Collapse.LEAVES`), `R` expands the root only (`Collapse.ROOT`), `C` collapses everything (`Collapse.ALL`) and `E` expands everything (`Collapse.NONE`).
+
+Clicking a node's **label** (not its icons) picks the object, with the `shift`/`meta` combinations from the [mouse selection](#mouse-selection) table.
 
 ### Clip
 
