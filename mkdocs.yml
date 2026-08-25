@@ -1,0 +1,66 @@
+site_name: OCP CAD Viewer
+site_description: One documentation for the OCP CAD viewer family — ocp_vscode, ocp_viewer, Jupyter CadQuery and build123d Studio
+site_url: https://bernhard-42.github.io/ocp_viewer_docs/
+repo_url: https://github.com/bernhard-42/ocp_viewer_docs
+repo_name: ocp_viewer_docs
+
+theme:
+  name: material
+  palette:
+    # follow the system by default, with a manual toggle both ways
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - The viewer: viewer.md
+  - Showing objects:
+      - show: show.md
+      - show_object: show_object.md
+      - push_object / show_objects: push_object.md
+      - show_all: show_all.md
+      - Additional functions: api.md
+  - Configuring:
+      - The config system: config.md
+      - set_viewer_config: set_viewer_config.md
+      - Enums: enums.md
+  - Analysis tools:
+      - Measure mode: measure.md
+      - Object selection: selector.md
+  - Appearance and scene:
+      - Color maps: colormaps.md
+      - Materials and Studio: pbr_studio.md
+      - ImageFace: image_face.md
+      - Animation: animation.md
+  - Hosts:
+      - ocp_vscode: hosts/ocp_vscode.md
+      - ocp_viewer: hosts/ocp_viewer.md
+      - jupyter_cadquery: hosts/jupyter_cadquery.md
+      - build123d_studio: hosts/build123d_studio.md
