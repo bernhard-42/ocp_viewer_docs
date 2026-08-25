@@ -1,0 +1,1945 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="One documentation for the OCP CAD viewer family — ocp_vscode, ocp_viewer, Jupyter CadQuery and build123d Studio">
+      
+      
+      
+        <link rel="canonical" href="https://bernhard-42.github.io/ocp_viewer_docs/viewer/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../show/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>The viewer - OCP CAD Viewer</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-viewer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="OCP CAD Viewer" class="md-header__button md-logo" aria-label="OCP CAD Viewer" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OCP CAD Viewer
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The viewer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bernhard-42/ocp_viewer_docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ocp_viewer_docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OCP CAD Viewer" class="md-nav__button md-logo" aria-label="OCP CAD Viewer" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OCP CAD Viewer
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bernhard-42/ocp_viewer_docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ocp_viewer_docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The viewer
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The viewer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mouse-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mouse navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mouse-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mouse selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-navigation-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The navigation tree
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-toolbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The toolbar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-info-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The info box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zebra
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Studio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measure-and-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure and select
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Measure and select">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-animation-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The animation bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#small-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Small indicators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-viewer-remembers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the viewer remembers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Showing objects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Showing objects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    show
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show_object/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    show_object
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../push_object/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    push_object / show_objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show_all/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    show_all
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuring
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The config system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_viewer_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_viewer_config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../selector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object selection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appearance and scene
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appearance and scene
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colormaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Color maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbr_studio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materials and Studio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../image_face/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ImageFace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hosts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosts/ocp_vscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ocp_vscode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosts/ocp_viewer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ocp_viewer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosts/jupyter_cadquery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    jupyter_cadquery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosts/build123d_studio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    build123d_studio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mouse-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mouse navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mouse-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mouse selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-navigation-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The navigation tree
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-toolbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The toolbar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-info-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The info box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zebra
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Studio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measure-and-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure and select
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Measure and select">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-animation-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The animation bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#small-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Small indicators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-viewer-remembers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the viewer remembers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="the-viewer">The viewer<a class="headerlink" href="#the-viewer" title="Permanent link">&para;</a></h1>
+<p>Every host embeds the same viewer window — the JavaScript half of <code>ocp-viewer-core</code>, rendering with <a href="https://github.com/bernhard-42/three-cad-viewer">three-cad-viewer</a>. Whether it sits in a VS Code panel, a browser tab, a Jupyter cell or the Studio app, the window looks the same and behaves the same. This page describes it from the user's side: what is on the screen and how to operate it with mouse and keyboard.</p>
+<p>Almost everything described here can also be driven from Python: the initial state via keywords on the <code>show*</code> commands (see <a href="../show/">show</a>), and a running viewer via <a href="../set_viewer_config/">set_viewer_config</a>. The UI and the Python keywords are two handles on the same state — a toggle you click in the toolbar is the same setting as the keyword of the same name.</p>
+<h2 id="layout">Layout<a class="headerlink" href="#layout" title="Permanent link">&para;</a></h2>
+<p>The window has four areas:</p>
+<ul>
+<li>the <strong>canvas</strong>, where the CAD objects are rendered. Before the first <code>show</code>, it displays the OCP splash logo.</li>
+<li>the <strong>tree panel</strong> on the left, with five tabs: the navigation tree and the Clip, Zebra, Material and Studio tools — see <a href="#tabs">Tabs</a>.</li>
+<li>the <strong>info box</strong> below the tree panel. On startup it reports the viewer version and control mode; later it logs what you pick — see <a href="#the-info-box">The info box</a>.</li>
+<li>the <strong>toolbar</strong> above the canvas, with view toggles, camera presets and tools.</li>
+</ul>
+<p>The tree panel and the info box each have a small collapse toggle (<strong>Tools</strong> / <strong>Info</strong>) to fold them away. In <strong>glass mode</strong> (<code>glass=True</code>) the tree floats as a transparent overlay on the canvas instead of occupying its own column, giving the CAD object the full width. <code>tools=False</code> hides the toolbar and tree entirely. The viewer follows the <code>theme</code> setting: <code>"light"</code>, <code>"dark"</code>, or <code>"browser"</code> to adopt the surface's preference.</p>
+<p>When the window is too narrow for the full toolbar, button groups collapse behind <code>…</code> buttons; clicking one unfolds its group.</p>
+<h2 id="mouse-navigation">Mouse navigation<a class="headerlink" href="#mouse-navigation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Binding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rotate</td>
+<td>left mouse button, drag</td>
+</tr>
+<tr>
+<td>Rotate up / down</td>
+<td><code>ctrl</code> + left mouse button</td>
+</tr>
+<tr>
+<td>Rotate left / right</td>
+<td><code>meta</code> (⌘ / Win) + left mouse button</td>
+</tr>
+<tr>
+<td>Pan</td>
+<td><code>shift</code> + left mouse button, or right mouse button</td>
+</tr>
+<tr>
+<td>Zoom</td>
+<td>mouse wheel, or middle mouse button</td>
+</tr>
+</tbody>
+</table>
+<p>Two control styles exist: <strong>trackball</strong> (the default — free rotation, no fixed up axis) and <strong>orbit</strong> (the up axis stays up). Choose with <code>orbit_control=True/False</code> on <code>show</code>. The rotate, pan and zoom sensitivities are the <code>rotate_speed</code>, <code>pan_speed</code> and <code>zoom_speed</code> settings.</p>
+<h2 id="mouse-selection">Mouse selection<a class="headerlink" href="#mouse-selection" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Binding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pick element</td>
+<td>double-click on the object, or click its label in the tree</td>
+</tr>
+<tr>
+<td>Isolate element</td>
+<td><code>shift</code> + double-click, or <code>shift</code> + click on a tree label</td>
+</tr>
+<tr>
+<td>Hide element</td>
+<td><code>meta</code> + double-click, or <code>meta</code> + click on a tree label</td>
+</tr>
+<tr>
+<td>Hide other elements</td>
+<td><code>shift</code> + <code>meta</code> + click on a tree label</td>
+</tr>
+<tr>
+<td>Set camera target</td>
+<td><code>shift</code> + <code>meta</code> + double-click on the object</td>
+</tr>
+</tbody>
+</table>
+<p>Picking an element highlights it, draws its axis-aligned bounding box, and writes its path, name and bounding box into the info box. Setting the camera target re-aims the camera at the picked element's bounding-box center (also logged in the info box) — useful for rotating around a detail instead of the whole assembly.</p>
+<h2 id="the-navigation-tree">The navigation tree<a class="headerlink" href="#the-navigation-tree" title="Permanent link">&para;</a></h2>
+<p>One node per object or assembly level. Each leaf carries two toggle icons: the first for the object's <strong>faces</strong>, the second for its <strong>edges</strong> — so an object can be shown as solid, as wireframe (edges only), or not at all. Clicking an icon on a group node toggles everything below it; a group whose children differ shows a mixed state.</p>
+<p>Four small buttons above the tree control its shape, matching the <code>collapse=</code> keyword: <code>1</code> collapses all nodes with a single leaf (<code>Collapse.LEAVES</code>), <code>R</code> expands the root only (<code>Collapse.ROOT</code>), <code>C</code> collapses everything (<code>Collapse.ALL</code>) and <code>E</code> expands everything (<code>Collapse.NONE</code>).</p>
+<p>Clicking a node's <strong>label</strong> (not its icons) picks the object, with the <code>shift</code>/<code>meta</code> combinations from the table above.</p>
+<h2 id="the-toolbar">The toolbar<a class="headerlink" href="#the-toolbar" title="Permanent link">&para;</a></h2>
+<p>From left to right, in groups:</p>
+<p><strong>View toggles</strong></p>
+<ul>
+<li><strong>Axes</strong> — show the axes helper through the object's center (<code>axes</code>)</li>
+<li><strong>Axes at (0,0,0)</strong> — move the axes helper to the origin (<code>axes0</code>)</li>
+<li><strong>Grid</strong> — toggle all grids; the button's dropdown switches the XY, XZ and YZ planes individually (<code>grid</code>)</li>
+<li><strong>Perspective</strong> — switch between orthographic and perspective camera (<code>ortho</code>)</li>
+<li><strong>Transparent</strong> — render all faces semi-transparent (<code>transparent</code>, opacity from <code>default_opacity</code>)</li>
+<li><strong>Black edges</strong> — draw all edges black instead of their own color (<code>black_edges</code>)</li>
+</ul>
+<p><strong>Camera</strong></p>
+<ul>
+<li><strong>Reset view</strong> — reset camera position, rotation, zoom and target</li>
+<li><strong>Resize</strong> — fit the current objects into the canvas</li>
+<li><strong>Iso / Front / Back / Top / Bottom / Left / Right</strong> — snap the camera to a preset (the <code>Camera</code> presets in Python)</li>
+</ul>
+<p><strong>Tools</strong> (one active at a time)</p>
+<ul>
+<li><strong>Explode</strong> — pull an assembly apart to inspect its structure; a slider bar appears below the toolbar — see <a href="#explode">Explode</a></li>
+<li><strong>Distance</strong> — measure between two picked shapes — see <a href="#measure-and-select">Measure and select</a></li>
+<li><strong>Properties</strong> — read the properties of one picked shape</li>
+<li><strong>Select</strong> — collect element indices for use in code</li>
+</ul>
+<p>While a Distance, Properties or Select tool is active, a <strong>filter dropdown</strong> (All / Vertex / Edge / Face / Solid) appears in the toolbar to restrict what the mouse can pick.</p>
+<p><strong>Right side</strong></p>
+<ul>
+<li><strong>Pin as PNG</strong> — freeze the current view as a static image, on hosts that support pinning (e.g. Jupyter cell output)</li>
+<li><strong>Help</strong> — the keyboard and mouse binding overlay (dismiss with <code>ESC</code>)</li>
+</ul>
+<h2 id="the-info-box">The info box<a class="headerlink" href="#the-info-box" title="Permanent link">&para;</a></h2>
+<p>The scrollable log under the tree panel. It shows, newest first:</p>
+<ul>
+<li>on startup: the three-cad-viewer version and the active control mode (trackball/orbit)</li>
+<li>on pick: the element's tree path and name, and its bounding box as a min/max/center table per axis</li>
+<li>on set-camera-target: the new target coordinates</li>
+</ul>
+<p>Fold it away with the <strong>Info</strong> toggle when you need the vertical space.</p>
+<h2 id="tabs">Tabs<a class="headerlink" href="#tabs" title="Permanent link">&para;</a></h2>
+<p>The tree panel's header switches between five tabs. From Python, select one with <code>tab=</code> on any <code>show*</code> command or <code>set_viewer_config(tab=...)</code>, using the <a href="../enums/">UiTab</a> enum. Each tab has an <code>R</code> button to reset its settings to the defaults.</p>
+<h3 id="clip">Clip<a class="headerlink" href="#clip" title="Permanent link">&para;</a></h3>
+<p>Three clipping planes — red, green and blue — cut the model open. Per plane:</p>
+<ul>
+<li>a <strong>slider</strong> with a numeric input moves the plane along its normal</li>
+<li>the current <strong>normal</strong> is displayed as <code>N1 = (x, y, z)</code></li>
+<li>the <strong>plane button</strong> sets the plane's normal to the current view direction, so you cut exactly what you are looking at</li>
+</ul>
+<p>Below the sliders:</p>
+<ul>
+<li><strong>Intersection</strong> — cut only where all planes cut, instead of where any plane cuts (<code>clip_intersection</code>)</li>
+<li><strong>Planes</strong> — show the clipping plane helpers (<code>clip_planes</code>)</li>
+<li><strong>Use object color caps</strong> — fill the cut faces with the object's own color instead of red/green/blue (<code>clip_object_colors</code>)</li>
+</ul>
+<p>The Python keywords are <code>clip_slider_0/1/2</code> and <code>clip_normal_0/1/2</code>.</p>
+<h3 id="zebra">Zebra<a class="headerlink" href="#zebra" title="Permanent link">&para;</a></h3>
+<p>Zebra stripe analysis for judging surface quality and continuity: stripes are projected onto the model, and the way they flow across face boundaries reveals tangency and curvature breaks that flat shading hides.</p>
+<ul>
+<li><strong>Stripe Count</strong> (2–50, <code>zebra_count</code>) and <strong>Stripe Opacity</strong> (0–1, <code>zebra_opacity</code>)</li>
+<li><strong>Direction</strong> — rotate the stripe pattern by 0–90° (<code>zebra_direction</code>)</li>
+<li>color scheme <strong>B/W</strong>, <strong>Gray</strong> or <strong>Colors</strong> (<code>zebra_color_scheme</code>)</li>
+<li>mapping <strong>Reflection</strong> (stripes follow what a mirror finish would reflect — the classic car-body check, view-dependent) or <strong>Normal</strong> (stripes follow the surface normals, view-independent) (<code>zebra_mapping_mode</code>)</li>
+</ul>
+<h3 id="material">Material<a class="headerlink" href="#material" title="Permanent link">&para;</a></h3>
+<p>The lighting and material of the plain CAD view (not Studio mode), all in percent: <strong>Ambient Light</strong>, <strong>Direct Light</strong>, <strong>Metalness</strong> and <strong>Roughness</strong> — the <code>ambient_intensity</code>, <code>direct_intensity</code>, <code>metalness</code> and <code>roughness</code> keywords.</p>
+<h3 id="studio">Studio<a class="headerlink" href="#studio" title="Permanent link">&para;</a></h3>
+<p>Photo-realistic rendering. A spinner shows while an HDR environment downloads.</p>
+<ul>
+<li><strong>Environment</strong> — the HDR map lighting the scene, grouped into studio presets (Procedural Studio, Soft Light, High Contrast Studio, Bright Neutral, Clean Softbox, Spotlit Setup, Controlled Light, Hard Contrast Light) and outdoor presets (Urban Overcast, Outdoor Warm, Neutral Industrial, San Giuseppe Bridge). From Python a custom HDR URL is also accepted (<code>studio_environment</code>).</li>
+<li><strong>Use 4K maps</strong> — sharper reflections, slower download (<code>studio_4k_env_maps</code>)</li>
+<li><strong>Env Intensity</strong> (0–300%) and <strong>Env Rotation</strong> (0–360°) — brightness and orientation of the environment lighting</li>
+<li><strong>Background</strong> — Environment, Transparent, Gradient Grey, Gradient Dark Grey, Solid White, Solid Grey, Solid Dark Grey (<code>studio_background</code>)</li>
+<li><strong>Tone Mapping</strong> — PBR Neutral, ACES Filmic, or Linear (<code>studio_tone_mapping</code>), with <strong>Exposure</strong> (0–300%, <code>studio_exposure</code>)</li>
+<li><strong>Shadow Intensity</strong> and <strong>Shadow Softness</strong> (<code>studio_shadow_intensity</code>, <code>studio_shadow_softness</code>)</li>
+<li><strong>AO Intensity</strong> — screen-space ambient occlusion, darkening crevices and contact areas (<code>studio_ao_intensity</code>)</li>
+<li><strong>Texture Mapping</strong> — Triplanar or Parametric UV projection for materials without UV coordinates (<code>studio_texture_mapping</code>)</li>
+</ul>
+<p>The tab's <code>E</code> button opens the <strong>material editor</strong> for the selected object: double-click an object, press <code>E</code>, and a floating window shows the object's path and its PBR material values. Edit them live; changed values are marked red, <code>R</code> restores the original material, <code>X</code> closes the window. The red values are meant to be carried back into Python code as <code>override(...)</code> arguments — see <a href="../pbr_studio/">Materials and Studio mode</a>.</p>
+<h2 id="measure-and-select">Measure and select<a class="headerlink" href="#measure-and-select" title="Permanent link">&para;</a></h2>
+<p>The Distance, Properties and Select tools share the picking mechanics:</p>
+<ul>
+<li><code>v</code> / <code>e</code> / <code>f</code> / <code>s</code> on the keyboard (or the filter dropdown) restrict picking to vertices / edges / faces / solids; <code>n</code> clears the filter</li>
+<li><code>ESC</code> clears all selections; <code>backspace</code> or right-click removes only the last one</li>
+</ul>
+<p>The readouts come from the host's measurement backend, which computes on the exact BRep geometry — the numbers are CAD-exact, not read off the tessellated mesh.</p>
+<h3 id="distance">Distance<a class="headerlink" href="#distance" title="Permanent link">&para;</a></h3>
+<p>Pick two shapes; an arrow with a result panel appears. Holding <code>shift</code> while picking the <strong>second</strong> shape measures center-to-center instead of the minimum distance — the panel says <code>(min)</code> or <code>(center)</code> accordingly. The panel shows:</p>
+<ul>
+<li><strong>distance</strong>, and its <strong>X | Y | Z</strong> components</li>
+<li><strong>point 1</strong> and <strong>point 2</strong>, the exact points measured between</li>
+<li>when both picks are edges or faces, the <strong>angle</strong> between them, with a reference row per pick saying what was compared: <code>line</code> or <code>tangent at P1/P2</code> for edges, <code>face normal</code> or <code>surface normal at P1/P2</code> for faces, plus the direction/normal vectors. For an edge against a face the angle is given relative to the surface.</li>
+</ul>
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<p>Pick one shape; the panel reports what the geometry kind warrants:</p>
+<ul>
+<li><strong>Vertex</strong> — its <code>xyz</code> position</li>
+<li><strong>Edge</strong> — by curve type: a line's start/middle/end; a circle's center and <code>radius / diam</code>; an ellipse's center and major/minor <code>radius / diam</code>; hyperbola/parabola vertex and endpoints; plus always the exact <strong>length</strong> and, where computable, the tangent angles to the XY plane at both ends</li>
+<li><strong>Face</strong> — by surface type: a plane's center; a cylinder's center and radius; a cone's base radius and half angle; a sphere's radius; a torus's major/minor radius; a revolution's axis; plus always the exact <strong>area</strong> and the mid-face normal's angle to XY</li>
+<li><strong>Solid / Compound</strong> — the exact <strong>volume</strong></li>
+<li>everything except vertices also gets its <strong>bounding box</strong> (min, center, max, size)</li>
+</ul>
+<h3 id="select">Select<a class="headerlink" href="#select" title="Permanent link">&para;</a></h3>
+<p>Pick vertices, edges or faces — of one kind, on one solid — and their indices are collected and handed to the host; in ocp_vscode they land in the clipboard as a comma-separated list. Feed them to <code>select_vertices</code> / <code>select_edges</code> / <code>select_faces</code> to get the same elements back as build123d objects in code — see <a href="../selector/">Object selection</a>.</p>
+<h2 id="explode">Explode<a class="headerlink" href="#explode" title="Permanent link">&para;</a></h2>
+<p><strong>Explode</strong> (<code>explode=True</code>) animates an assembly apart, each part moving away from the center. The animation control bar appears — scrub the timeline slider to any intermediate state. Explode is mutually exclusive with the analysis tools.</p>
+<h2 id="the-animation-bar">The animation bar<a class="headerlink" href="#the-animation-bar" title="Permanent link">&para;</a></h2>
+<p>A control bar with a timeline slider and play / pause / stop buttons, shown below the canvas whenever there is something to play: an animation sent from Python (see <a href="../animation/">Animation</a>) or the explode animation. The slider scrubs; from Python, <code>set_relative_time(fraction)</code> does the same, which is how <code>save_as_gif</code> renders frame by frame.</p>
+<h2 id="small-indicators">Small indicators<a class="headerlink" href="#small-indicators" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>⊢⊣</code> tick size</strong> — the current grid spacing in model units, updated as the grid rescales with zoom, so you can always read distances off the grid.</li>
+<li><strong>Status line</strong> — short hints above the canvas while a tool is active.</li>
+<li><strong>Warning banner</strong> — temporary warnings across the top of the canvas (e.g. a material name that could not be resolved).</li>
+</ul>
+<h2 id="what-the-viewer-remembers">What the viewer remembers<a class="headerlink" href="#what-the-viewer-remembers" title="Permanent link">&para;</a></h2>
+<p>The viewer holds its state — camera, toggle settings, tree visibility, active tab — until the next <code>show</code>. What happens then is governed by the <a href="../config/">config system</a>: camera behavior by <code>reset_camera</code> (keep, recenter, or reset), and the toolbar-tier settings survive as the middle layer of the configuration precedence, so a toggle you clicked is not silently undone by the next <code>show</code> unless that show sets it explicitly.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../show/" class="md-footer__link md-footer__link--next" aria-label="Next: show">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                show
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
