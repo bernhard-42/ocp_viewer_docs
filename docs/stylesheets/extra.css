@@ -1,0 +1,24 @@
+/* Center an image via `![...](...){ .center }`. The second selector keeps it
+   working when glightbox wraps the image in an anchor: the anchor becomes the
+   full-width block and the image centers inside it. */
+img.center,
+a:has(> img.center) {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* A figure holding a row of images (several screenshots under one caption):
+   the theme's `figure img { display: block }` would stack them, and its
+   `width: fit-content` makes percentage widths unresolvable. Only figures with
+   more than one image are affected; single-image figures keep the theme's
+   styling. The anchor variant is what glightbox produces. */
+.md-typeset figure:has(> p > a + a),
+.md-typeset figure:has(> p > img + img) {
+  width: 100%;
+}
+.md-typeset figure:has(> p > a + a) img,
+.md-typeset figure:has(> p > img + img) img {
+  display: inline-block;
+  margin: 0;
+}

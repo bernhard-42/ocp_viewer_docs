@@ -35,75 +35,40 @@ For more detail, see [show](show.md)
 === "ocp_viewer"
 
     ```python
-    from build123d import *
-
     from ocp_viewer import *
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = Box(1, 2, 1)
-    chamfer(box.edges(), 0.4)
-    sphere = Sphere(0.8)
-
-    show_all(
-        collapse="1",
-        ortho=False
-    )
     ```
 
 === "ocp_vscode"
 
     ```python
-    from build123d import *
-
     from ocp_vscode import *
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = Box(1, 2, 1)
-    chamfer(box.edges(), 0.4)
-    sphere = Sphere(0.8)
-
-    show_all(
-        collapse="1",
-        ortho=False
-    )
     ```
 
 === "jupyter_cadquery"
 
     ```python
-    from build123d import *
-
     from jupyter_cadquery import *
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = Box(1, 2, 1)
-    chamfer(box.edges(), 0.4)
-    sphere = Sphere(0.8)
-
-    show_all(
-        collapse="1",
-        ortho=False
-    )
     ```
 
 === "build123d_studio"
 
     ```python
-    from build123d import *
-
     from build123d_studio import *
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = Box(1, 2, 1)
-    chamfer(box.edges(), 0.4)
-    sphere = Sphere(0.8)
-
-    show_all(
-        collapse="1",
-        ortho=False
-    )
     ```
+
+```python
+from build123d import *
+
+set_defaults(axes=True, center_grid=True, grid=(True, False, False))
+
+box = Box(1, 2, 1)
+chamfer(box.edges(), 0.4)
+sphere = Sphere(0.8)
+
+box.color = "red"
+
+show_all(ortho=False)
+```
+
+![](./assets/show-show_all.png#only-light){.center width=50%}
+![](./assets/show-show_all-dark.png#only-dark){.center width=50%}

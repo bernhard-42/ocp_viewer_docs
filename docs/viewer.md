@@ -9,6 +9,10 @@ Almost everything described here can also be driven from Python: the initial sta
 ![viewer overview](assets/viewer-overview.png#only-light)
 ![viewer overview](assets/viewer-overview-dark.png#only-dark)
 
+/// caption
+Viewer start screen with OCP logo
+///
+
 The window has four areas:
 
 - the **canvas**, where the CAD objects are rendered. Before the first `show`, it displays the OCP splash logo.
@@ -42,20 +46,52 @@ Two control styles exist: **trackball** (the default — free rotation, no fixed
 | Hide other elements | `shift` + `meta` + click on a tree label                   |
 | Set camera target   | `shift` + `meta` + double-click on the object              |
 
+Independent of any tool, the element under the cursor is continuously highlighted as the mouse moves, with a live mesh-based readout of its attributes; the toolbar's filter dropdown restricts what gets highlighted.
+
+![live status](assets/viewer-status.png#only-light){ .center width="48%" }
+![live status dark](assets/viewer-status-dark.png#only-dark){ .center width="48%" }
+
 Picking an element highlights it, draws its axis-aligned bounding box, and writes its path, name and bounding box into the info box. Setting the camera target re-aims the camera at the picked element's bounding-box center (also logged in the info box) — useful for rotating around a detail instead of the whole assembly.
+
+![picking](assets/viewer-picking.png#only-light){ .center width="48%" }
+![picking dark](assets/viewer-picking-dark.png#only-dark){ .center width="48%" }
 
 ## The toolbar
 
-From left to right, in groups:
+This model[^1] serves as a reference to show most of the features:
+
+![no-decorators](assets/viewer-no-decorators.png#only-light){ .center width="48%" }
+![no-decorators-dark](assets/viewer-no-decorators-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+Reference view
+///
+
+From left to right, in groups (in parentheses are the Python [show](./show.md) keywords that control this viewer setting):
 
 **View toggles**
 
 - **Axes** — show the axes helper through the object's center (`axes`)
 - **Axes at (0,0,0)** — move the axes helper to the origin (`axes0`)
-- **Grid** — toggle all grids; the button's dropdown switches the XY, XZ and YZ planes individually (`grid`)
+- **Grid** — toggle all grids; the button's dropdown switches the XY, XZ and YZ planes individually (`grid`). The Python keyword `center_grid=True` locates the grids at `(0, 0, 0)`.
 - **Perspective** — switch between orthographic and perspective camera (`ortho`)
+
+![decorators](assets/viewer-decorators.png#only-light){ .center width="48%" }
+![decorators-dark](assets/viewer-decorators-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+Perspective view with axes at (0, 0, 0) and a grid on the XY plane
+///
+
 - **Transparent** — render all faces semi-transparent (`transparent`, opacity from `default_opacity`)
 - **Black edges** — draw all edges black instead of their own color (`black_edges`)
+
+![transparent](assets/viewer-transparent.png#only-light){ .center width="48%" }
+![transparent-dark](assets/viewer-transparent-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+Transparent view with black (highlighted) edges
+///
 
 **Camera**
 
@@ -68,9 +104,9 @@ From left to right, in groups:
 - **Explode** — pull an assembly apart to inspect its structure; a slider bar appears below the toolbar — see [Explode](#explode)
 - **Distance** — measure between two picked shapes — see [Measure and select](#measure-and-select)
 - **Properties** — read the properties of one picked shape
-- **Select** — collect element indices for use in code
+- **Select** — collect element indices for use in code, copying them into the system clipboard
 
-While a Distance, Properties or Select tool is active, a **filter dropdown** (All / Vertex / Edge / Face / Solid) appears in the toolbar to restrict what the mouse can pick.
+A small **filter dropdown** (All / Vertex / Edge / Face / Solid) in the toolbar restricts what the mouse highlights and picks.
 
 **Right side**
 
@@ -104,9 +140,13 @@ The navigation tree, one node per object or assembly level. Each node carries tw
 ![mesh-only](assets/viewer-mesh-only.png#only-light){ width="32%" }
 ![mixed](assets/viewer-mixed.png#only-light){ width="32%" }
 
-![mesh-only-dark](assets/viewer-mesh-only-dark.png#only-dark){ width="32%" }
 ![faces-only-dark](assets/viewer-faces-only-dark.png#only-dark){ width="32%" }
+![mesh-only-dark](assets/viewer-mesh-only-dark.png#only-dark){ width="32%" }
 ![mixed-dark](assets/viewer-mixed-dark.png#only-dark){ width="32%" }
+
+/// caption
+Visibility of faces and/or edges
+///
 
 Four small buttons above the tree control its shape, matching the `collapse=` keyword: `1` collapses all nodes with a single leaf (`Collapse.LEAVES`), `R` expands the root only (`Collapse.ROOT`), `C` collapses everything (`Collapse.ALL`) and `E` expands everything (`Collapse.NONE`).
 
@@ -126,6 +166,17 @@ Below the sliders:
 - **Planes** — show the clipping plane helpers (`clip_planes`)
 - **Use object color caps** — fill the cut faces with the object's own color instead of red/green/blue (`clip_object_colors`)
 
+![viewer-clipping-obj-color](assets/viewer-clipping-obj-color.png#only-light){ width="32%" }
+![viewer-clipping-rgb](assets/viewer-clipping-rgb.png#only-light){ width="32%" }
+![viewer-clipping-intersect](assets/viewer-clipping-intersect.png#only-light){ width="32%" }
+![viewer-clipping-obj-color-dark](assets/viewer-clipping-obj-color-dark.png#only-dark){ width="32%" }
+![viewer-clipping-rgb-dark](assets/viewer-clipping-rgb-dark.png#only-dark){ width="32%" }
+![viewer-clipping-intersect-dark](assets/viewer-clipping-intersect-dark.png#only-dark){ width="32%" }
+
+/// caption
+Different clipping modes
+///
+
 The Python keywords are `clip_slider_0/1/2` and `clip_normal_0/1/2`.
 
 ### Zebra
@@ -137,9 +188,27 @@ Zebra stripe analysis for judging surface quality and continuity: stripes are pr
 - color scheme **B/W**, **Gray** or **Colors** (`zebra_color_scheme`)
 - mapping **Reflection** (stripes follow what a mirror finish would reflect — the classic car-body check, view-dependent) or **Normal** (stripes follow the surface normals, view-independent) (`zebra_mapping_mode`)
 
+![zebra-bw](assets/viewer-zebra-bw.png#only-light){ width="32%" }
+![zebra-grey](assets/viewer-zebra-grey.png#only-light){ width="32%" }
+![zebra-color](assets/viewer-zebra-color.png#only-light){ width="32%" }
+![zebra-bw-dark](assets/viewer-zebra-bw-dark.png#only-dark){ width="32%" }
+![zebra-grey-dark](assets/viewer-zebra-grey-dark.png#only-dark){ width="32%" }
+![zebra-color-dark](assets/viewer-zebra-color-dark.png#only-dark){ width="32%" }
+
+/// caption
+Different zebra modes
+///
+
 ### Material
 
 The lighting and material of the plain CAD view (not Studio mode), all in percent: **Ambient Light**, **Direct Light**, **Metalness** and **Roughness** — the `ambient_intensity`, `direct_intensity`, `metalness` and `roughness` keywords.
+
+![material](assets/viewer-material.png#only-light){ .center width="48%" }
+![material-dark](assets/viewer-material-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+Customized material for the CAD view
+///
 
 ### Studio
 
@@ -154,16 +223,30 @@ Photo-realistic rendering. A spinner shows while an HDR environment downloads.
 - **AO Intensity** — screen-space ambient occlusion, darkening crevices and contact areas (`studio_ao_intensity`)
 - **Texture Mapping** — Triplanar or Parametric UV projection for materials without UV coordinates (`studio_texture_mapping`)
 
+![studio](assets/viewer-studio.png#only-light){ .center width="48%" }
+![studio-dark](assets/viewer-studio-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+Physically Based Rendering (PBR) view
+///
+
 The tab's `E` button opens the **material editor** for the selected object: double-click an object, press `E`, and a floating window shows the object's path and its PBR material values. Edit them live; changed values are marked red, `R` restores the original material, `X` closes the window. The red values are meant to be carried back into Python code as `override(...)` arguments — see [Materials and Studio mode](pbr_studio.md).
+
+![studio-editor](assets/viewer-studio-editor.png#only-light){ .center width="48%" }
+![studio-editor-dark](assets/viewer-studio-editor-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+PBR property editor
+///
 
 ## Measure and select
 
 The Distance, Properties and Select tools share the picking mechanics:
 
-- `v` / `e` / `f` / `s` on the keyboard (or the filter dropdown) restrict picking to vertices / edges / faces / solids; `n` clears the filter
+- `v` / `e` / `f` / `s` on the keyboard (or the filter dropdown) restrict highlighting and picking to vertices / edges / faces / solids; `n` clears the filter
 - `ESC` clears all selections; `backspace` or right-click removes only the last one
 
-The readouts come from the host's measurement backend, which computes on the exact BRep geometry — the numbers are CAD-exact, not read off the tessellated mesh.
+Two kinds of numbers appear, and the panel titles say which: the continuous hover readout is **mesh based** — computed from the tessellation, instant, approximate. The measurement tools themselves ask the host's Python measurement backend, which computes on the exact BRep geometry, so the panel numbers are CAD-exact; only where no backend is reachable do the panels fall back to mesh-based values and title themselves "(mesh based)".
 
 ### Distance
 
@@ -172,6 +255,13 @@ Pick two shapes; an arrow with a result panel appears. Holding `shift` while pic
 - **distance**, and its **X | Y | Z** components
 - **point 1** and **point 2**, the exact points measured between
 - when both picks are edges or faces, the **angle** between them, with a reference row per pick saying what was compared: `line` or `tangent at P1/P2` for edges, `face normal` or `surface normal at P1/P2` for faces, plus the direction/normal vectors. For an edge against a face the angle is given relative to the surface.
+
+![distance](assets/viewer-distance.png#only-light){ .center width="48%" }
+![distance-dark](assets/viewer-distance-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+Distance measurement using a Python backend
+///
 
 ### Properties
 
@@ -183,13 +273,31 @@ Pick one shape; the panel reports what the geometry kind warrants:
 - **Solid / Compound** — the exact **volume**
 - everything except vertices also gets its **bounding box** (min, center, max, size)
 
+![properties](assets/viewer-properties.png#only-light){ .center width="48%" }
+![properties-dark](assets/viewer-properties-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+Properties provided by a Python backend
+///
+
 ### Select
 
-Pick vertices, edges or faces — of one kind, on one solid — and their indices are collected and handed to the host; in ocp_vscode they land in the clipboard as a comma-separated list. Feed them to `select_vertices` / `select_edges` / `select_faces` to get the same elements back as build123d objects in code — see [Object selection](selector.md).
+Pick vertices, edges or faces — of one kind, on one solid — and their indices are copied to the system clipboard as a comma-separated list. Feed them to `select_vertices` / `select_edges` / `select_faces` to get the same elements back as build123d objects in code — see [Object selection](selector.md).
+
+!!! warning "Compatiblity"
+
+    The indices returned are stable across runs as long as no geometry change is introduced before `select_*`. However, Open Cascade does not guarantee the stability of the indices across major version, e.g. from 7.x tpo 8.x
 
 ## Explode
 
 **Explode** (`explode=True`) animates an assembly apart, each part moving away from the center. The animation control bar appears — scrub the timeline slider to any intermediate state. Explode is mutually exclusive with the analysis tools.
+
+![explode](assets/viewer-explode.png#only-light){ .center width="48%" }
+![explode-dark](assets/viewer-explode-dark.png#only-dark){ .center width="48%" }
+
+/// caption
+Explosion view
+///
 
 ## The animation bar
 
@@ -204,3 +312,5 @@ A control bar with a timeline slider and play / pause / stop buttons, shown belo
 ## What the viewer remembers
 
 The viewer holds its state — camera, toggle settings, tree visibility, active tab — until the next `show`. What happens then is governed by the [config system](config.md): camera behavior by `reset_camera` (keep, recenter, or reset), and the toolbar-tier settings survive as the middle layer of the configuration precedence, so a toggle you clicked is not silently undone by the next `show` unless that show sets it explicitly.
+
+[^1]: This model is created by Kelly Harward, taken from [grabcad](https://grabcad.com/library/toy-rider-car-1)

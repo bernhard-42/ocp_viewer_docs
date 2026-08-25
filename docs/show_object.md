@@ -41,15 +41,15 @@ Keywords for show_object:
 
 The valid keywords to configure the viewer (`**kwargs`) are the same as for [show](show.md), including the [host keywords](show.md#host-keywords).
 
-### Typically useful parameters
+### Managing the object stack
 
-- Reset the object stack:
+- `reset_show()`
 
-  `reset_show()`
+  Reset the object stack so the next `show_object` starts from a clean slate — typically at the top of a file that is executed repeatedly, to clean the object buffer.
 
-- Restart a new objects stack
+- `show_object(obj, clear=True)`
 
-  `show_object(obj, clear=True)`
+  Restart a new object stack with this object.
 
 For more detail, see [show](show.md)
 
@@ -58,107 +58,49 @@ For more detail, see [show](show.md)
 === "ocp_viewer"
 
     ```python
-    import cadquery as cq
-
-    from ocp_viewer import show_object, reset_show, set_defaults
-
-    reset_show()  # use for repeated cell execution to clean object buffer
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-    show_object(box, name="box", options={"alpha": 0.5})
-
-    sphere = cq.Workplane().sphere(0.6)
-
-    show_object(
-        sphere,
-        # show_object args
-        "sphere",
-        {"color": (10, 100, 110)},
-        # viewer args
-        collapse="1",
-        ortho=False
-    )
+    from ocp_viewer import show_object, reset_show, set_defaults, Collapse
     ```
 
 === "ocp_vscode"
 
     ```python
-    import cadquery as cq
-
-    from ocp_vscode import show_object, reset_show, set_defaults
-
-    reset_show()  # use for repeated cell execution to clean object buffer
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-    show_object(box, name="box", options={"alpha": 0.5})
-
-    sphere = cq.Workplane().sphere(0.6)
-
-    show_object(
-        sphere,
-        # show_object args
-        "sphere",
-        {"color": (10, 100, 110)},
-        # viewer args
-        collapse="1",
-        ortho=False
-    )
+    from ocp_vscode import show_object, reset_show, set_defaults, Collapse
     ```
 
 === "jupyter_cadquery"
 
     ```python
-    import cadquery as cq
-
-    from jupyter_cadquery import show_object, reset_show, set_defaults
-
-    reset_show()  # use for repeated cell execution to clean object buffer
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-    show_object(box, name="box", options={"alpha": 0.5})
-
-    sphere = cq.Workplane().sphere(0.6)
-
-    show_object(
-        sphere,
-        # show_object args
-        "sphere",
-        {"color": (10, 100, 110)},
-        # viewer args
-        collapse="1",
-        ortho=False
-    )
+    from jupyter_cadquery import show_object, reset_show, set_defaults, Collapse
     ```
 
 === "build123d_studio"
 
     ```python
-    import cadquery as cq
-
-    from build123d_studio import show_object, reset_show, set_defaults
-
-    reset_show()  # use for repeated cell execution to clean object buffer
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-    show_object(box, name="box", options={"alpha": 0.5})
-
-    sphere = cq.Workplane().sphere(0.6)
-
-    show_object(
-        sphere,
-        # show_object args
-        "sphere",
-        {"color": (10, 100, 110)},
-        # viewer args
-        collapse="1",
-        ortho=False
-    )
+    from build123d_studio import show_object, reset_show, set_defaults, Collapse
     ```
+
+```python
+import cadquery as cq
+
+reset_show()  # use for repeated cell execution to clean object buffer
+
+set_defaults(axes=True, transparent=False, collapse=Collapse.LEAVES, grid=(True, False, False))
+
+box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+show_object(box, name="box", options={"alpha": 0.5})
+
+sphere = cq.Workplane().sphere(0.6)
+
+show_object(
+    sphere,
+    # show_object args
+    "sphere",
+    {"color": (10, 100, 110)},
+    # viewer args
+    ortho=False,
+    zoom=1.25
+)
+```
+
+![](./assets/show-show_object.png#only-light){.center width=50%}
+![](./assets/show-show_object-dark.png#only-dark){.center width=50%}

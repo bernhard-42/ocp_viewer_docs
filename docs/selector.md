@@ -46,6 +46,10 @@ There are keybinding shortcuts for the topology filters :
 
   Shortcut for `select_faces(obj, [index])[0]`
 
+!!! warning "Compatibility"
+
+    The indices returned are stable across runs as long as no geometry change is introduced before `select_*`. However, Open Cascade does not guarantee the stability of the indices across major versions, e.g. from 7.x to 8.x.
+
 ## Deselect
 
 - In any of the tools pressing "escape" will delete all the selections

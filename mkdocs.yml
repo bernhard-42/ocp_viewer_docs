@@ -29,6 +29,10 @@ theme:
     - search.suggest
     - content.code.copy
     - content.tabs.link
+    - content.footnote.tooltips
+
+extra_css:
+  - stylesheets/extra.css
 
 plugins:
   - search
@@ -36,6 +40,7 @@ plugins:
 
 markdown_extensions:
   - admonition
+  - footnotes
   - attr_list
   - tables
   - toc:
@@ -44,30 +49,45 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.blocks.caption
 
 nav:
   - Home: index.md
-  - The viewer: viewer.md
-  - Showing objects:
-      - show: show.md
-      - show_object: show_object.md
-      - push_object / show_objects: push_object.md
-      - show_all: show_all.md
-      - Additional functions: api.md
-  - Configuring:
-      - The config system: config.md
-      - set_viewer_config: set_viewer_config.md
-      - Enums: enums.md
-  - Analysis tools:
-      - Measure mode: measure.md
-      - Object selection: selector.md
-  - Appearance and scene:
-      - Color maps: colormaps.md
-      - Materials and Studio: pbr_studio.md
-      - ImageFace: image_face.md
-      - Animation: animation.md
+  - The viewer:
+      - Overview: viewer.md
+      - Analysis tools:
+          - Measure mode: measure.md
+          - Object selection: selector.md
+  - The Python API:
+      - Showing objects:
+          - show: show.md
+          - show_object: show_object.md
+          - push_object / show_objects: push_object.md
+          - show_all: show_all.md
+          - Additional functions: api.md
+      - Configuring:
+          - The config system: config.md
+          - set_viewer_config: set_viewer_config.md
+          - Enums: enums.md
+      - Appearance and scene:
+          - Color maps: colormaps.md
+          - Materials and Studio: pbr_studio.md
+          - ImageFace: image_face.md
+          - Animation: animation.md
   - Hosts:
-      - ocp_vscode: hosts/ocp_vscode.md
-      - ocp_viewer: hosts/ocp_viewer.md
-      - jupyter_cadquery: hosts/jupyter_cadquery.md
-      - build123d_studio: hosts/build123d_studio.md
+      - VS Code CAD Viewer:
+          - Installation: hosts/ocp_vscode/installation.md
+          - Workspace Config: hosts/ocp_vscode/workspace_config.md
+          - Addressing a viewer: hosts/ocp_vscode/addressing.md
+      - OCP Viewer:
+          - Installation: hosts/ocp_viewer/installation.md
+          - Workspace Config: hosts/ocp_viewer/workspace_config.md
+          - Addressing a viewer: hosts/ocp_viewer/addressing.md
+      - Jupyter CadQuery:
+          - Installation: hosts/jupyter_cadquery/installation.md
+          - Workspace Config: hosts/jupyter_cadquery/workspace_config.md
+          - Addressing a viewer: hosts/jupyter_cadquery/addressing.md
+      - build123d Studio:
+          - Installation: hosts/build123d_studio/installation.md
+          - Workspace Config: hosts/build123d_studio/workspace_config.md
+          - First Run: hosts/build123d_studio/first_run.md

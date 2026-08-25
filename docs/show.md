@@ -4,9 +4,38 @@
 
 The show command is used to show one or multiple CAD objects and comes with the following parameters:
 
-```python
-show(*cad_objs, <keyword arguments>)
-```
+=== "ocp_viewer"
+
+    ```python
+    from ocp_viewer import show
+
+    show(*cad_objs, <keyword arguments>)
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from ocp_vscode import show
+
+    show(*cad_objs, <keyword arguments>)
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from jupyter_cadquery import show
+
+    show(*cad_objs, <keyword arguments>)
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d_studio import show
+
+    show(*cad_objs, <keyword arguments>)
+
+    ```
 
 ### Arguments
 
@@ -155,53 +184,139 @@ Valid keywords to configure the viewer (**kwargs):
 | `pinning`             |     —      |     —      |        ✓         |        —         |
 
 - `port=` selects which viewer to address when several are open. Typically set once with `set_port(port)` instead of per call.
-- `viewer=` names the sidecar to draw into, by the title it was opened with (`open_viewer(title="Left")`); showing into a title that does not exist yet opens that sidecar. Without `viewer=`, the default sidecar is used. The same addressing keyword appears on the state and defaults functions (see [api.md](api.md)).
+- `viewer=` names the sidecar to draw into, by the title it was opened with (`open_viewer(title="Left")`); showing into a title that does not exist yet opens that sidecar. Without `viewer=`, the default sidecar is used. The same addressing keyword appears on the state and defaults functions (see [Addressing a viewer](hosts/jupyter_cadquery/addressing.md)).
 - `anchor=` says where a newly opened sidecar goes; it cannot be changed once the sidecar exists.
 - `cad_width=` / `height=` size the viewer where the caller decides its size — in a notebook cell. A VS Code panel, a browser window and the Studio app size themselves, so those viewers refuse both.
 - `pinning=` controls whether the view offers the "pin as PNG" button.
 
 ### Typically useful parameters
 
-- Provide maximum space for the CAD object with _glass_ mode
+Example:
 
-  `show(b, c, glass=True)`
+=== "ocp_viewer"
 
-  ![](./assets/glass.png)
+    ```python
+    from ocp_viewer import show
+    ```
 
-- Hide the tree in glass mode by collapsing the it
+=== "ocp_vscode"
 
-  `show(b, glass=True, collapse=Collapse.ALL)`
+    ```python
+    from ocp_vscode import show
+    ```
 
-  ![](./assets/glass-collapsed.png)
+=== "jupyter_cadquery"
 
-  Other valid parameters are "1" (collapse leafs) and "E" (explode tree)
+    ```python
+    from jupyter_cadquery import show
+    ```
 
-- Names, colors and alpha values
+=== "build123d_studio"
 
-  `show(b, c, colors=["red", "green"], names=["red box", "green cylinder"], alphas=[1.0, 0.2])`
+    ```python
+    from build123d_studio import show
+    ```
 
-  ![](./assets/named-objects.png)
+```python
+from build123d import *
 
-- Axes and grids
+b = Box(1,2,3)
+c = Pos(4,0,0)*Cylinder(1,1)
+```
 
-  `show(b, c, axes=True, axes0=False, grid=(True, True, False), ticks=40)`
+**Provide maximum space for the CAD object** with _glass_ mode
 
-  ![](./assets/axes-and-grids.png)
+=== "glass=True"
 
-- Keeping the camera position between `show` commands
+    ```python
+    show(b, c, glass=True)
+    ```
 
-  `show(b, c, reset_camera=False)`
+    ![](./assets/show-glass.png#only-light){.center width=50%}
+    ![](./assets/show-glass-dark.png#only-dark){.center width=50%}
 
-- Show parent object for edges, faces and vertices (build123d syntax)
+=== "glass=False"
 
-  `show(b.vertices(), show_parent=True)`
+    ```python
+    show(b, c, glass=False)
+    ```
 
-  ![](./assets/vertices-parent.png)
+    ![](./assets/show-no-glass.png#only-light){.center width=50%}
+    ![](./assets/show-no-glass-dark.png#only-dark){.center width=50%}
 
-  `show(b.edges().filter_by(Axis.Y), show_parent=True)`
+**Hide the tree in glass mode** by collapsing it
 
-  ![](./assets/edges-parent.png)
+```python
+show(b, glass=True, collapse=Collapse.ALL)
+```
 
-  `show(b.faces().filter_by(Axis.Y), show_parent=True)`
+![](./assets/show-glass-collapse.png#only-light){.center width=50%}
+![](./assets/show-glass-collapse-dark.png#only-dark){.center width=50%}
 
-  ![](./assets/faces-parent.png)
+Other valid parameters, see [Collapse](enums/#collapse)
+
+**Names, colors and alpha values**
+
+```python
+show(b, c, colors=["red", "green"], names=["red box", "green cylinder"], alphas=[1.0, 0.2])
+```
+
+![](./assets/show-colors-names.png#only-light){.center width=50%}
+![](./assets/show-colors-names-dark.png#only-dark){.center width=50%}
+
+**Axes and grids**
+
+=== "center_grid=True"
+
+    ```python
+    show(b, c, axes=True, axes0=False, grid=(True, False, False), ticks=20, center_grid=True)
+    ```
+
+    ![](./assets/show-centered-grid.png#only-light){.center width=50%}
+    ![](./assets/show-centered-grid-dark.png#only-dark){.center width=50%}
+
+=== "center_grid=False"
+
+    ```python
+    show(b, c, axes=True, axes0=False, grid=(True, True, False), ticks=20, center_grid=False)
+    ```
+
+    ![](./assets/show-grid.png#only-light){.center width=50%}
+    ![](./assets/show-grid-dark.png#only-dark){.center width=50%}
+
+**Keeping the camera position between `show` commands**
+
+```python
+show(b, c, reset_camera=Camera.KEEP)
+```
+
+Other valid parameters, see [Camera](enums/#camera)
+
+**Show parent object** for edges, faces and vertices (build123d syntax)
+
+=== "vertices"
+
+    ```python
+    show(b.vertices(), show_parent=True, collapse=Collapse.ROOT)
+    ```
+
+    ![](./assets/show-parent-vertices.png#only-light){.center width=50%}
+    ![](./assets/show-parent-vertices-dark.png#only-dark){.center width=50%}
+
+=== "edges"
+
+    ```python
+    show(b.edges().filter_by(Axis.Y), show_parent=True, collapse=Collapse.ROOT)
+    ```
+
+    ![](./assets/show-parent-edges.png#only-light){.center width=50%}
+    ![](./assets/show-parent-edges-dark.png#only-dark){.center width=50%}
+
+=== "faces"
+
+    ```python
+    show(b.faces().filter_by(Axis.Y), show_parent=True, collapse=Collapse.ROOT)
+    ```
+
+    ![](./assets/show-parent-faces.png#only-light){.center width=50%}
+    ![](./assets/show-parent-faces-dark.png#only-dark){.center width=50%}

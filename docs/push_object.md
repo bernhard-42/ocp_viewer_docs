@@ -47,88 +47,60 @@ show_objects(<keyword arguments>)
 
 The valid keywords to configure the viewer (`**kwargs`) are the same as for [show](show.md), including the [host keywords](show.md#host-keywords). Note that they belong to `show_objects` only: `push_object` just collects into the local registry, nothing reaches the viewer, so it takes no host keywords.
 
+### Managing the object stack
+
+- `remove_object(name, call_show=False, progress="-+*c")`
+
+  Remove a single named object from the object stack. If `call_show=True`, immediately re-renders the remaining stack.
+
+- `reset_show()`
+
+  Reset the object stack, so the next `push_object` starts from a clean slate — the same as `push_object(..., clear=True)` on the first push.
+
 ### Example
 
 === "ocp_viewer"
 
     ```python
-    import cadquery as cq
-
-    from ocp_viewer import push_object, show_objects, set_defaults
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-    push_object(box, name="box", alpha=0.5)
-
-    sphere = cq.Workplane().sphere(0.6)
-    push_object(sphere, name="sphere", alpha=0.5)
-
-    show_objects(
-        collapse="1",
-        ortho=False
-    )
+    from ocp_viewer import push_object, show_objects, set_defaults, reset_show, Collapse
     ```
 
 === "ocp_vscode"
 
     ```python
-    import cadquery as cq
-
-    from ocp_vscode import push_object, show_objects, set_defaults
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-    push_object(box, name="box", alpha=0.5)
-
-    sphere = cq.Workplane().sphere(0.6)
-    push_object(sphere, name="sphere", alpha=0.5)
-
-    show_objects(
-        collapse="1",
-        ortho=False
-    )
+    from ocp_vscode import push_object, show_objects, set_defaults, reset_show, Collapse
     ```
 
 === "jupyter_cadquery"
 
     ```python
-    import cadquery as cq
-
-    from jupyter_cadquery import push_object, show_objects, set_defaults
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-    push_object(box, name="box", alpha=0.5)
-
-    sphere = cq.Workplane().sphere(0.6)
-    push_object(sphere, name="sphere", alpha=0.5)
-
-    show_objects(
-        collapse="1",
-        ortho=False
-    )
+    from jupyter_cadquery import push_object, show_objects, set_defaults, reset_show, Collapse
     ```
 
 === "build123d_studio"
 
     ```python
-    import cadquery as cq
-
-    from build123d_studio import push_object, show_objects, set_defaults
-
-    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
-
-    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-    push_object(box, name="box", alpha=0.5)
-
-    sphere = cq.Workplane().sphere(0.6)
-    push_object(sphere, name="sphere", alpha=0.5)
-
-    show_objects(
-        collapse="1",
-        ortho=False
-    )
+    from build123d_studio import push_object, show_objects, set_defaults, reset_show, Collapse
     ```
+
+```python
+import cadquery as cq
+
+set_defaults(axes=True, transparent=False, grid=(True, False, False))
+
+reset_show()  # use for repeated cell execution to clean object buffer
+
+box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+push_object(box, name="box", color="red", alpha=0.5)
+
+sphere = cq.Workplane().sphere(0.6)
+push_object(sphere, name="sphere", alpha=0.5)
+
+show_objects(
+    collapse=Collapse.ROOT,
+    ortho=False
+)
+```
+
+![](./assets/show-show_objects.png#only-light){.center width=50%}
+![](./assets/show-show_objects-dark.png#only-dark){.center width=50%}
