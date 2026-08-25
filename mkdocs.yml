@@ -28,6 +28,7 @@ theme:
     - navigation.footer
     - search.suggest
     - content.code.copy
+    - content.tabs.link
 
 markdown_extensions:
   - admonition
@@ -37,6 +38,8 @@ markdown_extensions:
       permalink: true
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 
 nav:
   - Home: index.md

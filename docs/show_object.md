@@ -55,30 +55,110 @@ For more detail, see [show](show.md)
 
 ### Example
 
-```python
-import cadquery as cq
+=== "ocp_viewer"
 
-from ocp_viewer import show_object, reset_show, set_defaults           # if using ocp_viewer
-# from ocp_vscode import show_object, reset_show, set_defaults         # if using ocp_vscode
-# from jupyter_cadquery import show_object, reset_show, set_defaults   # if using jupyter_cadquery
-# from build123d_studio import show_object, reset_show, set_defaults   # if using build123d_studio
+    ```python
+    import cadquery as cq
 
-reset_show()  # use for repeated cell execution to clean object buffer
+    from ocp_viewer import show_object, reset_show, set_defaults
 
-set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+    reset_show()  # use for repeated cell execution to clean object buffer
 
-box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-show_object(box, name="box", options={"alpha": 0.5})
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
 
-sphere = cq.Workplane().sphere(0.6)
+    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+    show_object(box, name="box", options={"alpha": 0.5})
 
-show_object(
-    sphere,
-    # show_object args
-    "sphere",
-    {"color": (10, 100, 110)},
-    # viewer args
-    collapse="1",
-    ortho=False
-)
-```
+    sphere = cq.Workplane().sphere(0.6)
+
+    show_object(
+        sphere,
+        # show_object args
+        "sphere",
+        {"color": (10, 100, 110)},
+        # viewer args
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    import cadquery as cq
+
+    from ocp_vscode import show_object, reset_show, set_defaults
+
+    reset_show()  # use for repeated cell execution to clean object buffer
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+    show_object(box, name="box", options={"alpha": 0.5})
+
+    sphere = cq.Workplane().sphere(0.6)
+
+    show_object(
+        sphere,
+        # show_object args
+        "sphere",
+        {"color": (10, 100, 110)},
+        # viewer args
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    import cadquery as cq
+
+    from jupyter_cadquery import show_object, reset_show, set_defaults
+
+    reset_show()  # use for repeated cell execution to clean object buffer
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+    show_object(box, name="box", options={"alpha": 0.5})
+
+    sphere = cq.Workplane().sphere(0.6)
+
+    show_object(
+        sphere,
+        # show_object args
+        "sphere",
+        {"color": (10, 100, 110)},
+        # viewer args
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    import cadquery as cq
+
+    from build123d_studio import show_object, reset_show, set_defaults
+
+    reset_show()  # use for repeated cell execution to clean object buffer
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+    show_object(box, name="box", options={"alpha": 0.5})
+
+    sphere = cq.Workplane().sphere(0.6)
+
+    show_object(
+        sphere,
+        # show_object args
+        "sphere",
+        {"color": (10, 100, 110)},
+        # viewer args
+        collapse="1",
+        ortho=False
+    )
+    ```

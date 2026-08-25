@@ -32,22 +32,78 @@ For more detail, see [show](show.md)
 
 ### Example
 
-```python
-from build123d import *
+=== "ocp_viewer"
 
-from ocp_viewer import *           # if using ocp_viewer
-# from ocp_vscode import *         # if using ocp_vscode
-# from jupyter_cadquery import *   # if using jupyter_cadquery
-# from build123d_studio import *   # if using build123d_studio
+    ```python
+    from build123d import *
 
-set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+    from ocp_viewer import *
 
-box = Box(1, 2, 1)
-chamfer(box.edges(), 0.4)
-sphere = Sphere(0.8)
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
 
-show_all(
-    collapse="1",
-    ortho=False
-)
-```
+    box = Box(1, 2, 1)
+    chamfer(box.edges(), 0.4)
+    sphere = Sphere(0.8)
+
+    show_all(
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from build123d import *
+
+    from ocp_vscode import *
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = Box(1, 2, 1)
+    chamfer(box.edges(), 0.4)
+    sphere = Sphere(0.8)
+
+    show_all(
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from build123d import *
+
+    from jupyter_cadquery import *
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = Box(1, 2, 1)
+    chamfer(box.edges(), 0.4)
+    sphere = Sphere(0.8)
+
+    show_all(
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d import *
+
+    from build123d_studio import *
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = Box(1, 2, 1)
+    chamfer(box.edges(), 0.4)
+    sphere = Sphere(0.8)
+
+    show_all(
+        collapse="1",
+        ortho=False
+    )
+    ```

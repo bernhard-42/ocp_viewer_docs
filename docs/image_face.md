@@ -6,15 +6,41 @@
 - Drop a technical drawing into the scene so dimensions can be compared visually.
 - Show a logo or annotation on a plane.
 
-```python
-from ocp_viewer import show, ImageFace           # if using ocp_viewer
-# from ocp_vscode import show, ImageFace         # if using ocp_vscode
-# from jupyter_cadquery import show, ImageFace   # if using jupyter_cadquery
-# from build123d_studio import show, ImageFace   # if using build123d_studio
+=== "ocp_viewer"
 
-f = ImageFace("front_view.png", scale=600 / 912, origin_pixels=(450, 600))
-show(f)
-```
+    ```python
+    from ocp_viewer import show, ImageFace
+
+    f = ImageFace("front_view.png", scale=600 / 912, origin_pixels=(450, 600))
+    show(f)
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from ocp_vscode import show, ImageFace
+
+    f = ImageFace("front_view.png", scale=600 / 912, origin_pixels=(450, 600))
+    show(f)
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from jupyter_cadquery import show, ImageFace
+
+    f = ImageFace("front_view.png", scale=600 / 912, origin_pixels=(450, 600))
+    show(f)
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d_studio import show, ImageFace
+
+    f = ImageFace("front_view.png", scale=600 / 912, origin_pixels=(450, 600))
+    show(f)
+    ```
 
 ## Signature
 
@@ -100,27 +126,89 @@ scale:       x-scale, y-scale = (63.5 / 758, 125 / 1470)
 origin:      pixel (457, 300) (middle of the mouse wheel)
 ```
 
-```python
-from build123d import Plane
+=== "ocp_viewer"
 
-from ocp_viewer import show, ImageFace           # if using ocp_viewer
-# from ocp_vscode import show, ImageFace         # if using ocp_vscode
-# from jupyter_cadquery import show, ImageFace   # if using jupyter_cadquery
-# from build123d_studio import show, ImageFace   # if using build123d_studio
+    ```python
+    from build123d import Plane
 
-reference = ImageFace(
-    str(Path.home() / "Downloads" / "mouse_top_view.png"),
-    scale=(63.5 / 758, 125 / 1470),
-    origin_pixels=(458, 300),
-    location=Plane.XY.location,  # use Plane.XZ.location to rotate from XY into XZ so it stands up
-    name="top view",
-)
-show(
-    reference,
-    Pos(0, -69, 0.1) * Circle(63.5 / 2).edge(),
-    colors=[None, "red"],
-)
-```
+    from ocp_viewer import show, ImageFace
+
+    reference = ImageFace(
+        str(Path.home() / "Downloads" / "mouse_top_view.png"),
+        scale=(63.5 / 758, 125 / 1470),
+        origin_pixels=(458, 300),
+        location=Plane.XY.location,  # use Plane.XZ.location to rotate from XY into XZ so it stands up
+        name="top view",
+    )
+    show(
+        reference,
+        Pos(0, -69, 0.1) * Circle(63.5 / 2).edge(),
+        colors=[None, "red"],
+    )
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from build123d import Plane
+
+    from ocp_vscode import show, ImageFace
+
+    reference = ImageFace(
+        str(Path.home() / "Downloads" / "mouse_top_view.png"),
+        scale=(63.5 / 758, 125 / 1470),
+        origin_pixels=(458, 300),
+        location=Plane.XY.location,  # use Plane.XZ.location to rotate from XY into XZ so it stands up
+        name="top view",
+    )
+    show(
+        reference,
+        Pos(0, -69, 0.1) * Circle(63.5 / 2).edge(),
+        colors=[None, "red"],
+    )
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from build123d import Plane
+
+    from jupyter_cadquery import show, ImageFace
+
+    reference = ImageFace(
+        str(Path.home() / "Downloads" / "mouse_top_view.png"),
+        scale=(63.5 / 758, 125 / 1470),
+        origin_pixels=(458, 300),
+        location=Plane.XY.location,  # use Plane.XZ.location to rotate from XY into XZ so it stands up
+        name="top view",
+    )
+    show(
+        reference,
+        Pos(0, -69, 0.1) * Circle(63.5 / 2).edge(),
+        colors=[None, "red"],
+    )
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d import Plane
+
+    from build123d_studio import show, ImageFace
+
+    reference = ImageFace(
+        str(Path.home() / "Downloads" / "mouse_top_view.png"),
+        scale=(63.5 / 758, 125 / 1470),
+        origin_pixels=(458, 300),
+        location=Plane.XY.location,  # use Plane.XZ.location to rotate from XY into XZ so it stands up
+        name="top view",
+    )
+    show(
+        reference,
+        Pos(0, -69, 0.1) * Circle(63.5 / 2).edge(),
+        colors=[None, "red"],
+    )
+    ```
 
 Note, it is a good idea to place a face with original mm sizes onto th image to verify everything is fine (here the circle with radius width/2)
 

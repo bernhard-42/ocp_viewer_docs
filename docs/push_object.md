@@ -49,24 +49,86 @@ The valid keywords to configure the viewer (`**kwargs`) are the same as for [sho
 
 ### Example
 
-```python
-import cadquery as cq
+=== "ocp_viewer"
 
-from ocp_viewer import push_object, show_objects, set_defaults           # if using ocp_viewer
-# from ocp_vscode import push_object, show_objects, set_defaults         # if using ocp_vscode
-# from jupyter_cadquery import push_object, show_objects, set_defaults   # if using jupyter_cadquery
-# from build123d_studio import push_object, show_objects, set_defaults   # if using build123d_studio
+    ```python
+    import cadquery as cq
 
-set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+    from ocp_viewer import push_object, show_objects, set_defaults
 
-box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
-push_object(box, name="box", alpha=0.5)
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
 
-sphere = cq.Workplane().sphere(0.6)
-push_object(sphere, name="sphere", alpha=0.5)
+    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+    push_object(box, name="box", alpha=0.5)
 
-show_objects(
-    collapse="1",
-    ortho=False
-)
-```
+    sphere = cq.Workplane().sphere(0.6)
+    push_object(sphere, name="sphere", alpha=0.5)
+
+    show_objects(
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    import cadquery as cq
+
+    from ocp_vscode import push_object, show_objects, set_defaults
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+    push_object(box, name="box", alpha=0.5)
+
+    sphere = cq.Workplane().sphere(0.6)
+    push_object(sphere, name="sphere", alpha=0.5)
+
+    show_objects(
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    import cadquery as cq
+
+    from jupyter_cadquery import push_object, show_objects, set_defaults
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+    push_object(box, name="box", alpha=0.5)
+
+    sphere = cq.Workplane().sphere(0.6)
+    push_object(sphere, name="sphere", alpha=0.5)
+
+    show_objects(
+        collapse="1",
+        ortho=False
+    )
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    import cadquery as cq
+
+    from build123d_studio import push_object, show_objects, set_defaults
+
+    set_defaults(axes=True, transparent=False, collapse=1, grid=(True, True, True))
+
+    box = cq.Workplane().box(1, 2, 1).edges().chamfer(0.4)
+    push_object(box, name="box", alpha=0.5)
+
+    sphere = cq.Workplane().sphere(0.6)
+    push_object(sphere, name="sphere", alpha=0.5)
+
+    show_objects(
+        collapse="1",
+        ortho=False
+    )
+    ```

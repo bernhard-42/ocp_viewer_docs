@@ -12,25 +12,69 @@ There is a fourth participant that is not a level of its own: what you change in
 
 A common setup:
 
-```python
-# %%
-from build123d import *
-import cadquery as cq
+=== "ocp_viewer"
 
-from ocp_viewer import *           # if using ocp_viewer
-# from ocp_vscode import *         # if using ocp_vscode
-# from jupyter_cadquery import *   # if using jupyter_cadquery
-# from build123d_studio import *   # if using build123d_studio
+    ```python
+    # %%
+    from build123d import *
+    import cadquery as cq
 
-set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
+    from ocp_viewer import *
 
-# %%
-...
-```
+    set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
 
-- The first block imports build123d and CadQuery (omit what you are not interested in).
-- The second block imports all commands of your viewer's package.
-- The third block sets `helper_scale` and `reset_camera` as defaults for every subsequent `show*` call.
+    # %%
+    ...
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    # %%
+    from build123d import *
+    import cadquery as cq
+
+    from ocp_vscode import *
+
+    set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
+
+    # %%
+    ...
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    # %%
+    from build123d import *
+    import cadquery as cq
+
+    from jupyter_cadquery import *
+
+    set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
+
+    # %%
+    ...
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    # %%
+    from build123d import *
+    import cadquery as cq
+
+    from build123d_studio import *
+
+    set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
+
+    # %%
+    ...
+    ```
+
+- The first lines import build123d and CadQuery (omit what you are not interested in).
+- The next line imports all commands of your viewer's package (pick your viewer's tab).
+- `set_defaults` then sets `helper_scale` and `reset_camera` as defaults for every subsequent `show*` call.
 
 ## Keeping the camera orientation: `reset_camera`
 

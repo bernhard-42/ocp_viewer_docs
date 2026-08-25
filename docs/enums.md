@@ -2,12 +2,29 @@
 
 All enums below are exported by every viewer's package and accepted wherever the underlying string value would also work.
 
-```python
-from ocp_viewer import Camera, Collapse, Render, AnalysisTool, UiTab, StudioEnvironment, StudioBackground, StudioToneMapping, StudioTextureMapping           # if using ocp_viewer
-# from ocp_vscode import Camera, Collapse, Render, AnalysisTool, UiTab, StudioEnvironment, StudioBackground, StudioToneMapping, StudioTextureMapping         # if using ocp_vscode
-# from jupyter_cadquery import Camera, Collapse, Render, AnalysisTool, UiTab, StudioEnvironment, StudioBackground, StudioToneMapping, StudioTextureMapping   # if using jupyter_cadquery
-# from build123d_studio import Camera, Collapse, Render, AnalysisTool, UiTab, StudioEnvironment, StudioBackground, StudioToneMapping, StudioTextureMapping   # if using build123d_studio
-```
+=== "ocp_viewer"
+
+    ```python
+    from ocp_viewer import Camera, Collapse, Render, AnalysisTool, UiTab, StudioEnvironment, StudioBackground, StudioToneMapping, StudioTextureMapping
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from ocp_vscode import Camera, Collapse, Render, AnalysisTool, UiTab, StudioEnvironment, StudioBackground, StudioToneMapping, StudioTextureMapping
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from jupyter_cadquery import Camera, Collapse, Render, AnalysisTool, UiTab, StudioEnvironment, StudioBackground, StudioToneMapping, StudioTextureMapping
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d_studio import Camera, Collapse, Render, AnalysisTool, UiTab, StudioEnvironment, StudioBackground, StudioToneMapping, StudioTextureMapping
+    ```
 
 ## `Camera`
 

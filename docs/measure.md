@@ -14,16 +14,45 @@ There are two tools:
 
 The active tool can be selected from Python with `analysis_tool=`, which is accepted by every `show*` command and by `set_viewer_config`:
 
-```python
-from ocp_viewer import show, set_viewer_config, AnalysisTool           # if using ocp_viewer
-# from ocp_vscode import show, set_viewer_config, AnalysisTool         # if using ocp_vscode
-# from jupyter_cadquery import show, set_viewer_config, AnalysisTool   # if using jupyter_cadquery
-# from build123d_studio import show, set_viewer_config, AnalysisTool   # if using build123d_studio
+=== "ocp_viewer"
 
-show(part, analysis_tool=AnalysisTool.PROPERTIES)
-# or, on an already-running viewer:
-set_viewer_config(analysis_tool=AnalysisTool.DISTANCE)
-```
+    ```python
+    from ocp_viewer import show, set_viewer_config, AnalysisTool
+
+    show(part, analysis_tool=AnalysisTool.PROPERTIES)
+    # or, on an already-running viewer:
+    set_viewer_config(analysis_tool=AnalysisTool.DISTANCE)
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from ocp_vscode import show, set_viewer_config, AnalysisTool
+
+    show(part, analysis_tool=AnalysisTool.PROPERTIES)
+    # or, on an already-running viewer:
+    set_viewer_config(analysis_tool=AnalysisTool.DISTANCE)
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from jupyter_cadquery import show, set_viewer_config, AnalysisTool
+
+    show(part, analysis_tool=AnalysisTool.PROPERTIES)
+    # or, on an already-running viewer:
+    set_viewer_config(analysis_tool=AnalysisTool.DISTANCE)
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d_studio import show, set_viewer_config, AnalysisTool
+
+    show(part, analysis_tool=AnalysisTool.PROPERTIES)
+    # or, on an already-running viewer:
+    set_viewer_config(analysis_tool=AnalysisTool.DISTANCE)
+    ```
 
 Allowed values: `AnalysisTool.PROPERTIES`, `AnalysisTool.DISTANCE`, `AnalysisTool.SELECT`, `AnalysisTool.OFF`. The string equivalents `"properties"`, `"distance"`, `"select"`, `"off"` also work.
 

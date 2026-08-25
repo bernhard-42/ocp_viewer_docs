@@ -6,16 +6,33 @@ Most of these pages document the shared part, valid for every viewer. The per-vi
 
 ## One convention
 
-Everything a user calls is imported from the host package — the package of the viewer in use. Every name shown on these pages — `show`, `set_defaults`, `Camera`, all of them — is exported identically by all four packages, so the examples spell the import out once for each and comment out all but one:
+Everything a user calls is imported from the host package — the package of the viewer in use. Every name shown on these pages — `show`, `set_defaults`, `Camera`, all of them — is exported identically by all four packages, so every example comes as one tab per viewer:
 
-```python
-from ocp_viewer import show           # if using ocp_viewer
-# from ocp_vscode import show         # if using ocp_vscode
-# from jupyter_cadquery import show   # if using jupyter_cadquery
-# from build123d_studio import show   # if using build123d_studio
-```
+=== "ocp_viewer"
 
-Uncomment the line of your viewer and the examples run unchanged. The import line is the only thing that names your viewer; the behavior after it is the same everywhere.
+    ```python
+    from ocp_viewer import show
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from ocp_vscode import show
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from jupyter_cadquery import show
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d_studio import show
+    ```
+
+Pick your viewer's tab once — the choice applies to every example on every page and is remembered across visits. The import line is the only thing that names your viewer; the behavior after it is the same everywhere.
 
 The one exception is a handful of keywords that address the viewer's surface rather than its content — `port` (ocp_vscode, ocp_viewer), `viewer` and its sidecar companions `anchor`, `cad_width`, `height`, `pinning` (jupyter_cadquery). Which viewer accepts which is spelled out in [show — Host keywords](show.md#host-keywords).
 

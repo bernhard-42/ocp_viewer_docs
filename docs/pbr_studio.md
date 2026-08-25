@@ -61,45 +61,161 @@ There are two sources of materials:
 
 Let's create a little object to apply the materials later (here with [build123d](https://github.com/gumyr/build123d) algebra mode)
 
-```python
-from build123d import *
+=== "ocp_viewer"
 
-from ocp_viewer import *           # if using ocp_viewer
-# from ocp_vscode import *         # if using ocp_vscode
-# from jupyter_cadquery import *   # if using jupyter_cadquery
-# from build123d_studio import *   # if using build123d_studio
+    ```python
+    from build123d import *
 
-mcc = (Align.MIN, Align.CENTER, Align.CENTER)
-ccm = (Align.CENTER, Align.CENTER, Align.MIN)
-ccM = (Align.CENTER, Align.CENTER, Align.MAX)
+    from ocp_viewer import *
 
-e = Ellipse(10, 3)
-e2 = offset(e, -0.2)
-e -= e2
-e -= Rectangle(12, 6, align=mcc)
+    mcc = (Align.MIN, Align.CENTER, Align.CENTER)
+    ccm = (Align.CENTER, Align.CENTER, Align.MIN)
+    ccM = (Align.CENTER, Align.CENTER, Align.MAX)
 
-e3 = offset(e2, -0.1)
-e2 -= e3
-e2 -= Rectangle(12, 6, align=mcc)
+    e = Ellipse(10, 3)
+    e2 = offset(e, -0.2)
+    e -= e2
+    e -= Rectangle(12, 6, align=mcc)
 
-body = Rot(90, 0, 0) * revolve(e, Axis.Y)
-inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
-mask = Cylinder(4, 3, align=ccm)
-body = body - mask
-inner = inner - mask
+    e3 = offset(e2, -0.1)
+    e2 -= e3
+    e2 -= Rectangle(12, 6, align=mcc)
 
-window = Pos(0, 0, 2.55) * (
-    Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
-)
-lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
-body -= lights
+    body = Rot(90, 0, 0) * revolve(e, Axis.Y)
+    inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
+    mask = Cylinder(4, 3, align=ccm)
+    body = body - mask
+    inner = inner - mask
 
-body.label = "body"
-inner.label = "inner"
-window.label = "window"
-for i, l in enumerate(lights):
-    l.label = f"light_{i}"
-```
+    window = Pos(0, 0, 2.55) * (
+        Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
+    )
+    lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
+    body -= lights
+
+    body.label = "body"
+    inner.label = "inner"
+    window.label = "window"
+    for i, l in enumerate(lights):
+        l.label = f"light_{i}"
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from build123d import *
+
+    from ocp_vscode import *
+
+    mcc = (Align.MIN, Align.CENTER, Align.CENTER)
+    ccm = (Align.CENTER, Align.CENTER, Align.MIN)
+    ccM = (Align.CENTER, Align.CENTER, Align.MAX)
+
+    e = Ellipse(10, 3)
+    e2 = offset(e, -0.2)
+    e -= e2
+    e -= Rectangle(12, 6, align=mcc)
+
+    e3 = offset(e2, -0.1)
+    e2 -= e3
+    e2 -= Rectangle(12, 6, align=mcc)
+
+    body = Rot(90, 0, 0) * revolve(e, Axis.Y)
+    inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
+    mask = Cylinder(4, 3, align=ccm)
+    body = body - mask
+    inner = inner - mask
+
+    window = Pos(0, 0, 2.55) * (
+        Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
+    )
+    lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
+    body -= lights
+
+    body.label = "body"
+    inner.label = "inner"
+    window.label = "window"
+    for i, l in enumerate(lights):
+        l.label = f"light_{i}"
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from build123d import *
+
+    from jupyter_cadquery import *
+
+    mcc = (Align.MIN, Align.CENTER, Align.CENTER)
+    ccm = (Align.CENTER, Align.CENTER, Align.MIN)
+    ccM = (Align.CENTER, Align.CENTER, Align.MAX)
+
+    e = Ellipse(10, 3)
+    e2 = offset(e, -0.2)
+    e -= e2
+    e -= Rectangle(12, 6, align=mcc)
+
+    e3 = offset(e2, -0.1)
+    e2 -= e3
+    e2 -= Rectangle(12, 6, align=mcc)
+
+    body = Rot(90, 0, 0) * revolve(e, Axis.Y)
+    inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
+    mask = Cylinder(4, 3, align=ccm)
+    body = body - mask
+    inner = inner - mask
+
+    window = Pos(0, 0, 2.55) * (
+        Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
+    )
+    lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
+    body -= lights
+
+    body.label = "body"
+    inner.label = "inner"
+    window.label = "window"
+    for i, l in enumerate(lights):
+        l.label = f"light_{i}"
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d import *
+
+    from build123d_studio import *
+
+    mcc = (Align.MIN, Align.CENTER, Align.CENTER)
+    ccm = (Align.CENTER, Align.CENTER, Align.MIN)
+    ccM = (Align.CENTER, Align.CENTER, Align.MAX)
+
+    e = Ellipse(10, 3)
+    e2 = offset(e, -0.2)
+    e -= e2
+    e -= Rectangle(12, 6, align=mcc)
+
+    e3 = offset(e2, -0.1)
+    e2 -= e3
+    e2 -= Rectangle(12, 6, align=mcc)
+
+    body = Rot(90, 0, 0) * revolve(e, Axis.Y)
+    inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
+    mask = Cylinder(4, 3, align=ccm)
+    body = body - mask
+    inner = inner - mask
+
+    window = Pos(0, 0, 2.55) * (
+        Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
+    )
+    lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
+    body -= lights
+
+    body.label = "body"
+    inner.label = "inner"
+    window.label = "window"
+    for i, l in enumerate(lights):
+        l.label = f"light_{i}"
+    ```
 
 ## Assigning materials and interpolating colors for CAD view
 

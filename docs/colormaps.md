@@ -2,12 +2,29 @@
 
 A color map automatically assigns colors to the objects passed to `show()` / `show_all()`. Useful for collections (lists/tuples) where you don't want to spell out a color for each entry.
 
-```python
-from ocp_viewer import show, set_colormap, ColorMap           # if using ocp_viewer
-# from ocp_vscode import show, set_colormap, ColorMap         # if using ocp_vscode
-# from jupyter_cadquery import show, set_colormap, ColorMap   # if using jupyter_cadquery
-# from build123d_studio import show, set_colormap, ColorMap   # if using build123d_studio
-```
+=== "ocp_viewer"
+
+    ```python
+    from ocp_viewer import show, set_colormap, ColorMap
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from ocp_vscode import show, set_colormap, ColorMap
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from jupyter_cadquery import show, set_colormap, ColorMap
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d_studio import show, set_colormap, ColorMap
+    ```
 
 ## Activation
 

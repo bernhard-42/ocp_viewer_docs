@@ -2,12 +2,29 @@
 
 The `Animation` class drives three.js animation tracks on the objects you previously sent to the viewer with `show`.
 
-```python
-from ocp_viewer import show, Animation           # if using ocp_viewer
-# from ocp_vscode import show, Animation         # if using ocp_vscode
-# from jupyter_cadquery import show, Animation   # if using jupyter_cadquery
-# from build123d_studio import show, Animation   # if using build123d_studio
-```
+=== "ocp_viewer"
+
+    ```python
+    from ocp_viewer import show, Animation
+    ```
+
+=== "ocp_vscode"
+
+    ```python
+    from ocp_vscode import show, Animation
+    ```
+
+=== "jupyter_cadquery"
+
+    ```python
+    from jupyter_cadquery import show, Animation
+    ```
+
+=== "build123d_studio"
+
+    ```python
+    from build123d_studio import show, Animation
+    ```
 
 ## Workflow
 
