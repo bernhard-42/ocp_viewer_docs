@@ -35,7 +35,9 @@ The `Animation` class drives three.js animation tracks on the objects you previo
 
 Animation paths are only valid for the most recent `show` call. Don't change the objects between `show` and constructing the `Animation`.
 
-## `add_track(path, action, times, values, animate_joints=False)`
+## Adding animation tracks
+
+`add_track(path, action, times, values, animate_joints=False)`
 
 Adds a three.js keyframe track for one CAD object.
 
