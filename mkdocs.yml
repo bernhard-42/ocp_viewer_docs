@@ -39,6 +39,7 @@ plugins:
   - glightbox
 
 markdown_extensions:
+  - abbr
   - admonition
   - footnotes
   - attr_list
@@ -55,6 +56,10 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.blocks.caption
   - pymdownx.details
+  # the glossary: appended to every page, so each term carries its tooltip
+  - pymdownx.snippets:
+      auto_append:
+        - includes/glossary.md
 
 nav:
   - Home: index.md
