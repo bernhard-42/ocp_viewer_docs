@@ -47,10 +47,14 @@ The one exception is a handful of keywords that address the viewer's surface rat
 
 ## The CAD Viewer
 
-- [Overview](viewer.md) — what is on the screen and how to operate it: mouse navigation, the navigation tree, the toolbar, the tabs, keyboard shortcuts. This is the JavaScript half of the core, embedded by every viewer.
+- [Overview](viewer.md) — the window's layout, the toolbar, the info box, and what the viewer remembers. This is the JavaScript half of the core, embedded by every viewer.
+- [Mouse and Keys](mouse_keys.md) — navigation and selection bindings, and remapping the modifier keys
+- [Tabs](tabs.md) — the tree panel's five tabs: Tree, Clip, Zebra, Material, Studio
 - Analysis tools:
-  - [Measure mode](measure.md) — properties and distance/angle measurement in the viewer
-  - [Object selection](selector.md) — pick faces, edges or vertices in the viewer and use their indices in code
+  - [Overview](measure_select.md) — picking and filters, programmatic activation, mesh-based vs CAD-exact numbers
+  - [Measure mode](measure.md) — the Distance and Properties tools and their panels
+  - [Object selection](selector.md) — pick faces, edges or vertices and use their indices in code
+- [Dynamic features](dynamic_features.md) — explode and the animation bar
 
 ## The Python API
 

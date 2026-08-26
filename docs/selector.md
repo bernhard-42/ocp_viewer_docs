@@ -2,21 +2,7 @@
 
 ## Tool
 
-![select-tool](./assets/select-tool.png) Click on faces, edges, or vertices to select their indices. Do not mix vertices, edges and faces and apply it to just one solid, compound, face or line.
-
-## Topology Filter
-
-For easier selection, there is a **topology filter**
-
-![topo-filter](./assets/topo-filter.png)
-
-There are keybinding shortcuts for the topology filters :
-
-- "v" : vertices
-- "e" : edges
-- "f" : faces
-- "s" : solid
-- "n" : none
+![select-tool](./assets/select-tool.png) Click on faces, edges, or vertices to select their indices. Do not mix vertices, edges and faces and apply it to just one solid, compound, face or line. The indices are copied to the system clipboard as a comma-separated list, ready to be pasted into the `select_*` functions below. Picking and filters are shared by all [analysis tools](measure_select.md).
 
 ## Python functions
 
@@ -47,11 +33,6 @@ There are keybinding shortcuts for the topology filters :
 !!! warning "Compatibility"
 
     The indices returned are stable across runs as long as no geometry change is introduced before `select_*`. However, Open Cascade does not guarantee the stability of the indices across major versions, e.g. from 7.x to 8.x.
-
-## Deselect
-
-- In any of the tools pressing "escape" will delete all the selections
-- "backspace" or "mouse button right click" will delete the last selection only.
 
 ## Example
 

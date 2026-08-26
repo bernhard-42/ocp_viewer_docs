@@ -56,9 +56,13 @@ nav:
   - Home: index.md
   - CAD Viewer:
       - Overview: viewer.md
+      - Mouse and Keys: mouse_keys.md
+      - Tabs: tabs.md
       - Analysis tools:
+          - Overview: measure_select.md
           - Measure mode: measure.md
           - Object selection: selector.md
+      - Dynamic features: dynamic_features.md
   - The Python API:
       - Showing objects:
           - show: show.md
