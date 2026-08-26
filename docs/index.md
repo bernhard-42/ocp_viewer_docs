@@ -11,11 +11,11 @@ Four viewers are built on [ocp-viewer-core](https://github.com/bernhard-42/ocp-v
 Dependencies of the viewer ecosystem
 ///
 
-Most of these pages document the shared part, valid for every viewer. The per-viewer rest — installation, settings storage, ports and transports, debugging integrations — lives in the [Hosts](#hosts) chapter.
+Most of these pages document the shared part, valid for every viewer. The per-viewer rest — installation, settings storage, ports and transports, debugging integrations — lives in the [Viewers](#viewers) chapter.
 
 ## One convention
 
-Everything a user calls is imported from the host package — the package of the viewer in use. Every name shown on these pages — `show`, `set_defaults`, `Camera`, all of them — is exported identically by all four packages, so every example comes as one tab per viewer:
+Everything a user calls is imported from the viewer's package. Every name shown on these pages — `show`, `set_defaults`, `Camera`, all of them — is exported identically by all four packages, so every example comes as one tab per viewer:
 
 === "ocp_viewer"
 
@@ -43,11 +43,11 @@ Everything a user calls is imported from the host package — the package of the
 
 Pick your viewer's tab once — the choice applies to every example on every page and is remembered across visits. The import line is the only thing that names your viewer; the behavior after it is the same everywhere.
 
-The one exception is a handful of keywords that address the viewer's surface rather than its content — `port` (ocp_vscode, ocp_viewer), `viewer` and its sidecar companions `anchor`, `cad_width`, `height`, `pinning` (jupyter_cadquery). Which viewer accepts which is spelled out in [show — Host keywords](show.md#host-keywords).
+The one exception is a handful of keywords that address the viewer's surface rather than its content — `port` (ocp_vscode, ocp_viewer), `viewer` and its sidecar companions `anchor`, `cad_width`, `height`, `pinning` (jupyter_cadquery). Which viewer accepts which is spelled out in [show — Viewer-specific keywords](show.md#viewer-specific-keywords).
 
-## The viewer
+## The CAD Viewer
 
-- [Overview](viewer.md) — what is on the screen and how to operate it: mouse navigation, the navigation tree, the toolbar, the tabs, keyboard shortcuts. This is the JavaScript half of the core, embedded by every host.
+- [Overview](viewer.md) — what is on the screen and how to operate it: mouse navigation, the navigation tree, the toolbar, the tabs, keyboard shortcuts. This is the JavaScript half of the core, embedded by every viewer.
 - Analysis tools:
   - [Measure mode](measure.md) — properties and distance/angle measurement in the viewer
   - [Object selection](selector.md) — pick faces, edges or vertices in the viewer and use their indices in code
@@ -79,11 +79,11 @@ Appearance:
 
 - [Animation](animation.md) — drive keyframe animations on shown assemblies
 
-## Hosts
+## Viewers
 
 One chapter per viewer for what genuinely differs: installation, settings storage, port discovery and `set_port`, sidecars, visual debugging integrations, editor tooling, troubleshooting.
 
-- VS Code CAD Viewer — [Installation](hosts/ocp_vscode/installation.md), [Workspace Config](hosts/ocp_vscode/workspace_config.md), [Addressing a viewer](hosts/ocp_vscode/addressing.md)
-- OCP Viewer — [Installation](hosts/ocp_viewer/installation.md), [Workspace Config](hosts/ocp_viewer/workspace_config.md), [Addressing a viewer](hosts/ocp_viewer/addressing.md)
-- Jupyter CadQuery — [Installation](hosts/jupyter_cadquery/installation.md), [Workspace Config](hosts/jupyter_cadquery/workspace_config.md), [Addressing a viewer](hosts/jupyter_cadquery/addressing.md)
-- build123d Studio — [Installation](hosts/build123d_studio/installation.md), [Workspace Config](hosts/build123d_studio/workspace_config.md), [First Run](hosts/build123d_studio/first_run.md)
+- VS Code CAD Viewer — [Installation](viewers/ocp_vscode/installation.md), [Workspace Config](viewers/ocp_vscode/workspace_config.md), [Addressing a viewer](viewers/ocp_vscode/addressing.md)
+- OCP Viewer — [Installation](viewers/ocp_viewer/installation.md), [Workspace Config](viewers/ocp_viewer/workspace_config.md), [Addressing a viewer](viewers/ocp_viewer/addressing.md)
+- Jupyter CadQuery — [Installation](viewers/jupyter_cadquery/installation.md), [Workspace Config](viewers/jupyter_cadquery/workspace_config.md), [Addressing a viewer](viewers/jupyter_cadquery/addressing.md)
+- build123d Studio — [Installation](viewers/build123d_studio/installation.md), [Workspace Config](viewers/build123d_studio/workspace_config.md), [First Run](viewers/build123d_studio/first_run.md)

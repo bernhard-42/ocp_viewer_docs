@@ -1,6 +1,6 @@
-# The viewer
+# The CAD Viewer
 
-Every host embeds the same viewer window — the JavaScript half of `ocp-viewer-core`, rendering with [three-cad-viewer](https://github.com/bernhard-42/three-cad-viewer). Whether it sits in a VS Code panel, a browser tab, a Jupyter cell or the Studio app, the window looks the same and behaves the same. This page describes it from the user's side: what is on the screen and how to operate it with mouse and keyboard.
+Every viewer embeds the same CAD Viewer window — the JavaScript half of `ocp-viewer-core`, rendering with [three-cad-viewer](https://github.com/bernhard-42/three-cad-viewer). Whether it sits in a VS Code panel, a browser tab, a Jupyter cell or the Studio app, the window looks the same and behaves the same. This page describes it from the user's side: what is on the screen and how to operate it with mouse and keyboard.
 
 Almost everything described here can also be driven from Python: the initial state via keywords on the `show*` commands (see [show](show.md)), and a running viewer via [set_viewer_config](set_viewer_config.md). The UI and the Python keywords are two handles on the same state — a toggle you click in the toolbar is the same setting as the keyword of the same name.
 
@@ -110,7 +110,7 @@ A small **filter dropdown** (All / Vertex / Edge / Face / Solid) in the toolbar 
 
 **Right side**
 
-- **Pin as PNG** — freeze the current view as a static image, on hosts that support pinning (e.g. Jupyter cell output)
+- **Pin as PNG** — freeze the current view as a static image, in viewers that support pinning (e.g. Jupyter cell output)
 - **Help** — the keyboard and mouse binding overlay (dismiss with `ESC`)
 
 ## The info box
@@ -246,7 +246,7 @@ The Distance, Properties and Select tools share the picking mechanics:
 - `v` / `e` / `f` / `s` on the keyboard (or the filter dropdown) restrict highlighting and picking to vertices / edges / faces / solids; `n` clears the filter
 - `ESC` clears all selections; `backspace` or right-click removes only the last one
 
-Two kinds of numbers appear, and the panel titles say which: the continuous hover readout is **mesh based** — computed from the tessellation, instant, approximate. The measurement tools themselves ask the host's Python measurement backend, which computes on the exact BRep geometry, so the panel numbers are CAD-exact; only where no backend is reachable do the panels fall back to mesh-based values and title themselves "(mesh based)".
+Two kinds of numbers appear, and the panel titles say which: the continuous hover readout is **mesh based** — computed from the tessellation, instant, approximate. The measurement tools themselves ask the viewer's Python measurement backend, which computes on the exact BRep geometry, so the panel numbers are CAD-exact; only where no backend is reachable do the panels fall back to mesh-based values and title themselves "(mesh based)".
 
 ### Distance
 

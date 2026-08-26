@@ -39,7 +39,7 @@ show_objects(<keyword arguments>)
 | ------- | ----------- |
 | `progress` | Show progress of tessellation, None is no progress indicator (default="-+*c").<br>Per object: "-": is reference, "+": gets tessellated with Python code, "*": gets tessellated with native code, "c": from cache |
 
-The valid keywords to configure the viewer (`**kwargs`) are the same as for [show](show.md), including the [host keywords](show.md#host-keywords). Note that they belong to `show_objects` only: `push_object` just collects into the local registry, nothing reaches the viewer, so it takes no host keywords.
+The valid keywords to configure the viewer (`**kwargs`) are the same as for [show](show.md), including the [viewer-specific keywords](show.md#viewer-specific-keywords). Note that they belong to `show_objects` only: `push_object` just collects into the local registry, nothing reaches the viewer, so it takes no viewer-specific keywords.
 
 ### Managing the object stack
 

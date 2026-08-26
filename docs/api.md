@@ -2,7 +2,7 @@
 
 Functions exported by every viewer's package that aren't covered by the dedicated `show*` pages.
 
-Function signatures on this page and on [the config system](config.md) page show only the shared parameters. Where a function needs to say _which_ viewer it means, the keyword differs per host — see "Addressing a viewer" in your viewer's chapter: [VS Code CAD Viewer](hosts/ocp_vscode/addressing.md), [OCP Viewer](hosts/ocp_viewer/addressing.md), [Jupyter CadQuery](hosts/jupyter_cadquery/addressing.md). build123d Studio has exactly one viewer and no addressing keyword.
+Function signatures on this page and on [the config system](config.md) page show only the shared parameters. Where a function needs to say _which_ viewer it means, the keyword differs per viewer — see "Addressing a viewer" in your viewer's chapter: [VS Code CAD Viewer](viewers/ocp_vscode/addressing.md), [OCP Viewer](viewers/ocp_viewer/addressing.md), [Jupyter CadQuery](viewers/jupyter_cadquery/addressing.md). build123d Studio has exactly one viewer and no addressing keyword.
 
 ## Screenshots
 

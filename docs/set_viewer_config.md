@@ -79,7 +79,7 @@ set_viewer_config(<keyword arguments>)
 | `metalness` | Metalness property of the default material |
 | `roughness` | Roughness property of the default material |
 
-**Host keywords** (see [Host keywords](show.md#host-keywords)):
+**Viewer-specific keywords** (see [Viewer-specific keywords](show.md#viewer-specific-keywords)):
 
 | Keyword | Description |
 | ------- | ----------- |

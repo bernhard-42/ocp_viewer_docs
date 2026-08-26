@@ -27,10 +27,10 @@ show_object(obj, name=None, options=None, port=None, <keyword arguments>)
 | `update` | Update the object (remove old version) |
 | `mode` | A [Render](enums.md#render) value for this object (default=None, i.e. `Render.ALL`).<br>`Render.ALL`: show faces and edges, `Render.EDGES`: show edges only, `Render.FACES`: show faces only, `Render.NONE`: hide object |
 | `material` | Material object or material name string for this object (default=None) |
-| `port` | The viewer to address when several are open — one of the host keywords; see [Host keywords](show.md#host-keywords) for which viewer accepts which (port, viewer, anchor, cad_width, height, pinning) |
+| `port` | The viewer to address when several are open — one of the viewer-specific keywords; see [Viewer-specific keywords](show.md#viewer-specific-keywords) for which viewer accepts which (port, viewer, anchor, cad_width, height, pinning) |
 | `progress` | Show progress of tessellation, None is no progress indicator (default="-+*c").<br>Per object: "-": is reference, "+": gets tessellated with Python code, "*": gets tessellated with native code, "c": from cache |
 
-The valid keywords to configure the viewer (`**kwargs`) are the same as for [show](show.md), including the [host keywords](show.md#host-keywords).
+The valid keywords to configure the viewer (`**kwargs`) are the same as for [show](show.md), including the [viewer-specific keywords](show.md#viewer-specific-keywords).
 
 ### Managing the object stack
 

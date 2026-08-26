@@ -19,7 +19,7 @@ show_all(variables=None, exclude=None, classes=None, include=None, <keyword argu
 | `classes` | Only show objects which are instances of the classes in this list |
 | `include` | List of variable names that should be shown even though they would be filtered out by `classes`. Only takes effect when `classes` is set |
 
-Valid keywords for `show_all` are the same as for [show](show.md), including the [host keywords](show.md#host-keywords) (`port`, `viewer`, `anchor`, `cad_width`, `height`, `pinning`) — which of them your viewer accepts is the same as for `show`.
+Valid keywords for `show_all` are the same as for [show](show.md), including the [viewer-specific keywords](show.md#viewer-specific-keywords) (`port`, `viewer`, `anchor`, `cad_width`, `height`, `pinning`) — which of them your viewer accepts is the same as for `show`.
 
 ### Example
 

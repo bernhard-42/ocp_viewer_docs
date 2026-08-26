@@ -56,7 +56,7 @@ The show command is used to show one or multiple CAD objects and comes with the 
 | `materials` | List of Material objects or material name strings for the cad_objs. Needs to have the same length as cad_objs (default=None) |
 | `progress` | Show progress of tessellation, None is no progress indicator (default="-+*c").<br>Per object: "-": is reference, "+": gets tessellated with Python code, "*": gets tessellated with native code, "c": from cache |
 
-**Host keywords** (each viewer accepts some of these and refuses the rest — see [Host keywords](#host-keywords)):
+**Viewer-specific keywords** (each viewer accepts some of these and refuses the rest — see [Viewer-specific keywords](#viewer-specific-keywords)):
 
 | Keyword | Description |
 | ------- | ----------- |
@@ -100,7 +100,7 @@ Valid keywords to configure the viewer (`**kwargs`):
 | `position` | Camera position |
 | `quaternion` | Camera orientation as quaternion |
 | `target` | Camera look at target |
-| `reset_camera` | `Camera.RESET`: Reset camera position, rotation, zoom and target.<br>`Camera.CENTER`: Keep camera position, rotation, zoom, but look at center.<br>`Camera.KEEP`: Keep camera position, rotation, zoom, and target.<br>Or, choose one of the presets `Camera.ISO`, `Camera.LEFT`, `Camera.RIGHT`, `Camera.TOP`, `Camera.BOTTOM`, `Camera.FRONT`, `Camera.BACK` (default=`Camera.KEEP`, via the host settings — see [Keeping the camera orientation](reset_camera.md)) |
+| `reset_camera` | `Camera.RESET`: Reset camera position, rotation, zoom and target.<br>`Camera.CENTER`: Keep camera position, rotation, zoom, but look at center.<br>`Camera.KEEP`: Keep camera position, rotation, zoom, and target.<br>Or, choose one of the presets `Camera.ISO`, `Camera.LEFT`, `Camera.RIGHT`, `Camera.TOP`, `Camera.BOTTOM`, `Camera.FRONT`, `Camera.BACK` (default=`Camera.KEEP`, via the viewer settings — see [Keeping the camera orientation](reset_camera.md)) |
 | `clip_slider_0` | Setting of clipping slider 0 (default=None) |
 | `clip_slider_1` | Setting of clipping slider 1 (default=None) |
 | `clip_slider_2` | Setting of clipping slider 2 (default=None) |
@@ -161,7 +161,7 @@ Valid keywords to configure the viewer (`**kwargs`):
 | `debug` | Show debug statements in the viewer's browser console (default=False) |
 | `timeit` | Show timing information from level 0-3 (default=False) |
 
-### Host keywords
+### Viewer-specific keywords
 
 `show` and friends (`show_object`, `show_objects`, `show_all`) all accept these keywords — only `push_object` takes none, since it just collects into the local registry and nothing reaches the viewer. They address the viewer's surface rather than its content, and a surface that decides such a thing itself refuses the keyword instead of ignoring it. Passing a refused keyword produces a warning naming it (`'<key>' is not something this viewer can be told`) and the keyword is not applied.
 
@@ -174,7 +174,7 @@ Valid keywords to configure the viewer (`**kwargs`):
 | `pinning`             |     —      |     —      |        ✓         |        —         |
 
 - `port=` selects which viewer to address when several are open. Typically set once with `set_port(port)` instead of per call.
-- `viewer=` names the sidecar to draw into, by the title it was opened with (`open_viewer(title="Left")`); showing into a title that does not exist yet opens that sidecar. Without `viewer=`, the default sidecar is used. The same addressing keyword appears on the state and defaults functions (see [Addressing a viewer](hosts/jupyter_cadquery/addressing.md)).
+- `viewer=` names the sidecar to draw into, by the title it was opened with (`open_viewer(title="Left")`); showing into a title that does not exist yet opens that sidecar. Without `viewer=`, the default sidecar is used. The same addressing keyword appears on the state and defaults functions (see [Addressing a viewer](viewers/jupyter_cadquery/addressing.md)).
 - `anchor=` says where a newly opened sidecar goes; it cannot be changed once the sidecar exists.
 - `cad_width=` / `height=` size the viewer where the caller decides its size — in a notebook cell. A VS Code panel, a browser window and the Studio app size themselves, so those viewers refuse both.
 - `pinning=` controls whether the view offers the "pin as PNG" button.

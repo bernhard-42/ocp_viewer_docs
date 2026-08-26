@@ -28,13 +28,13 @@ All enums below are exported by every viewer's package and accepted wherever the
 
 ## `Camera`
 
-Camera behavior for `reset_camera=` and the corresponding host setting.
+Camera behavior for `reset_camera=` and the corresponding viewer setting.
 
 | Member                                                        | Effect                                                                                    |
 | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `Camera.RESET`                                                | Reset position, rotation, zoom, target to defaults                                        |
 | `Camera.CENTER`                                               | Keep position, rotation, zoom; recentre look-at on the new object                         |
-| `Camera.KEEP`                                                 | Keep position, rotation, zoom, target — the default via the host settings. Warns when the new object may be invisible at the kept camera (silence with `ignore_camera_warnings()`) |
+| `Camera.KEEP`                                                 | Keep position, rotation, zoom, target — the default via the viewer settings. Warns when the new object may be invisible at the kept camera (silence with `ignore_camera_warnings()`) |
 | `Camera.ISO`                                                  | Snap to isometric preset                                                                  |
 | `Camera.TOP` / `BOTTOM` / `LEFT` / `RIGHT` / `FRONT` / `BACK` | Snap to the named axis-aligned preset                                                     |
 

@@ -54,7 +54,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - The viewer:
+  - CAD Viewer:
       - Overview: viewer.md
       - Analysis tools:
           - Measure mode: measure.md
@@ -76,20 +76,20 @@ nav:
           - Materials and Studio: pbr_studio.md
           - ImageFace: image_face.md
   - Animation: animation.md
-  - Hosts:
+  - Viewers:
       - VS Code CAD Viewer:
-          - Installation: hosts/ocp_vscode/installation.md
-          - Workspace Config: hosts/ocp_vscode/workspace_config.md
-          - Addressing a viewer: hosts/ocp_vscode/addressing.md
+          - Installation: viewers/ocp_vscode/installation.md
+          - Workspace Config: viewers/ocp_vscode/workspace_config.md
+          - Addressing a viewer: viewers/ocp_vscode/addressing.md
       - OCP Viewer:
-          - Installation: hosts/ocp_viewer/installation.md
-          - Workspace Config: hosts/ocp_viewer/workspace_config.md
-          - Addressing a viewer: hosts/ocp_viewer/addressing.md
+          - Installation: viewers/ocp_viewer/installation.md
+          - Workspace Config: viewers/ocp_viewer/workspace_config.md
+          - Addressing a viewer: viewers/ocp_viewer/addressing.md
       - Jupyter CadQuery:
-          - Installation: hosts/jupyter_cadquery/installation.md
-          - Workspace Config: hosts/jupyter_cadquery/workspace_config.md
-          - Addressing a viewer: hosts/jupyter_cadquery/addressing.md
+          - Installation: viewers/jupyter_cadquery/installation.md
+          - Workspace Config: viewers/jupyter_cadquery/workspace_config.md
+          - Addressing a viewer: viewers/jupyter_cadquery/addressing.md
       - build123d Studio:
-          - Installation: hosts/build123d_studio/installation.md
-          - Workspace Config: hosts/build123d_studio/workspace_config.md
-          - First Run: hosts/build123d_studio/first_run.md
+          - Installation: viewers/build123d_studio/installation.md
+          - Workspace Config: viewers/build123d_studio/workspace_config.md
+          - First Run: viewers/build123d_studio/first_run.md
