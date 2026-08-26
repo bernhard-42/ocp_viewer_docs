@@ -10,25 +10,16 @@ show_all(variables=None, exclude=None, classes=None, include=None, <keyword argu
 
 ### Arguments
 
-```text
-    Show all variables in the current scope
+**Parameters**
 
-    Parameters:
-        variables:     Only show objects with names in this list of variable names,
-                       i.e. do not use all from locals()
-        exclude:       List of variable names to exclude from "show_all"
-        classes:       Only show objects which are instances of the classes in this list
-        include:       List of variable names that should be shown even though they
-                       would be filtered out by `classes`. Only takes effect when
-                       `classes` is set.
+| Parameter | Description |
+| --------- | ----------- |
+| `variables` | Only show objects with names in this list of variable names, i.e. do not use all from `locals()` |
+| `exclude` | List of variable names to exclude from `show_all` |
+| `classes` | Only show objects which are instances of the classes in this list |
+| `include` | List of variable names that should be shown even though they would be filtered out by `classes`. Only takes effect when `classes` is set |
 
-    Keywords for show_all:
-        Valid keywords for "show_all" are the same as for "show"
-```
-
-This includes the [host keywords](show.md#host-keywords) (`port`, `viewer`, `anchor`, `cad_width`, `height`, `pinning`) — which of them your viewer accepts is the same as for `show`.
-
-For more detail, see [show](show.md)
+Valid keywords for `show_all` are the same as for [show](show.md), including the [host keywords](show.md#host-keywords) (`port`, `viewer`, `anchor`, `cad_width`, `height`, `pinning`) — which of them your viewer accepts is the same as for `show`.
 
 ### Example
 

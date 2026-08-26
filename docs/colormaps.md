@@ -28,15 +28,45 @@ A color map automatically assigns colors to the objects passed to `show()` / `sh
 
 ## Activation
 
+### Use one of the named maps
+
 ```python
-set_colormap(ColorMap.tab20())           # use one of the named maps
-set_colormap(ColorMap.golden_ratio())    # generator-style endless palette
-set_colormap(None)                       # or use unset_colormap()
+from build123d import Sphere, Pos
+set_colormap(ColorMap.tab20())
+
+show(*[Pos(i * 3) * Sphere(1) for i in range(20)])
 ```
 
-`get_colormap()` returns the currently active map (resetting its iterator). `unset_colormap()` clears it.
+![](./assets/colormap-tab20.png#only-light){.center width=32%}
+![](./assets/colormap-tab20-dark.png#only-dark){.center width=32%}
 
-The map is consumed each time `show` would otherwise default a color, so order matters — the n-th unnamed object gets the n-th color.
+### Use a generator-style endless palette
+
+```python
+from build123d import Sphere, Pos
+set_colormap(ColorMap.golden_ratio())
+
+show(*[Pos(i * 3) * Sphere(1) for i in range(20)])
+```
+
+![](./assets/colormap-golden-ratio.png#only-light){.center width=32%}
+![](./assets/colormap-golden-ratio-dark.png#only-dark){.center width=32%}
+
+### Unset the color map
+
+```python
+unset_colormap()
+# or
+set_colormap(None)
+```
+
+### Get the currently set color map
+
+`get_colormap()` returns the currently active map (resetting its iterator).
+
+!!! info
+
+    The map is consumed each time in `show`, so order matters — the n-th object gets the n-th color.
 
 ## Available factories
 
@@ -68,7 +98,22 @@ The map is consumed each time `show` would otherwise default a color, so order m
 | `ColorMap.segmented(length=10, colormap="hsv", alpha=1.0, reverse=False)`                  | Equally spaced samples across a continuous colormap                                        |
 | `ColorMap.listed(length=10, colormap="mpl:plasma", colors=None, alpha=1.0, reverse=False)` | Subsample a matplotlib listed colormap, or pass `colors=[...]` to use your own list        |
 
+```python
+golden_ratio = ColorMap.golden_ratio()
+seeded = ColorMap.seeded(42, "hsv", alpha=0.8)
+segmented = ColorMap.segmented(20, "hsv")
+listed = ColorMap.listed(colors=["red", "green", "blue"])
+```
+
+!!! warning
+
+    Procedural palettes are endless (generated, starting over at element 0 if the end is reached). So do **not** `list(palette)`. To get the first 10 colors, use `[next(palette) for i in range(10)]`
+
 For matplotlib-based variants pass `colormap="mpl:<name>"` (e.g. `"mpl:plasma"`). The `mpl:` form requires matplotlib to be installed.
+
+```python
+colors = set_colormap(ColorMap.listed(20, "mpl:turbo", reverse=False))
+```
 
 ## Custom maps
 

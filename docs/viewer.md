@@ -67,7 +67,7 @@ This model[^1] serves as a reference to show most of the features:
 Reference view
 ///
 
-From left to right, in groups (in parentheses are the Python [show](./show.md) keywords that control this viewer setting):
+From left to right, in groups (in parentheses are the Python [show](./show.md) keywords that control the viewer setting):
 
 **View toggles**
 
@@ -286,7 +286,7 @@ Pick vertices, edges or faces — of one kind, on one solid — and their indice
 
 !!! warning "Compatiblity"
 
-    The indices returned are stable across runs as long as no geometry change is introduced before `select_*`. However, Open Cascade does not guarantee the stability of the indices across major version, e.g. from 7.x tpo 8.x
+    The indices returned are stable across runs as long as no geometry change is introduced before `select_*`. However, Open Cascade does not guarantee the stability of the indices across major version, e.g. from 7.x tpo 8.x.
 
 ## Explode
 
@@ -311,6 +311,6 @@ A control bar with a timeline slider and play / pause / stop buttons, shown belo
 
 ## What the viewer remembers
 
-The viewer holds its state — camera, toggle settings, tree visibility, active tab — until the next `show`. What happens then is governed by the [config system](config.md): camera behavior by `reset_camera` (keep, recenter, or reset), and the toolbar-tier settings survive as the middle layer of the configuration precedence, so a toggle you clicked is not silently undone by the next `show` unless that show sets it explicitly.
+The viewer holds its state — camera, toggle settings, tree visibility, active tab — until the next `show`. What happens then is governed by the [config system](config.md): camera behavior by [reset_camera](reset_camera.md) (keep, recenter, or reset), and the toolbar-tier settings survive as the middle layer of the configuration precedence, so a toggle you clicked is not silently undone by the next `show` unless that show sets it explicitly.
 
 [^1]: This model is created by Kelly Harward, taken from [grabcad](https://grabcad.com/library/toy-rider-car-1)

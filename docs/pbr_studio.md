@@ -2,283 +2,159 @@
 
 PBR (Physically Based Rendering) materials can be defined using the class `PbrProperties` from [threejs-materials](https://github.com/bernhard-42/threejs-materials), which every viewer package already depends on.
 
-There are two sources of materials:
+There are two sources of materials, MaterialX providers and glTF files with materials.
 
-1. **MaterialX providers.** Supported web pages:
-   - https://ambientcg.com/list?type=material
-   - https://matlib.gpuopen.com/main/materials/all
-   - https://polyhaven.com/textures
-   - https://physicallybased.info/
+### MaterialX providers
 
-   **Installation:** converting MaterialX materials additionally needs the `materialx` and `openexr` packages. ocp_vscode bundles them as an extra (`pip install ocp_vscode[materialx]`); with other viewers install them directly (`pip install materialx openexr`).
+**Supported web pages:**
 
-   **Usage:** The class `PbrProperties` allows to convert (typically called "bake") downloaded MaterialX material into a local cache in a format suitable for three-cad-viewer (threejs) and glTF. If the material comes with a texture, one can override PBR parameters, and scale and rotate textures:
+- [ambient**CG**](https://ambientcg.com/list?type=material)
+- [**GPU**Open](https://matlib.gpuopen.com/main/materials/all)
+- [Poly Haven](https://polyhaven.com/textures)
+- [**PHYSICALLY**BASED](https://physicallybased.info/)
 
-   ```python
-   from threejs_materials import PbrProperties
+**Installation:**
 
-   # Use a GPUOpen material
-   alu_hex = PbrProperties.from_gpuopen("Aluminum Hexagon")
+Converting MaterialX materials additionally needs the `materialx` package. ocp_vscode bundles them as an extra (`pip install ocp_vscode[materialx]`); with other viewers install them directly (`pip install materialx`).
 
-   # Use a GPUOpen material and override the glass behavior
-   glass = PbrProperties.from_gpuopen("Glass").override(transmission=0.98, thickness=0.8)
+??? note "OS and Python support of `materialx`"
 
-   # Use an AmbientCG material, and scale the texture to 2 in u and v direction
-   metal = PbrProperties.from_ambientcg("Metal 049 C").scale(2, 2)
+    Currently, on pypi materialx wheels are provided for macOS (arm64), Linux (Intel) and Windows (Intel) for Python 3.9 - 3.14.
+    There is no guarantee that it will always be available for the latest Python version.
 
-   # Use a PhysicallyBased material and override color for two material instances
-   light = PbrProperties.from_physicallybased("Plastic (Acrylic)")
-   red_light = light.override(color=(1, 0, 0))
-   yellow_light = light.override(color="yellow")
+    | Operating system                                                      | Python <= 3.14                    | Python > 3.14                                                          |
+    | --------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------- |
+    | Linux, MacOS, Windows (with Microsoft Visual C++ toolchain installed) | `pip` installs binaries from pypi | pip installs sources from pypi and compiles the packages directly [^1] |
+    | Windows (no compiler)                                                 | `pip` installs binaries from pypi | not directly supported                                                 |
 
-   ```
+    If your Python version is not supported, use e.g. Python 3.14 and only run `PbrProperties.from_gpuopen("Aluminum Hexagon")`. This will cache the material locally. Afterwards the same command under Python > 3.14 directly reads from cache and does not need `materialx`.
 
-   **Note** Python support of `materialx`:
+    If your system is not supported, visit the [MatrialX github site](https://github.com/AcademySoftwareFoundation/MaterialX) for help compiling it.
 
-   | Operating system                                                      | Python < 3.14                     | Python 3.14                                                       |
-   | --------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------- |
-   | Linux, MacOS, Windows (with Microsoft Visual C++ toolchain installed) | `pip` installs binaries from pypi | pip installs sources from pypi and compiles the packages directly |
-   | Windows (no compiler)                                                 | `pip` installs binaries from pypi | not directly supported\*                                          |
+**Usage:**
 
-   \* Use e.g. Python 3.13 and only run `PbrProperties.from_gpuopen("Aluminum Hexagon")` which will cache the material locally. Afterwards the same command under Python 3.14 directly reads from cache and does not need `materialx` and `openexr`.
-
-2. **GLTF2 containing materials** (e.g. exported from Blender)
-
-   **Installation:** nothing extra — `threejs-materials` alone can read them.
-
-   **Usage:**
-
-   ```python
-   from threejs_materials import PbrProperties
-
-   # load all materials in the glTF/glb file as a dict
-   materials = PbrProperties.load_gltf(here / "brass-deco" / "brass_cube.gltf")
-   # use one of them
-   brass = materials["Ornamental Design Embossed Brass"]
-   ```
-
-## The object
-
-Let's create a little object to apply the materials later (here with [build123d](https://github.com/gumyr/build123d) algebra mode)
+The class `PbrProperties` allows to convert (typically called "baking") downloaded MaterialX material into a local cache in a format suitable for [three-cad-viewer](https://github.com/bernhard-42/three-cad-viewer) (based on [threejs](https://github.com/mrdoob/three.js/)) and glTF export. If the material comes with a texture, one can override PBR parameters, and scale and rotate textures:
 
 === "ocp_viewer"
 
     ```python
-    from build123d import *
-
     from ocp_viewer import *
-
-    mcc = (Align.MIN, Align.CENTER, Align.CENTER)
-    ccm = (Align.CENTER, Align.CENTER, Align.MIN)
-    ccM = (Align.CENTER, Align.CENTER, Align.MAX)
-
-    e = Ellipse(10, 3)
-    e2 = offset(e, -0.2)
-    e -= e2
-    e -= Rectangle(12, 6, align=mcc)
-
-    e3 = offset(e2, -0.1)
-    e2 -= e3
-    e2 -= Rectangle(12, 6, align=mcc)
-
-    body = Rot(90, 0, 0) * revolve(e, Axis.Y)
-    inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
-    mask = Cylinder(4, 3, align=ccm)
-    body = body - mask
-    inner = inner - mask
-
-    window = Pos(0, 0, 2.55) * (
-        Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
-    )
-    lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
-    body -= lights
-
-    body.label = "body"
-    inner.label = "inner"
-    window.label = "window"
-    for i, l in enumerate(lights):
-        l.label = f"light_{i}"
     ```
 
 === "ocp_vscode"
 
     ```python
-    from build123d import *
-
     from ocp_vscode import *
-
-    mcc = (Align.MIN, Align.CENTER, Align.CENTER)
-    ccm = (Align.CENTER, Align.CENTER, Align.MIN)
-    ccM = (Align.CENTER, Align.CENTER, Align.MAX)
-
-    e = Ellipse(10, 3)
-    e2 = offset(e, -0.2)
-    e -= e2
-    e -= Rectangle(12, 6, align=mcc)
-
-    e3 = offset(e2, -0.1)
-    e2 -= e3
-    e2 -= Rectangle(12, 6, align=mcc)
-
-    body = Rot(90, 0, 0) * revolve(e, Axis.Y)
-    inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
-    mask = Cylinder(4, 3, align=ccm)
-    body = body - mask
-    inner = inner - mask
-
-    window = Pos(0, 0, 2.55) * (
-        Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
-    )
-    lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
-    body -= lights
-
-    body.label = "body"
-    inner.label = "inner"
-    window.label = "window"
-    for i, l in enumerate(lights):
-        l.label = f"light_{i}"
     ```
 
 === "jupyter_cadquery"
 
     ```python
-    from build123d import *
-
     from jupyter_cadquery import *
-
-    mcc = (Align.MIN, Align.CENTER, Align.CENTER)
-    ccm = (Align.CENTER, Align.CENTER, Align.MIN)
-    ccM = (Align.CENTER, Align.CENTER, Align.MAX)
-
-    e = Ellipse(10, 3)
-    e2 = offset(e, -0.2)
-    e -= e2
-    e -= Rectangle(12, 6, align=mcc)
-
-    e3 = offset(e2, -0.1)
-    e2 -= e3
-    e2 -= Rectangle(12, 6, align=mcc)
-
-    body = Rot(90, 0, 0) * revolve(e, Axis.Y)
-    inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
-    mask = Cylinder(4, 3, align=ccm)
-    body = body - mask
-    inner = inner - mask
-
-    window = Pos(0, 0, 2.55) * (
-        Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
-    )
-    lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
-    body -= lights
-
-    body.label = "body"
-    inner.label = "inner"
-    window.label = "window"
-    for i, l in enumerate(lights):
-        l.label = f"light_{i}"
     ```
 
 === "build123d_studio"
 
     ```python
-    from build123d import *
-
     from build123d_studio import *
-
-    mcc = (Align.MIN, Align.CENTER, Align.CENTER)
-    ccm = (Align.CENTER, Align.CENTER, Align.MIN)
-    ccM = (Align.CENTER, Align.CENTER, Align.MAX)
-
-    e = Ellipse(10, 3)
-    e2 = offset(e, -0.2)
-    e -= e2
-    e -= Rectangle(12, 6, align=mcc)
-
-    e3 = offset(e2, -0.1)
-    e2 -= e3
-    e2 -= Rectangle(12, 6, align=mcc)
-
-    body = Rot(90, 0, 0) * revolve(e, Axis.Y)
-    inner = Rot(90, 0, 0) * revolve(e2, Axis.Y)
-    mask = Cylinder(4, 3, align=ccm)
-    body = body - mask
-    inner = inner - mask
-
-    window = Pos(0, 0, 2.55) * (
-        Rot(0, 90, 0) * (Sphere(4) - Sphere(3.98)) - Box(10, 10, 10, align=ccM)
-    )
-    lights = [loc * Rot(0, 0, 180) * Sphere(0.5) for loc in PolarLocations(9.8, 6)]
-    body -= lights
-
-    body.label = "body"
-    inner.label = "inner"
-    window.label = "window"
-    for i, l in enumerate(lights):
-        l.label = f"light_{i}"
     ```
 
-## Assigning materials and interpolating colors for CAD view
-
-`PbrProperties` objects are assigned directly to the `.material` attribute of CAD objects. Use `.interpolate_color()` to derive a representative `color` for the CAD view.
-
-Note: This will change when build123d gets an own `Material` class: `shape.material: build123d.Material`
-
 ```python
-body.material = metal
-body.color = "grey"
-
-inner.material = alu_hex
-inner.color = metal.interpolate_color()
-
-window.material = glass
-window.color = glass.interpolate_color()
-
-for i, l in enumerate(lights):
-    l.material = red_light if i % 2 == 0 else yellow_light
-    l.color = l.material.interpolate_color()
+from ocp_viewer_core.utils import create_shader_ball
+from build123d import Pos
 ```
 
-## Visualisation
+Define the materials
 
-Show and use a custom environment map in the Studio tab, rotated by 180°
+```python
+from threejs_materials import PbrProperties
+
+# Use a GPUOpen material
+
+alu_hex = PbrProperties.from_gpuopen("Aluminum Hexagon")
+
+# Use a GPUOpen material and override the glass behavior
+
+wood = PbrProperties.from_gpuopen("Ivory Walnut Solid Wood").scale(rotation=90)
+
+# Use a GPUOpen material and override the glass behavior
+
+glass = PbrProperties.from_gpuopen("Glass").override(transmission=0.98, thickness=0.8)
+
+# Use an AmbientCG material, and scale the texture to 2 in u and v direction
+
+metal = PbrProperties.from_ambientcg("Metal 049 C").scale(2, 2)
+
+# Use a PhysicallyBased material and override color for two material instances
+
+light = PbrProperties.from_physicallybased("Plastic (Acrylic)")
+red_light = light.override(color=(1, 0, 0))
+yellow_light = light.override(color="yellow")
+
+materials = [alu_hex, glass, metal, wood, red_light, yellow_light]
+names = ["alu_hex", "glass", "metal", "light", "red_light", "yellow_light"]
+
+```
+
+Create the objects and interpolate the material to a flat color and apply it to the objects
+
+```python
+sbs = []
+for i in range(3):
+    for j in range(2):
+        k = i * 2 + j
+        sbs.append(Pos(i * 30, j * 30) * create_shader_ball(names[k]))
+        sbs[-1].color = materials[k].interpolate_color()
+```
+
+Use the `materials` keyword to apply colors to objects
 
 ```python
 show(
-    body,
-    inner,
-    window,
-    lights,
-    studio_environment="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/suburban_garden_4k.hdr",
-    studio_env_rotation=275,
+    *sbs,
+    names=names,
+    materials=materials
 )
 ```
 
-![cad-view](./assets/cad-view.png)
+![material-shader-ball-cad.png](assets/material-shader-ball-cad.png#only-light){ .center width="32%" }
+![material-shader-ball-studio.png](assets/material-shader-ball-studio.png#only-light){ .center width="32%" }
 
-### PBR view
+![material-shader-ball-cad-dark](assets/material-shader-ball-cad-dark.png#only-dark){ .center width="32%" }
+![material-shader-ball-studio-dark](assets/material-shader-ball-studio-dark.png#only-dark){ .center width="32%" }
 
-Switch to Studio mode:
+/// caption
+Objects with assigned materials in CAD and Studio view
+///
+
+??? note "build123d support"
+
+    The syntax `show(*objs, materials=materials)` with a list of `PbrProperties` is the generic way working across all CAD libraries based on OCP.
+    build123d has a [dedicated material support](https://build123d.readthedocs.io/en/latest/tutorial_materials.html) based on [bd_materials](https://github.com/bernhard-42/bd_materials) and [threejs-materials](https://github.com/bernhard-42/threejs-materials)
+
+### Materials in glTF files
+
+Material can be extracted from glTF files, e.g. exported from Blender.
+
+**Installation:**
+
+nothing extra — [threejs-materials](https://github.com/bernhard-42/threejs-materials) can already read them.
+
+**Usage:**
 
 ```python
-set_viewer_config(tab="studio")
+from pathlib import Path
+from threejs_materials import PbrProperties
+
+# load all materials in the glTF/glb file as a dict
+here = Path(...)
+
+material = PbrProperties.load_gltf(here / "brass-deco" / "brass_cube.gltf")
+print(materials.keys())
+# dict_keys(['Ornamental Design Embossed Brass'])
+
+# Use one of them
+brass_deco = materials["Ornamental Design Embossed Brass"]
 ```
 
-![cad-view](./assets/studio-view.png)
-
-### No tools mode
-
-Tools can be hidden by clicking on the **> Tools** button above the tools
-
-![cad-view](./assets/studio-view-no-tools.png)
-
-### Material Editor
-
-Double click an object to select it and press the little "E" button.
-
-![cad-view](./assets/studio-view-material-editor.png)
-
-Changes are marked red, you can apply them as `overrides` in your Python code
-
-## Full code
-
-The complete demo can be found [in the ocp_vscode repository](https://github.com/bernhard-42/vscode-ocp-cad-viewer/blob/main/examples/pbr-studio-demo.py)
+[^1]: Will only work if the necessary libraries are installed. For support, visit the [MatrialX github site](https://github.com/AcademySoftwareFoundation/MaterialX)

@@ -10,23 +10,20 @@ push_object(obj, name=None, color=None, alpha=None, material=None, mode=None, cl
 
 ### Arguments
 
-    Parameters:
-        obj: The object to be added or updated. Must have 'name', 'label', 'color', or 'alpha'
-            attributes if corresponding arguments are not provided.
-        name (str, optional): The name to associate with the object. If not provided,
-            attempts to use 'name' or 'label' attribute of obj.
-        color (any, optional): The color to associate with the object. If not provided,
-            attempts to use 'color' attribute of obj.
-        alpha (float, optional): The alpha (transparency) value for the object. If not provided,
-            attempts to use 'alpha' attribute of obj, defaults to 1.0.
-        material (PbrProperties or str, optional): Material object or material name string for the object.
-        mode (Render, optional): A Render value for this object (Render.ALL, Render.EDGES, Render.FACES, Render.NONE).
-        clear (bool, optional): If True, clears the OBJECTS registry before adding the new object.
-        update (bool, optional): If True, updates an existing object with the same name;
-            otherwise, appends as a new object.
+**Parameters**
 
-    Raises:
-        ValueError: If no name is provided and the object does not have a 'name' or 'label' attribute.
+| Parameter | Description |
+| --------- | ----------- |
+| `obj` | The object to be added or updated. Must have 'name', 'label', 'color', or 'alpha' attributes if corresponding arguments are not provided |
+| `name` | (str, optional) The name to associate with the object. If not provided, attempts to use 'name' or 'label' attribute of obj |
+| `color` | (any, optional) The color to associate with the object. If not provided, attempts to use 'color' attribute of obj |
+| `alpha` | (float, optional) The alpha (transparency) value for the object. If not provided, attempts to use 'alpha' attribute of obj, defaults to 1.0 |
+| `material` | (PbrProperties or str, optional) Material object or material name string for the object |
+| `mode` | ([Render](enums.md#render), optional) A Render value for this object (`Render.ALL`, `Render.EDGES`, `Render.FACES`, `Render.NONE`) |
+| `clear` | (bool, optional) If True, clears the OBJECTS registry before adding the new object |
+| `update` | (bool, optional) If True, updates an existing object with the same name; otherwise, appends as a new object |
+
+Raises `ValueError` if no name is provided and the object does not have a 'name' or 'label' attribute.
 
 ### Command
 
@@ -36,14 +33,11 @@ show_objects(<keyword arguments>)
 
 ### Arguments
 
-```text
-    Keywords for show_objects:
-        progress:                Show progress of tessellation with None is no progress indicator. (default="-+*c")
-                                 for object: "-": is reference,
-                                             "+": gets tessellated with Python code,
-                                             "*": gets tessellated with native code,
-                                             "c": from cache
-```
+**Keywords for `show_objects`**
+
+| Keyword | Description |
+| ------- | ----------- |
+| `progress` | Show progress of tessellation, None is no progress indicator (default="-+*c").<br>Per object: "-": is reference, "+": gets tessellated with Python code, "*": gets tessellated with native code, "c": from cache |
 
 The valid keywords to configure the viewer (`**kwargs`) are the same as for [show](show.md), including the [host keywords](show.md#host-keywords). Note that they belong to `show_objects` only: `push_object` just collects into the local registry, nothing reaches the viewer, so it takes no host keywords.
 

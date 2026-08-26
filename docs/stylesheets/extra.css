@@ -1,11 +1,21 @@
-/* Center an image via `![...](...){ .center }`. The second selector keeps it
-   working when glightbox wraps the image in an anchor: the anchor becomes the
-   full-width block and the image centers inside it. */
-img.center,
-a:has(> img.center) {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+/* Keyword reference tables: the first column holds one identifier. Never
+   break inside it - the theme's code spans break words to keep tables
+   narrow, which wraps a keyword's last characters onto a second line. The
+   description column is where the width should give. */
+.md-typeset table:not([class]) td:first-child code {
+  white-space: nowrap;
+}
+
+/* Center images via `![...](...){ .center }`. The centering comes from the
+   paragraph, not from making the image a block - so several .center images
+   in one paragraph stay one centered row instead of stacking. The anchor
+   variant keeps it working when glightbox wraps the image. */
+p:has(> img.center),
+p:has(> a > img.center) {
+  text-align: center;
+}
+img.center {
+  display: inline-block;
 }
 
 /* A figure holding a row of images (several screenshots under one caption):

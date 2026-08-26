@@ -50,6 +50,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.blocks.caption
+  - pymdownx.details
 
 nav:
   - Home: index.md
@@ -64,16 +65,17 @@ nav:
           - show_object: show_object.md
           - push_object / show_objects: push_object.md
           - show_all: show_all.md
+          - Keeping the camera orientation: reset_camera.md
           - Additional functions: api.md
       - Configuring:
           - The config system: config.md
           - set_viewer_config: set_viewer_config.md
           - Enums: enums.md
-      - Appearance and scene:
+      - Appearance:
           - Color maps: colormaps.md
           - Materials and Studio: pbr_studio.md
           - ImageFace: image_face.md
-          - Animation: animation.md
+  - Animation: animation.md
   - Hosts:
       - VS Code CAD Viewer:
           - Installation: hosts/ocp_vscode/installation.md

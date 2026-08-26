@@ -1,6 +1,7 @@
 # Measure mode
 
-![Measurement mode](./assets/measure.gif)
+![Measurement mode](./assets/measure.gif#only-light)
+![Measurement mode](./assets/measure-dark.gif#only-dark)
 
 ## Tools
 

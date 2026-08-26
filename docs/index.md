@@ -7,6 +7,10 @@ Four viewers are built on [ocp-viewer-core](https://github.com/bernhard-42/ocp-v
 
 ![](assets/viewer-ecosystem.png)
 
+/// caption
+Dependencies of the viewer ecosystem
+///
+
 Most of these pages document the shared part, valid for every viewer. The per-viewer rest — installation, settings storage, ports and transports, debugging integrations — lives in the [Hosts](#hosts) chapter.
 
 ## One convention
@@ -56,19 +60,23 @@ Showing objects:
 - [show_object](show_object.md) — show objects incrementally, one call per object
 - [push_object / show_objects](push_object.md) — collect objects without rendering, then render them in one batch
 - [show_all](show_all.md) — show every CAD object in the current Python scope
+- [Keeping the camera orientation](reset_camera.md) — the `reset_camera` semantics: keep, recenter, reset, or snap to a preset
 - [Additional functions](api.md) — `show_clear`, `save_screenshot`, and blueprint images
 
 Configuring:
 
-- [The config system](config.md) — the three levels of configuration and their precedence, the defaults and state inspection functions, and the `reset_camera` semantics
+- [The config system](config.md) — the three levels of configuration and their precedence, and the defaults and state inspection functions
 - [set_viewer_config](set_viewer_config.md) — change a running viewer immediately, without a new show
 - [Enums](enums.md) — `Camera`, `Collapse`, `Render`, `AnalysisTool`, `UiTab` and the Studio enums
 
-Appearance and scene:
+Appearance:
 
 - [Color maps](colormaps.md) — automatic color assignment for object collections
 - [Materials and Studio mode](pbr_studio.md) — PBR materials and photo-realistic rendering
 - [ImageFace](image_face.md) — place a 2-D image as a reference plane in the scene
+
+## Animation
+
 - [Animation](animation.md) — drive keyframe animations on shown assemblies
 
 ## Hosts

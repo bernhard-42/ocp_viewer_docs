@@ -106,11 +106,3 @@ A common setup:
 
 The signatures show only the shared parameters; your viewer's variants additionally accept its addressing keyword — see "Addressing a viewer" in your viewer's chapter ([VS Code CAD Viewer](hosts/ocp_vscode/addressing.md), [OCP Viewer](hosts/ocp_viewer/addressing.md), [Jupyter CadQuery](hosts/jupyter_cadquery/addressing.md)).
 
-## Keeping the camera orientation: `reset_camera`
-
-Sometimes it is helpful to keep the orientation of an object across code changes. This is what `reset_camera` does:
-
-- `reset_camera=Camera.CENTER` will keep position and rotation, but ignore panning. This means the new object will be repositioned to the center (most robust approach).
-- `reset_camera=Camera.KEEP` will keep position, rotation and panning. However, panning can be problematic. When the next object to be shown is much larger or smaller and the object before was panned, it can happen that nothing is visible (the new object at the pan location is outside of the viewer frustum). The viewer checks whether the bounding box of an object is 2x smaller or larger than the one of the last shown object. If so, it falls back to `Camera.CENTER` and notifies via the host's log output.
-- `reset_camera=Camera.RESET` will ensure that position, rotation and panning will be reset to the initial default.
-- `reset_camera=Camera.ISO` / `Camera.TOP` / `Camera.BOTTOM` / `Camera.LEFT` / `Camera.RIGHT` / `Camera.FRONT` / `Camera.BACK` snaps to one of the axis-aligned camera presets — useful for reproducible screenshots.
