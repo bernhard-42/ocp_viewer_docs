@@ -83,6 +83,7 @@ nav:
   - Viewers:
       - VS Code CAD Viewer:
           - Installation: viewers/ocp_vscode/installation.md
+          - Viewer and Library Manager: viewers/ocp_vscode/managers.md
           - Workspace Config: viewers/ocp_vscode/workspace_config.md
           - Addressing a viewer: viewers/ocp_vscode/addressing.md
           - Visual debugging: viewers/ocp_vscode/visual_debugging.md

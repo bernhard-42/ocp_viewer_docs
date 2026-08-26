@@ -8,4 +8,4 @@ The plumbing is automatic: when the Python side connects to the viewer from insi
 
     Refresh that registry entry by hand. Called automatically on first use; only invoke it directly if the kernel was restarted and the console can no longer attach.
 
-The `jupyter_console` package itself is one of the libraries the [Library Manager](installation.md#the-library-manager) can install.
+The `jupyter_console` package itself is one of the libraries the [Library Manager](managers.md#the-library-manager) can install.
