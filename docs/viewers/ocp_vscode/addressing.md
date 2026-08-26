@@ -39,3 +39,16 @@ The extension shows the active viewer's port in the status bar: `OCP: <port>` (v
 | Running tests / CI | `OCP_PORT=<port>` in the environment |
 | Stale entry in `~/.ocpvscode` after a crash | The 1-second probe drops it automatically; to clean up by hand, edit the JSON |
 | "Cannot access viewer config" | The Python side picked a port nothing is listening on — run `find_and_set_port()` or `set_port(...)` |
+
+## Troubleshooting
+
+If `~/.ocpvscode` is out of sync with reality — viewers listed that are long gone, a running viewer missing, discovery behaving strangely — replace its content with the empty registry:
+
+```json
+{
+  "version": 2,
+  "services": {}
+}
+```
+
+It is rebuilt automatically: every viewer registers itself again on its next start.

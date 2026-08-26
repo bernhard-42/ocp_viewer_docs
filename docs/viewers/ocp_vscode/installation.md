@@ -13,25 +13,24 @@ The extension depends on VS Code using the right Python interpreter (your mamba 
 
 1. Open the VS Code Marketplace, search for and install _OCP CAD Viewer_. Afterwards the viewer is available in the VS Code sidebar:
 
-    ![](../../assets/ocp_icon.png)
+   ![](../../assets/ocp_icon.png)
 
 2. Clicking it shows the OCP CAD Viewer UI with the [Viewer Manager and Library Manager](managers.md):
 
-    ![](../../assets/init.png)
+   ![](../../assets/init.png)
 
-    You have three options:
+   You have three options:
+   - Prepare for [build123d](https://github.com/gumyr/build123d): press **Quickstart build123d**. This installs _OCP_, _build123d_, _ipykernel_ (_jupyter_client_), _ocp_tessellate_ and _ocp_vscode_ via `pip`:
 
-    - Prepare for [build123d](https://github.com/gumyr/build123d): press **Quickstart build123d**. This installs _OCP_, _build123d_, _ipykernel_ (_jupyter_client_), _ocp_tessellate_ and _ocp_vscode_ via `pip`:
+     ![](../../assets/build123d_installed.png)
 
-        ![](../../assets/build123d_installed.png)
+   - Prepare for [CadQuery](https://github.com/cadquery/cadquery): press **Quickstart CadQuery**. This installs _OCP_, _CadQuery_, _ipykernel_ (_jupyter_client_), _ocp_tessellate_ and _ocp_vscode_ via `pip`:
 
-    - Prepare for [CadQuery](https://github.com/cadquery/cadquery): press **Quickstart CadQuery**. This installs _OCP_, _CadQuery_, _ipykernel_ (_jupyter_client_), _ocp_tessellate_ and _ocp_vscode_ via `pip`:
+     ![](../../assets/cadquery_installed.png)
 
-        ![](../../assets/cadquery_installed.png)
+   - Ignore the quickstarts and install the libraries one by one in the [Library Manager](managers.md#the-library-manager).
 
-    - Ignore the quickstarts and install the libraries one by one in the [Library Manager](managers.md#the-library-manager).
-
-    Quickstart will also (optionally) install the [Jupyter extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter), start the viewer, and create a demo file in a temporary folder so there is immediately a working example on screen.
+   Quickstart will also (optionally) install the [Jupyter extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter), start the viewer, and create a demo file in a temporary folder so there is immediately a working example on screen.
 
 !!! warning
 
@@ -43,18 +42,18 @@ If you prefer the command line, install the Python side directly — activate th
 
 - `uv`-based environments:
 
-    ```bash
-    source .venv/bin/activate
-    uv add ocp-vscode
-    ```
+  ```bash
+  source .venv/bin/activate
+  uv add ocp-vscode
+  ```
 
 - other environments:
 
-    ```bash
-    source .venv/bin/activate                     # venv
-    conda / mamba / micromamba activate <env>     # conda-like
-    pip install ocp-vscode
-    ```
+  ```bash
+  source .venv/bin/activate                     # venv
+  conda / mamba / micromamba activate <env>     # conda-like
+  pip install ocp-vscode
+  ```
 
 Notes:
 
@@ -66,7 +65,8 @@ Notes:
 The extension is not on the [OpenVSX marketplace](https://open-vsx.org/), so VSCodium and [code-server](https://github.com/coder/code-server) need a manual install:
 
 1. Go to the [releases page](https://github.com/bernhard-42/vscode-ocp-cad-viewer/releases) and download the latest `ocp-cad-viewer-<version>.vsix`.
-2. VSCodium: install the `.vsix` via "Install from VSIX". code-server: run `code-server --install-extension ocp-cad-viewer-<version>.vsix` on the server.
+2. VSCodium: install the `.vsix` via "Install from VSIX".
+3. code-server: run `code-server --install-extension ocp-cad-viewer-<version>.vsix` on the server.
 
 ## Version matching
 

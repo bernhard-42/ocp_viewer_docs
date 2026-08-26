@@ -44,7 +44,7 @@ UserWarning: The viewer doesn't seem to run: Port could not be cast to integer v
     }
     ```
 
-    **⇒** To reset it, change it to `{}` — it is rebuilt when a viewer restarts. See [Addressing a viewer](addressing.md) for how the registry is used.
+    **⇒** To reset it, replace its content with `{"version": 2, "services": {}}` — it is rebuilt when a viewer restarts. See [Addressing a viewer](addressing.md#troubleshooting) for how the registry is used.
 
 ## UserWarning: The viewer doesn't seem to run: [Errno 61] Connection refused
 
