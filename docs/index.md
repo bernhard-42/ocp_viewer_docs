@@ -5,13 +5,7 @@
 
 Four viewers are built on [ocp-viewer-core](https://github.com/bernhard-42/ocp-viewer-core): [ocp_vscode](https://github.com/bernhard-42/vscode-ocp-cad-viewer) (the VS Code extension), [ocp_viewer](https://github.com/bernhard-42/ocp-viewer) (the standalone viewer), [Jupyter CadQuery](https://github.com/bernhard-42/jupyter-cadquery) (for Jupyter Lab) and [build123d Studio](https://github.com/bernhard-42/build123d-studio). They all share the same show commands, the same configuration semantics and the same viewer window, because all of that lives in the core. What differs per viewer is only how it is installed and started, where its settings are stored, and how Python reaches it.
 
-![](assets/viewer-ecosystem.png)
-
-/// caption
-Dependencies of the viewer ecosystem
-///
-
-Most of these pages document the shared part, valid for every viewer. The per-viewer rest — installation, settings storage, ports and transports, debugging integrations — lives in the [Viewers](#viewers) chapter.
+Most of these pages document the shared part, valid for every viewer. The per-viewer rest — installation, settings storage, ports and transports, debugging integrations — lives in the [Viewers](#viewers) chapter, and the [Concepts](#concepts) chapter explains how the pieces fit together.
 
 ## One convention
 
@@ -87,7 +81,16 @@ Appearance:
 
 One chapter per viewer for what genuinely differs: installation, settings storage, port discovery and `set_port`, sidecars, visual debugging integrations, editor tooling, troubleshooting.
 
-- VS Code CAD Viewer — [Installation](viewers/ocp_vscode/installation.md), [Workspace Config](viewers/ocp_vscode/workspace_config.md), [Addressing a viewer](viewers/ocp_vscode/addressing.md)
-- OCP Viewer — [Installation](viewers/ocp_viewer/installation.md), [Workspace Config](viewers/ocp_viewer/workspace_config.md), [Addressing a viewer](viewers/ocp_viewer/addressing.md)
-- Jupyter CadQuery — [Installation](viewers/jupyter_cadquery/installation.md), [Workspace Config](viewers/jupyter_cadquery/workspace_config.md), [Addressing a viewer](viewers/jupyter_cadquery/addressing.md)
-- build123d Studio — [Installation](viewers/build123d_studio/installation.md), [Workspace Config](viewers/build123d_studio/workspace_config.md), [First Run](viewers/build123d_studio/first_run.md)
+- VS Code CAD Viewer — [Installation](viewers/ocp_vscode/installation.md), [Workspace Config](viewers/ocp_vscode/workspace_config.md), [Addressing a viewer](viewers/ocp_vscode/addressing.md), [Visual debugging](viewers/ocp_vscode/visual_debugging.md), [Jupyter Console](viewers/ocp_vscode/jupyter_console.md), [Commands and snippets](viewers/ocp_vscode/commands.md), [Troubleshooting](viewers/ocp_vscode/troubleshooting.md), [Concepts](viewers/ocp_vscode/concepts.md)
+- OCP Viewer — [Installation](viewers/ocp_viewer/installation.md), [Workspace Config](viewers/ocp_viewer/workspace_config.md), [Addressing a viewer](viewers/ocp_viewer/addressing.md), [Editor support: NeoVim](viewers/ocp_viewer/neovim.md), [Docker](viewers/ocp_viewer/docker.md), [Concepts](viewers/ocp_viewer/concepts.md)
+- Jupyter CadQuery — [Installation](viewers/jupyter_cadquery/installation.md), [Workspace Config](viewers/jupyter_cadquery/workspace_config.md), [Addressing a viewer](viewers/jupyter_cadquery/addressing.md), [Concepts](viewers/jupyter_cadquery/concepts.md)
+- build123d Studio — [Installation](viewers/build123d_studio/installation.md), [Workspace Config](viewers/build123d_studio/workspace_config.md), [First Run](viewers/build123d_studio/first_run.md), [Concepts](viewers/build123d_studio/concepts.md)
+
+## Concepts
+
+- [Architecture](concepts/architecture.md) — the ecosystem's pieces and what happens when you call `show()`
+- [Python to CAD Viewer communication](concepts/communication.md) — the transport contract, and the four ways a model travels
+- [The measurement backend](concepts/backend.md) — where the CAD-exact numbers come from
+- [Configuration layers](concepts/configuration.md) — settings, defaults, keywords and the viewer's own state
+- [Mesh creation](concepts/tessellation.md) — how tessellation works, and what keeps it fast
+- [Versioning and compatibility](concepts/versioning.md) — one core version, two registries, and why versions must match

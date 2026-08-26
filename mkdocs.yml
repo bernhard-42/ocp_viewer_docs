@@ -85,15 +85,33 @@ nav:
           - Installation: viewers/ocp_vscode/installation.md
           - Workspace Config: viewers/ocp_vscode/workspace_config.md
           - Addressing a viewer: viewers/ocp_vscode/addressing.md
+          - Visual debugging: viewers/ocp_vscode/visual_debugging.md
+          - Jupyter Console: viewers/ocp_vscode/jupyter_console.md
+          - Commands and snippets: viewers/ocp_vscode/commands.md
+          - Troubleshooting: viewers/ocp_vscode/troubleshooting.md
+          - Concepts: viewers/ocp_vscode/concepts.md
       - OCP Viewer:
           - Installation: viewers/ocp_viewer/installation.md
           - Workspace Config: viewers/ocp_viewer/workspace_config.md
           - Addressing a viewer: viewers/ocp_viewer/addressing.md
+          - Editor support:
+              - NeoVim: viewers/ocp_viewer/neovim.md
+          - Docker: viewers/ocp_viewer/docker.md
+          - Concepts: viewers/ocp_viewer/concepts.md
       - Jupyter CadQuery:
           - Installation: viewers/jupyter_cadquery/installation.md
           - Workspace Config: viewers/jupyter_cadquery/workspace_config.md
           - Addressing a viewer: viewers/jupyter_cadquery/addressing.md
+          - Concepts: viewers/jupyter_cadquery/concepts.md
       - build123d Studio:
           - Installation: viewers/build123d_studio/installation.md
-          - Workspace Config: viewers/build123d_studio/workspace_config.md
           - First Run: viewers/build123d_studio/first_run.md
+          - Workspace Config: viewers/build123d_studio/workspace_config.md
+          - Concepts: viewers/build123d_studio/concepts.md
+  - Concepts:
+      - Architecture: concepts/architecture.md
+      - Python to CAD Viewer communication: concepts/communication.md
+      - Configuration layers: concepts/configuration.md
+      - Mesh creation: concepts/tessellation.md
+      - The measurement backend: concepts/backend.md
+      - Versioning and compatibility: concepts/versioning.md

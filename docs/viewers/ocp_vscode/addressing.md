@@ -8,3 +8,34 @@ VS Code can run several viewer panels, each listening on its own port. The `port
 - `OCP_PORT` env var — overrides discovery entirely, useful in CI or scripts
 
 With a single viewer running, none of this is needed — discovery picks it up automatically.
+
+## The registry `~/.ocpvscode`
+
+Every running viewer (this one and the standalone [OCP Viewer](../ocp_viewer/addressing.md)) registers its port in `~/.ocpvscode`:
+
+```json
+{
+  "version": 2,
+  "services": {
+    "3939": "<jupyter connection file or empty>",
+    "3940": ""
+  }
+}
+```
+
+Maintained automatically — you should not need to edit it. When a viewer shuts down cleanly its entry is removed, and discovery probes each listed port with a 1-second TCP check anyway, so a stale entry from a crashed viewer is harmless. On the first `show*` call in a Python process, discovery reads this file, drops dead ports, uses a single live one silently, and prompts when several are alive (a `questionary` list in a terminal; a VS Code input box in a Jupyter kernel).
+
+## Status bar
+
+The extension shows the active viewer's port in the status bar: `OCP: <port>` (viewer running) or `OCP: <port>·DEBUG` (visual debugging on — see [Visual debugging](visual_debugging.md)).
+
+## Common situations
+
+| Situation | What to do |
+| --------- | ---------- |
+| Only one viewer running | Nothing — discovery picks it automatically |
+| Multiple viewers, same project | `set_port(<port>)` at the top of the script, or pick from the prompt on first `show` |
+| Switching between VS Code and OCP Viewer | Either `set_port(...)` explicitly, or let the prompt handle it |
+| Running tests / CI | `OCP_PORT=<port>` in the environment |
+| Stale entry in `~/.ocpvscode` after a crash | The 1-second probe drops it automatically; to clean up by hand, edit the JSON |
+| "Cannot access viewer config" | The Python side picked a port nothing is listening on — run `find_and_set_port()` or `set_port(...)` |
