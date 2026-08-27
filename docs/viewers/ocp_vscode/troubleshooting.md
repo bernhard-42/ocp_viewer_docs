@@ -5,19 +5,19 @@
 1. Confirm that the VS Code extension and the Python module `ocp_vscode` have the same version. Both show in the OCP CAD Viewer UI, and the Output panel logs the check:
 
     ```text
-    extension.check_upgrade: ocp_vscode library version 2.9.0 matches extension version 2.9.0
+    extension.check_upgrade: ocp_vscode library version 4.0.2 is compatible with extension version 4.0.2 (major.minor match)
     ```
 
 2. Test whether the standalone [OCP Viewer](../ocp_viewer/installation.md) works, to eliminate VS Code issues.
 3. Open a work folder rather than a single Python file, to rule out Python path problems.
-4. Check the Output panel (menu *View → Output*, select "OCP CAD Viewer Log" from the drop-down) for:
+4. Check the Output panel (menu _View → Output_, select "OCP CAD Viewer Log" from the drop-down) for:
     - `PythonPath: '...'` — the correct Python executable and environment?
     - `OCPCADController.startCommandServer: Server listening on port ...` — the correct port? Default is 3939.
     - `OCPCADController.start: Starting websocket server ...` — should not be followed by an error.
     - `ocpCadViewer.ocpCadViewer: OCPCADController started with port ... and folders: ...` — the correct working folder?
-5. If all looks fine so far, toggle *Developer Tools*[^1] in VS Code and look in the Console tab for errors related to `three-cad-viewer.esm.js`, `three.js` or WebGL.
+5. If all looks fine so far, toggle _Developer Tools_[^1] in VS Code and look in the Console tab for errors related to `three-cad-viewer.esm.js`, `three.js` or WebGL.
 
-[^1]: Use *shift-cmd-p* (Mac) or *shift-ctrl-p* (Windows/Linux) and select *Developer: Toggle Developer Tools*.
+[^1]: Use _shift-cmd-p_ (Mac) or _shift-ctrl-p_ (Windows/Linux) and select _Developer: Toggle Developer Tools_.
 
 ## Reliable Python detection
 
@@ -36,11 +36,11 @@ UserWarning: The viewer doesn't seem to run: Port could not be cast to integer v
 
     ```json
     {
-      "version": 2,
-      "services": {
-        "3939": "",
-        "3940": ""
-      }
+        "version": 2,
+        "services": {
+            "3939": "",
+            "3940": ""
+        }
     }
     ```
 
@@ -50,7 +50,8 @@ UserWarning: The viewer doesn't seem to run: Port could not be cast to integer v
 
 Are you using the right port? The **Viewer Manager** shows which port the viewer is running on:
 
-![Viewer Manager](../../assets/viewer-manager.png)
+![Viewer Manager](../../assets/ocp_vscode-view-manager-running.png#only-light){.center width=32%}
+![Viewer Manager](../../assets/ocp_vscode-view-manager-running-dark.png#only-dark){.center width=32%}
 
 (For the standalone [OCP Viewer](../ocp_viewer/installation.md), the port is in its startup output: `The viewer is running on http://127.0.0.1:3939/viewer`.)
 

@@ -13,24 +13,34 @@ The extension depends on VS Code using the right Python interpreter (your mamba 
 
 1. Open the VS Code Marketplace, search for and install _OCP CAD Viewer_. Afterwards the viewer is available in the VS Code sidebar:
 
-   ![](../../assets/ocp_icon.png)
+    ![](../../assets/ocp_icon.png)
 
 2. Clicking it shows the OCP CAD Viewer UI with the [Viewer Manager and Library Manager](managers.md):
 
-   ![](../../assets/init.png)
+![](../../assets/ocp_vscode-quickstart.png#only-light){.center width=32%}
+![](../../assets/ocp_vscode-lib-manager.png#only-light){.center width=32%}
+![](../../assets/ocp_vscode-quickstart-dark.png#only-dark){.center width=32%}
+![](../../assets/ocp_vscode-lib-manager-dark.png#only-dark){.center width=32%}
 
-   You have three options:
-   - Prepare for [build123d](https://github.com/gumyr/build123d): press **Quickstart build123d**. This installs _OCP_, _build123d_, _ipykernel_ (_jupyter_client_), _ocp_tessellate_ and _ocp_vscode_ via `pip`:
+You have three options:
 
-     ![](../../assets/build123d_installed.png)
+- Prepare for [build123d](https://github.com/gumyr/build123d): press **Quickstart build123d**. This installs _OCP_, _build123d_, _ipykernel_ (_jupyter_client_), _ocp_tessellate_ and _ocp_vscode_ via `pip`
 
-   - Prepare for [CadQuery](https://github.com/cadquery/cadquery): press **Quickstart CadQuery**. This installs _OCP_, _CadQuery_, _ipykernel_ (_jupyter_client_), _ocp_tessellate_ and _ocp_vscode_ via `pip`:
+- Prepare for [CadQuery](https://github.com/cadquery/cadquery): press **Quickstart CadQuery**. This installs _OCP_, _CadQuery_, _ipykernel_ (_jupyter_client_), _ocp_tessellate_ and _ocp_vscode_ via `pip`
 
-     ![](../../assets/cadquery_installed.png)
+- Ignore the quickstarts and install the libraries one by one in the [Library Manager](managers.md#the-library-manager).
 
-   - Ignore the quickstarts and install the libraries one by one in the [Library Manager](managers.md#the-library-manager).
+Afterwards you will see the installed library versions in the viewer and library manager:
 
-   Quickstart will also (optionally) install the [Jupyter extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter), start the viewer, and create a demo file in a temporary folder so there is immediately a working example on screen.
+![](../../assets/ocp_vscode-view-manager.png#only-light){.center width=32%}
+![](../../assets/ocp_vscode-lib-manager-installed.png#only-light){.center width=32%}
+
+![](../../assets/ocp_vscode-view-manager-dark.png#only-dark){.center width=32%}
+![](../../assets/ocp_vscode-lib-manager-installed-dark.png#only-dark){.center width=32%}
+
+(depending on which quickstart option you chose, build123d or cadquery will be shown as installed)
+
+Quickstart will also (optionally) install the [Jupyter extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter), start the viewer, and create a demo file in a temporary folder so there is immediately a working example on screen.
 
 !!! warning
 
@@ -40,20 +50,20 @@ The extension depends on VS Code using the right Python interpreter (your mamba 
 
 If you prefer the command line, install the Python side directly — activate the virtual environment first:
 
-- `uv`-based environments:
+- `uv`-based environments (recommended):
 
-  ```bash
-  source .venv/bin/activate
-  uv add ocp-vscode
-  ```
+    ```bash
+    source .venv/bin/activate
+    uv add ocp-vscode
+    ```
 
 - other environments:
 
-  ```bash
-  source .venv/bin/activate                     # venv
-  conda / mamba / micromamba activate <env>     # conda-like
-  pip install ocp-vscode
-  ```
+    ```bash
+    source .venv/bin/activate                     # venv
+    conda / mamba / micromamba activate <env>     # conda-like
+    pip install ocp-vscode
+    ```
 
 Notes:
 

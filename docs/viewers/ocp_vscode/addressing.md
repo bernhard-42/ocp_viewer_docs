@@ -1,6 +1,6 @@
 # Addressing a viewer
 
-VS Code can run several viewer panels, each listening on its own port. The `port=` keyword — accepted by every `show*` command and by the config functions (`status`, `workspace_config`, `combined_config`, `get_default(s)`, `reset_defaults`, `set_viewer_config`, `save_screenshot`) — says which one a call means.
+VS Code can run several instances and each VS Code instance can run its own CAD Viewer, each listening on its own port. The `port=` keyword — accepted by every `show*` command and by the config functions (`status`, `workspace_config`, `combined_config`, `get_default(s)`, `reset_defaults`, `set_viewer_config`, `save_screenshot`) — says which one a call means.
 
 - `set_port(port)` — pin the port once for the Python process instead of passing `port=` per call (the recommended way when several viewers run)
 - `get_port()` — the currently selected port, triggering discovery on first use
@@ -15,11 +15,11 @@ Every running viewer (this one and the standalone [OCP Viewer](../ocp_viewer/add
 
 ```json
 {
-  "version": 2,
-  "services": {
-    "3939": "<jupyter connection file or empty>",
-    "3940": ""
-  }
+    "version": 2,
+    "services": {
+        "3939": "<jupyter connection file or empty>",
+        "3940": ""
+    }
 }
 ```
 
@@ -31,14 +31,13 @@ The extension shows the active viewer's port in the status bar: `OCP: <port>` (v
 
 ## Common situations
 
-| Situation | What to do |
-| --------- | ---------- |
-| Only one viewer running | Nothing — discovery picks it automatically |
-| Multiple viewers, same project | `set_port(<port>)` at the top of the script, or pick from the prompt on first `show` |
-| Switching between VS Code and OCP Viewer | Either `set_port(...)` explicitly, or let the prompt handle it |
-| Running tests / CI | `OCP_PORT=<port>` in the environment |
-| Stale entry in `~/.ocpvscode` after a crash | The 1-second probe drops it automatically; to clean up by hand, edit the JSON |
-| "Cannot access viewer config" | The Python side picked a port nothing is listening on — run `find_and_set_port()` or `set_port(...)` |
+| Situation                                   | What to do                                                                                           |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Only one viewer running                     | Nothing — discovery picks it automatically                                                           |
+| Multiple viewers, same project              | `set_port(<port>)` at the top of the script, or pick from the prompt on first `show`                 |
+| Running tests / CI                          | `OCP_PORT=<port>` in the environment                                                                 |
+| Stale entry in `~/.ocpvscode` after a crash | To clean up by hand, edit the JSON                                                                   |
+| "Cannot access viewer config"               | The Python side picked a port nothing is listening on — run `find_and_set_port()` or `set_port(...)` |
 
 ## Troubleshooting
 
@@ -46,8 +45,8 @@ If `~/.ocpvscode` is out of sync with reality — viewers listed that are long g
 
 ```json
 {
-  "version": 2,
-  "services": {}
+    "version": 2,
+    "services": {}
 }
 ```
 
