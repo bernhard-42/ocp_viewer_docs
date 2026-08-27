@@ -2,7 +2,8 @@
 
 build123d Studio is a desktop application for macOS, Windows and Linux: a code editor, the [CAD Viewer](../../viewer.md), a real Jupyter console and a variable explorer in one window. It brings its own Python — nothing to `pip install`, no virtualenv to activate, no interpreter to choose; the first start builds a private environment with build123d and everything else it needs.
 
-<!-- Screenshot: the Studio window with editor, viewer, console and variable explorer -->
+![](../../assets/build123d-studio.png#only-light)
+![](../../assets/build123d-studio-dark.png#only-dark)
 
 ## Key features
 

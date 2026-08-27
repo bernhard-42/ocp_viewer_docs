@@ -2,7 +2,8 @@
 
 OCP Viewer is the standalone viewer: a local web server whose page is the [CAD Viewer](../../viewer.md) in a browser tab. It ties itself to no editor — use it beside NeoVim, any other editor that can run Python, a plain REPL or a script. Install the `ocp_viewer` package, start the server, open the printed URL, and every `show` from that environment lands in the tab.
 
-<!-- Screenshot: a browser tab with the CAD Viewer next to an editor -->
+![](../../assets/ocp_viewer.png#only-light)
+![](../../assets/ocp_viewer-dark.png#only-dark)
 
 ## Key features
 

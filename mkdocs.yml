@@ -67,32 +67,6 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - CAD Viewer:
-      - Overview: viewer.md
-      - Mouse and Keys: mouse_keys.md
-      - Tabs: tabs.md
-      - Analysis tools:
-          - Overview: measure_select.md
-          - Measure mode: measure.md
-          - Object selection: selector.md
-      - Dynamic features: dynamic_features.md
-  - The Python API:
-      - Showing objects:
-          - show: show.md
-          - show_object: show_object.md
-          - push_object / show_objects: push_object.md
-          - show_all: show_all.md
-          - Keeping the camera orientation: reset_camera.md
-          - Additional functions: api.md
-      - Configuring:
-          - The config system: config.md
-          - set_viewer_config: set_viewer_config.md
-          - Enums: enums.md
-      - Appearance:
-          - Color maps: colormaps.md
-          - Materials and Studio: pbr_studio.md
-          - ImageFace: image_face.md
-  - Animation: animation.md
   - Viewers:
       - VS Code CAD Viewer:
           - Overview: viewers/ocp_vscode/overview.md
@@ -126,6 +100,32 @@ nav:
           - First Run: viewers/build123d_studio/first_run.md
           - Workspace Config: viewers/build123d_studio/workspace_config.md
           - Concepts: viewers/build123d_studio/concepts.md
+  - CAD Viewer:
+      - Overview: viewer.md
+      - Mouse and Keys: mouse_keys.md
+      - Tabs: tabs.md
+      - Analysis tools:
+          - Overview: measure_select.md
+          - Measure mode: measure.md
+          - Object selection: selector.md
+      - Dynamic features: dynamic_features.md
+  - The Python API:
+      - Showing objects:
+          - show: show.md
+          - show_object: show_object.md
+          - push_object / show_objects: push_object.md
+          - show_all: show_all.md
+          - Keeping the camera orientation: reset_camera.md
+          - Additional functions: api.md
+      - Configuring:
+          - The config system: config.md
+          - set_viewer_config: set_viewer_config.md
+          - Enums: enums.md
+      - Appearance:
+          - Color maps: colormaps.md
+          - Materials and Studio: pbr_studio.md
+          - ImageFace: image_face.md
+      - Animation: animation.md
   - Concepts:
       - Architecture: concepts/architecture.md
       - Python to CAD Viewer communication: concepts/communication.md

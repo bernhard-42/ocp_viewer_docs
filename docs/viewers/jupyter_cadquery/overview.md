@@ -2,7 +2,8 @@
 
 Jupyter CadQuery is the viewer for JupyterLab: models appear in a sidecar panel beside the notebook, or directly in a cell's output. It is a single Python package — the JupyterLab extension ships prebuilt inside its [cad-viewer-widget](https://github.com/bernhard-42/cad-viewer-widget) dependency, so there is no extension build step and no Node.js involved.
 
-<!-- Screenshot: JupyterLab with a notebook and a CAD sidecar -->
+![](../../assets/jupyter-cadquery.png#only-light)
+![](../../assets/jupyter-cadquery-dark.png#only-dark)
 
 ## Key features
 
