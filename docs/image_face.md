@@ -6,31 +6,9 @@
 - Drop a technical drawing into the scene so dimensions can be compared visually.
 - Show a logo or annotation on a plane.
 
-=== "ocp_viewer"
-
-    ```python
-    from ocp_viewer import show, ImageFace
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import show, ImageFace
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import show, ImageFace
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import show, ImageFace
-    ```
-
 ```python
+from ocp_viewer_core.viewer import show, ImageFace
+
 f = ImageFace("front_view.png", scale=600 / 912, origin_pixels=(450, 600))
 show(f)
 ```
@@ -119,31 +97,9 @@ scale:       x-scale, y-scale = (63.5 / 758, 125 / 1470)
 origin:      pixel (457, 300)   (middle of the mouse wheel)
 ```
 
-=== "ocp_viewer"
-
-    ```python
-    from ocp_viewer import show, ImageFace
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import show, ImageFace
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import show, ImageFace
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import show, ImageFace
-    ```
-
 ```python
+from ocp_viewer_core.viewer import show, ImageFace
+
 from pathlib import Path
 from build123d import Plane, Circle, Pos
 

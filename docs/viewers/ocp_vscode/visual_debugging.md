@@ -14,14 +14,6 @@ With visual debugging on, every debugger step checks all variables in `locals()`
 
 What runs on each step is the `OcpCadViewer.advanced.watchCommands` setting — it must call `show_all(locals(), ...)`, and customizing it customizes what a debug step shows.
 
-## Running cell by cell with the Jupyter extension
-
-For an interactive workflow without the debugger, use the [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) with `# %%` cell markers:
-
-![Jupyter cell header](../../assets/jupyter-header.png)
-
-Make `# %%` the first line to initiate the Jupyter environment, then run cells with the "Run cell" button or `shift-enter` (run and move to next) / `ctrl-enter` (run and stay). A common setup is one import cell at the top and `show(...)` / `show_all()` calls in the working cells — see [the config system](../../config.md) for the `set_defaults` pattern that usually goes with it.
-
 ## Python pdb
 
 The same visual stepping works in plain `pdb`, by hooking `show_all` into every stop:

@@ -46,31 +46,9 @@ For more detail, see [show](show.md)
 
 ### Example
 
-=== "ocp_viewer"
-
-    ```python
-    from ocp_viewer import show_object, reset_show, set_defaults, Collapse
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import show_object, reset_show, set_defaults, Collapse
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import show_object, reset_show, set_defaults, Collapse
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import show_object, reset_show, set_defaults, Collapse
-    ```
-
 ```python
+from ocp_viewer_core.viewer import show_object, reset_show, set_defaults, Collapse
+
 import cadquery as cq
 
 reset_show()  # use for repeated cell execution to clean object buffer

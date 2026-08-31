@@ -38,31 +38,9 @@
 
 **The object**
 
-=== "ocp_viewer"
-
-    ```python
-    from ocp_viewer import show, select_edges
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import show, select_edges
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import show, select_edges
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import show, select_edges
-    ```
-
 ```python
+from ocp_viewer_core.viewer import show, select_edges
+
 from build123d import *
 
 ccm = (Align.CENTER, Align.CENTER, Align.MIN)

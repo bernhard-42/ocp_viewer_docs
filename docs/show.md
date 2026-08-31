@@ -4,38 +4,11 @@
 
 The show command is used to show one or multiple CAD objects and comes with the following parameters:
 
-=== "ocp_viewer"
+```python
+from ocp_viewer_core.viewer import show
 
-    ```python
-    from ocp_viewer import show
-
-    show(*cad_objs, <keyword arguments>)
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import show
-
-    show(*cad_objs, <keyword arguments>)
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import show
-
-    show(*cad_objs, <keyword arguments>)
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import show
-
-    show(*cad_objs, <keyword arguments>)
-
-    ```
+show(*cad_objs, <keyword arguments>)
+```
 
 ### Arguments
 
@@ -183,31 +156,9 @@ Valid keywords to configure the viewer (`**kwargs`):
 
 Example:
 
-=== "ocp_viewer"
-
-    ```python
-    from ocp_viewer import show
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import show
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import show
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import show
-    ```
-
 ```python
+from ocp_viewer_core.viewer import show
+
 from build123d import *
 
 b = Box(1,2,3)

@@ -74,6 +74,7 @@ nav:
           - Viewer and Library Manager: viewers/ocp_vscode/managers.md
           - Workspace Config: viewers/ocp_vscode/workspace_config.md
           - Addressing a viewer: viewers/ocp_vscode/addressing.md
+          - Running code: viewers/ocp_vscode/running.md
           - Visual debugging: viewers/ocp_vscode/visual_debugging.md
           - Jupyter Console: viewers/ocp_vscode/jupyter_console.md
           - Commands and snippets: viewers/ocp_vscode/commands.md
@@ -98,7 +99,15 @@ nav:
           - Overview: viewers/build123d_studio/overview.md
           - Installation: viewers/build123d_studio/installation.md
           - First Run: viewers/build123d_studio/first_run.md
+          - The window: viewers/build123d_studio/window.md
+          - Running code: viewers/build123d_studio/running.md
+          - Debugging: viewers/build123d_studio/debugging.md
+          - Console and variables: viewers/build123d_studio/console_variables.md
+          - The editor: viewers/build123d_studio/editor.md
+          - Packages and the environment: viewers/build123d_studio/packages.md
           - Workspace Config: viewers/build123d_studio/workspace_config.md
+          - Commands and shortcuts: viewers/build123d_studio/commands.md
+          - Troubleshooting: viewers/build123d_studio/troubleshooting.md
           - Concepts: viewers/build123d_studio/concepts.md
   - CAD Viewer:
       - Overview: viewer.md
@@ -110,6 +119,7 @@ nav:
           - Object selection: selector.md
       - Dynamic features: dynamic_features.md
   - The Python API:
+      - Importing: importing.md
       - Showing objects:
           - show: show.md
           - show_object: show_object.md

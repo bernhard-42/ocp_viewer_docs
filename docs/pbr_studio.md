@@ -35,31 +35,9 @@ Converting MaterialX materials additionally needs the `materialx` package. ocp_v
 
 The class `PbrProperties` allows to convert (typically called "baking") downloaded MaterialX material into a local cache in a format suitable for [three-cad-viewer](https://github.com/bernhard-42/three-cad-viewer) (based on [threejs](https://github.com/mrdoob/three.js/)) and glTF export. If the material comes with a texture, one can override PBR parameters, and scale and rotate textures:
 
-=== "ocp_viewer"
-
-    ```python
-    from ocp_viewer import *
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import *
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import *
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import *
-    ```
-
 ```python
+from ocp_viewer_core.viewer import *
+
 from ocp_viewer_core.utils import create_shader_ball
 from build123d import Pos
 ```

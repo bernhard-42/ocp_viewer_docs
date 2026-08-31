@@ -29,35 +29,15 @@ The chapters _[CAD Viewer](#the-cad-viewer)_ and _[The Python API](#the-python-a
 
 The underlying concepts, e.g. how the pieces fit together, are explained in the _[Concepts](#concepts)_ chapter.
 
-!!! info "Everything a user calls is imported from the viewer's package"
+!!! info "One vocabulary, two import styles"
 
-    Every name shown on these pages — `show`, `set_defaults`, `Camera`, all of them — is exported identically by all four packages, so every example comes as one tab per viewer:
+    Every name shown on these pages — `show`, `set_defaults`, `Camera`, all of them — is exported identically by all four viewer packages. The examples use the portable form, which resolves to whichever viewer your environment runs:
 
-    === "ocp_viewer"
+    ```python
+    from ocp_viewer_core.viewer import show
+    ```
 
-        ```python
-        from ocp_viewer import show
-        ```
-
-    === "ocp_vscode"
-
-        ```python
-        from ocp_vscode import show
-        ```
-
-    === "jupyter_cadquery"
-
-        ```python
-        from jupyter_cadquery import show
-        ```
-
-    === "build123d_studio"
-
-        ```python
-        from build123d_studio import show
-        ```
-
-    Pick your viewer's tab once — the choice applies to every example on every page and is remembered across visits. The import line is the only thing that names your viewer; the behavior after it is the same everywhere.
+    Importing from your viewer's own package works exactly the same — `from ocp_vscode import show` in VS Code, `from ocp_viewer import show` for OCP Viewer, and so on. The import line is the only thing that names your viewer; the behavior after it is the same everywhere. [Importing](importing.md) explains both styles.
 
     The one exception is a handful of keywords that address the viewer's surface rather than its content — `port` (ocp_vscode, ocp_viewer), `viewer` and its sidecar companions `anchor`, `cad_width`, `height`, `pinning` (jupyter_cadquery). Which viewer accepts which is spelled out in [show — Viewer-specific keywords](show.md#viewer-specific-keywords).
 
@@ -68,7 +48,7 @@ One chapter per viewer for what genuinely differs: installation, settings storag
 - VS Code CAD Viewer — [Installation](viewers/ocp_vscode/installation.md), [Viewer and Library Manager](viewers/ocp_vscode/managers.md), [Workspace Config](viewers/ocp_vscode/workspace_config.md), [Addressing a viewer](viewers/ocp_vscode/addressing.md), [Visual debugging](viewers/ocp_vscode/visual_debugging.md), [Jupyter Console](viewers/ocp_vscode/jupyter_console.md), [Commands and snippets](viewers/ocp_vscode/commands.md), [Troubleshooting](viewers/ocp_vscode/troubleshooting.md), [Concepts](viewers/ocp_vscode/concepts.md)
 - OCP Viewer — [Installation](viewers/ocp_viewer/installation.md), [Workspace Config](viewers/ocp_viewer/workspace_config.md), [Addressing a viewer](viewers/ocp_viewer/addressing.md), [Editor support: NeoVim](viewers/ocp_viewer/neovim.md), [Docker](viewers/ocp_viewer/docker.md), [Concepts](viewers/ocp_viewer/concepts.md)
 - Jupyter CadQuery — [Installation](viewers/jupyter_cadquery/installation.md), [Workspace Config](viewers/jupyter_cadquery/workspace_config.md), [Addressing a viewer](viewers/jupyter_cadquery/addressing.md), [Concepts](viewers/jupyter_cadquery/concepts.md)
-- build123d Studio — [Installation](viewers/build123d_studio/installation.md), [Workspace Config](viewers/build123d_studio/workspace_config.md), [First Run](viewers/build123d_studio/first_run.md), [Concepts](viewers/build123d_studio/concepts.md)
+- build123d Studio — [Installation](viewers/build123d_studio/installation.md), [First Run](viewers/build123d_studio/first_run.md), [The window](viewers/build123d_studio/window.md), [Running code](viewers/build123d_studio/running.md), [Debugging](viewers/build123d_studio/debugging.md), [Console and variables](viewers/build123d_studio/console_variables.md), [The editor](viewers/build123d_studio/editor.md), [Packages and the environment](viewers/build123d_studio/packages.md), [Workspace Config](viewers/build123d_studio/workspace_config.md), [Commands and shortcuts](viewers/build123d_studio/commands.md), [Troubleshooting](viewers/build123d_studio/troubleshooting.md), [Concepts](viewers/build123d_studio/concepts.md)
 
 ## The CAD Viewer
 

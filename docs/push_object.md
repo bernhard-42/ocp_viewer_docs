@@ -53,31 +53,9 @@ The valid keywords to configure the viewer (`**kwargs`) are the same as for [sho
 
 ### Example
 
-=== "ocp_viewer"
-
-    ```python
-    from ocp_viewer import push_object, show_objects, set_defaults, reset_show, Collapse
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import push_object, show_objects, set_defaults, reset_show, Collapse
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import push_object, show_objects, set_defaults, reset_show, Collapse
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import push_object, show_objects, set_defaults, reset_show, Collapse
-    ```
-
 ```python
+from ocp_viewer_core.viewer import push_object, show_objects, set_defaults, reset_show, Collapse
+
 import cadquery as cq
 
 set_defaults(axes=True, transparent=False, grid=(True, False, False))

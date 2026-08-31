@@ -12,68 +12,21 @@ There is a fourth participant that is not a level of its own: what you change in
 
 A common setup:
 
-=== "ocp_viewer"
+```python
+# %%
+from build123d import *
+import cadquery as cq
 
-    ```python
-    # %%
-    from build123d import *
-    import cadquery as cq
+from ocp_viewer_core.viewer import *
 
-    from ocp_viewer import *
+set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
 
-    set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
-
-    # %%
-    ...
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    # %%
-    from build123d import *
-    import cadquery as cq
-
-    from ocp_vscode import *
-
-    set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
-
-    # %%
-    ...
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    # %%
-    from build123d import *
-    import cadquery as cq
-
-    from jupyter_cadquery import *
-
-    set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
-
-    # %%
-    ...
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    # %%
-    from build123d import *
-    import cadquery as cq
-
-    from build123d_studio import *
-
-    set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
-
-    # %%
-    ...
-    ```
+# %%
+...
+```
 
 - The first lines import build123d and CadQuery (omit what you are not interested in).
-- The next line imports all commands of your viewer's package (pick your viewer's tab).
+- The next line imports the complete viewer API, resolved to your viewer (see [Importing](importing.md)).
 - `set_defaults` then sets `helper_scale` and `reset_camera` as defaults for every subsequent `show*` call.
 
 ## Defaults

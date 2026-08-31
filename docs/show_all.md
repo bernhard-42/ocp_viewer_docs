@@ -23,31 +23,9 @@ Valid keywords for `show_all` are the same as for [show](show.md), including the
 
 ### Example
 
-=== "ocp_viewer"
-
-    ```python
-    from ocp_viewer import *
-    ```
-
-=== "ocp_vscode"
-
-    ```python
-    from ocp_vscode import *
-    ```
-
-=== "jupyter_cadquery"
-
-    ```python
-    from jupyter_cadquery import *
-    ```
-
-=== "build123d_studio"
-
-    ```python
-    from build123d_studio import *
-    ```
-
 ```python
+from ocp_viewer_core.viewer import *
+
 from build123d import *
 
 set_defaults(axes=True, center_grid=True, grid=(True, False, False))
