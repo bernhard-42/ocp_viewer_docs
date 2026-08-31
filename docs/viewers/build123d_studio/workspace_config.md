@@ -1,6 +1,6 @@
 # Workspace Config
 
-Studio's viewer settings live in **Settings → Viewer**, reached from the toolbar's Settings button. They are stored in the application's `settings.json` in the [data directory](first_run.md#the-first-start) and form the viewer-settings tier of the [config system](../../config.md): the starting values that `set_defaults()` overrides per Python process and show keywords per call.
+Studio's viewer settings live in **Settings → Viewer**, reached from the toolbar's Settings button. They are stored in the application's `settings.json` in the [data directory](first_run.md#where-it-all-lives) and form the viewer-settings tier of the [config system](../../config.md): the starting values that `set_defaults()` overrides per Python process and show keywords per call.
 
 The tab groups them as:
 
@@ -12,4 +12,4 @@ The tab groups them as:
 
 The defaults match the other viewers key for key — a value learnt in one viewer means the same in the next.
 
-Beyond the Viewer tab, Settings also holds Studio's own concerns — packages (which build123d and ocp-viewer-core to install: PyPI, dev branch or local checkout), the editor, the new-file template, debugging, the keyboard shortcuts, and the debug-console log level. Those are Studio's application settings, not viewer configuration, and the [repository documentation](https://github.com/bernhard-42/build123d-studio#readme) covers them.
+Beyond the Viewer tab, Settings holds Studio's own concerns rather than the viewer's, one tab each: **Packages** ([Packages and the environment](packages.md)), **New file** and **Editor** ([The editor](editor.md)), **Debugging** ([Debugging](debugging.md)), **Shortcuts** ([Commands and shortcuts](commands.md)) and **Application** ([Troubleshooting](troubleshooting.md#the-log-files)).
