@@ -26,18 +26,57 @@ A **local checkout** is installed editable, so what you edit is what runs. Choos
 | **Apply**                  | Saves every field and closes. Touches nothing else — no uv, no kernel restart.                                                                                                                                                                                                    |
 | **Install packages**       | Saves, then makes the environment match what is declared: `uv lock`, then `uv sync`. Adds what is new and leaves every already-locked package where it is.                                                                                                                        |
 | **Re-install `<package>`** | Saves, then `uv sync --reinstall-package <package>`. There is one per picker. A local checkout is editable, so ordinary code edits are already live and this is not needed for them — it is for when the package's own metadata changes, such as a new dependency or entry point. |
-| **Upgrade packages**       | Saves, then `uv lock --upgrade`, then `uv sync`. Every package moves as far as its own version range allows: build123d to any newer release, ocp-viewer-core within its minor. Everything else is pinned exactly and cannot move at all.                                          |
+| **Upgrade packages** | Saves, then re-locks every package declared with a range — each as far as that range allows — and syncs. See [what an upgrade moves](#what-an-upgrade-moves-and-what-it-leaves). |
 
 Each of the three runs behind the splash with uv's own output on screen, and each is followed by two restarts: the language server, whose index otherwise describes an environment that no longer exists, and the kernel, which has already imported whatever was replaced. The splash waits for you to dismiss it, because after a failure it is the only place that says why.
 
 Saving without installing is coherent: the application runs `uv sync` on every launch, so a change that was applied but not installed simply lands at the next start.
+
+### The environment's `pyproject.toml` is yours
+
+Studio builds a real uv project in the [data directory](first_run.md#where-it-all-lives), and after the first start that file belongs to you. Edit it, and the edit survives every restart. Three regions are not yours, and the file says so at the top:
+
+| Region | Written by |
+| --- | --- |
+| the `app` and `core_cad` groups | replaced when you install a new build123d Studio |
+| the `user` group | Settings → Additional packages, when you press Apply |
+| `[tool.uv.sources]` | Settings → the source pickers, when you press Apply |
+| everything else — your comments, your own package index, anything you add | nobody but you |
+
+Settings fills its fields from that file when it opens, so what you see is what uv sees. If you have edited it in a way the dialog cannot read, it says so rather than showing you stale values.
+
+!!! tip "Adding a package with uv"
+
+    `uv add <package>` writes into `[project].dependencies`, not into a group — so `Upgrade packages`, which moves whole groups, will not touch it, and a plain `uv add pkg==1.2.3` pins it where nothing can move it. Use `uv add --group user <package>` and it lands where Settings and Upgrade both expect it. Either way it survives a new release; the group is the one an upgrade can reach.
+
+### What an upgrade moves, and what it leaves
+
+`Upgrade packages` moves the three groups, each package as far as its own range allows:
+
+| Declared as | On Upgrade |
+| --- | --- |
+| `build123d>=0.11.1` | any newer release |
+| `ocp-viewer-core>=1.0.4,<1.1.0` | within its minor |
+| `ipykernel>=7.3.0,<7.4.0`, and the rest of `app` | within their patch level |
+| `basedpyright==1.39.9`, `ruff==0.16.3` | not at all |
+| whatever you put in `user` | as far as what you wrote allows |
+
+Three packages that ocp-viewer-core brings with it — `ocp-tessellate`, `pillow` and `threejs-materials` — move as well, because a fix in the tessellator is a fix in what you see and can arrive without ocp-viewer-core itself changing.
+
+Everything else is build123d's own dependency tree: `numpy`, `scipy`, `fonttools` and some forty more. Those move when build123d moves them.
+
+An upgrade **holds**. Nothing overwrites the environment's lockfile once it exists.
+
+### Restore
+
+At the foot of the tab. It puts `pyproject.toml` and `uv.lock` back to what the release ships and installs exactly that — build123d and ocp-viewer-core from PyPI, the additional packages cleared, your edits to those two files gone. The result is the environment a first start builds, which makes every experiment above reversible in one click.
 
 ## Additional packages
 
 One requirement per line. The line itself says where the package comes from — there is no source picker, because the string _is_ the source:
 
 ```text
-ocp-widgets>=0.3                              PyPI, with or without a version range
+mylib>=0.3                                    PyPI, with or without a version range
 /Users/me/src/mylib                           a local checkout, installed editable
 git+https://github.com/someone/mylib@main     a git repository
 mylib @ git+https://github.com/x/python-lib   named explicitly
