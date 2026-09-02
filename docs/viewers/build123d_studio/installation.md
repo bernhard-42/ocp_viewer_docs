@@ -24,4 +24,48 @@ Then continue with [First Run](first_run.md) — the first start builds the Pyth
 
 ## The `studio` command
 
-A small launcher ships beside the application. Copy it somewhere on your `PATH`, and `studio`, `studio .`, `studio some/folder` or `studio part.py` opens that path in a new window — a file opens its containing folder as the project. Run the application once first: it records its own location on every start, which is how the script finds it.
+A small launcher ships with every release. Copy it somewhere on your `PATH`, and `studio`, `studio .`, `studio some/folder` or `studio part.py` opens that path in a new window — a file opens its containing folder as the project.
+
+Any directory on your `PATH` will do — `~/.local/bin` is the usual choice on macOS and Linux. Check yours first, since it is only on the `PATH` by default on some systems:
+
+```bash
+mkdir -p ~/.local/bin
+case ":$PATH:" in *":$HOME/.local/bin:"*) echo "on PATH" ;; *) echo "NOT on PATH" ;; esac
+```
+
+Where the launcher comes from differs by platform, because the packages do:
+
+=== "macOS"
+
+    Inside the application bundle:
+
+    ```bash
+    install -m 755 "/Applications/build123d Studio.app/Contents/MacOS/studio" ~/.local/bin/
+    ```
+
+=== "Windows"
+
+    In the folder you unzipped. `~/.local/bin` means nothing to `cmd.exe`, so copy it to a directory that is already on your `PATH` — `$env:PATH -split ";"` in PowerShell lists them:
+
+    ```bat
+    copy C:\path\to\build123d-studio\studio.cmd C:\some\folder\on\PATH\
+    ```
+
+=== "Linux"
+
+    A **separate download** called `studio`, beside the AppImage on the Releases page — an AppImage is a single read-only file, so there is nothing to copy it out of:
+
+    ```bash
+    install -m 755 studio ~/.local/bin/
+    ```
+
+    Releases up to and including 0.5.1 do not have that download. Extract the launcher from the AppImage instead — it is the same file:
+
+    ```bash
+    ./build123d-studio-*.AppImage --appimage-extract usr/bin/studio
+    install -m 755 squashfs-root/usr/bin/studio ~/.local/bin/
+    ```
+
+**Run the application once first.** The launcher does not work out where the application is from its own location — once copied it has no relationship to the package it came from. The application records its own location on every start instead, and the script reads that. Which also means moving the application fixes itself: start it once from wherever it is now.
+
+Every form starts a new instance, so several projects can be open at once. That matters most on macOS, where double-clicking an already-running application activates the existing window rather than starting a second one.
