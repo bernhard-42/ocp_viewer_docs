@@ -8,7 +8,7 @@
 
 ## The first start
 
-The first start takes a few minutes and shows what it is doing: a splash overlay reports each step while it downloads a pinned [uv](https://docs.astral.sh/uv/), downloads a pinned CPython, builds a virtual environment of its own and installs build123d and everything else it needs — several hundred megabytes in total, including the language server and the OpenCascade bindings. It never touches a system or user Python, and nothing it does is visible to any other Python on the machine. One release pins one uv and one CPython, so two people running the same release get the same interpreter and the same packages.
+The first start takes a few minutes and shows what it is doing: a splash overlay, headed with the version so a report about it can say which build, reports each step while it downloads a pinned [uv](https://docs.astral.sh/uv/), downloads a pinned CPython, builds a virtual environment of its own and installs build123d and everything else it needs — several hundred megabytes in total, including the language server and the OpenCascade bindings. It never touches a system or user Python, and nothing it does is visible to any other Python on the machine. One release pins one uv and one CPython, so two people running the same release get the same interpreter and the same packages.
 
 Every start after the first goes straight to the window: the environment is reconciled against the locked package list while the kernel warms in the background — the kernel indicator in the toolbar says `starting`, then `idle`, and you can type before it gets there.
 

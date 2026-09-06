@@ -24,7 +24,7 @@ Left to right, in four groups. Every button carries its current shortcut in its 
 | **Run All**              | Sends the whole buffer to the kernel.                                                              |
 | **Restart kernel**       | Throws the kernel away and starts a new one. The namespace goes with it.                           |
 | **Interrupt**            | Interrupts what the kernel is running.                                                             |
-| **kernel indicator**     | `starting`, `idle` or `busy` — and it says busy only for code _you_ ran.                           |
+| **kernel indicator**     | `starting`, `idle` or `busy` — and it says busy only for code _you_ ran. `busy [+2]` means two more runs are waiting behind it. |
 | **health chip**          | Absent while everything is well; see [Health](#health) below.                                      |
 | **Settings**             | Packages, new-file template, editor, viewer, debugging, shortcuts, application.                    |
 | **About**                | Versions, the environment path, the log paths, and this instance's Jupyter connection file.        |
@@ -74,4 +74,4 @@ The two rows split independently — the editor/viewer ratio and the console/exp
 
 ## Theme
 
-Untouched, the whole window follows the desktop's own light or dark setting and changes with it. **Settings → Viewer → Appearance → Dark mode** pins it either way, and it then stops following. It is one setting for the window rather than one per surface — the editor, the viewer and the terminal all move together.
+Untouched, the whole window follows the desktop's own light or dark setting and changes with it. **Settings → Application → Appearance → Dark mode** pins it either way, and it then stops following. It is one setting for the window rather than one per surface — the editor, the viewer and the terminal all move together.

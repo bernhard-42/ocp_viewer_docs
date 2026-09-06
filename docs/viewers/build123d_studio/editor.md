@@ -30,6 +30,14 @@ The formatter is [ruff](https://docs.astral.sh/ruff/), run in the sidecar.
 
 ruff is run isolated, so the number in Settings is the number used — a project's own `pyproject.toml` or `ruff.toml` does not quietly change the width the editor promised.
 
+Above **50 000 lines** a buffer is saved without being formatted, and the log says so. ruff itself is not the reason — it formats a million lines in well under a second — it is that a file that size gets no [recovery copy](#saving), so its edits exist nowhere but in memory and the save is written immediately rather than held open. No Python anybody writes comes near it; generated files do.
+
+## Find
+
+`Cmd`/`Ctrl-F` opens Monaco's find widget. `Alt-Enter` there selects **every** match at once, as it does in VS Code, so the next thing typed replaces all of them.
+
+That chord is **Run All** everywhere else in the editor. While the find widget is open it belongs to the find widget, which is what everybody who has used another editor expects it to do.
+
 ## Snippets
 
 Type a prefix and accept the suggestion. The shipped set is the build123d CodeCAD speedmodeling snippets by Jern, from [build123d-portable](https://github.com/build123d/build123d-portable), with the viewer import pointed at `build123d_studio`.
@@ -64,10 +72,14 @@ It is a snippet, in the same syntax: `$1` and `${1:like this}` are stops to tab 
 
 ## Saving
 
-Saves are atomic and follow symlinks to the file they actually point at, so a `part.py` symlinked into a repository stays a symlink and the real file keeps receiving the edits.
+A save writes **into** the file rather than replacing it, so it stays the same file: a hard link to it still sees the new contents, and extended attributes — Finder tags among them on macOS — ownership and permissions all survive. Symlinks are followed to the file they actually point at, so a `part.py` symlinked into a repository stays a symlink and the real file keeps receiving the edits.
+
+What that gives up is atomicity, and what replaces it is the recovery copy below: a save interrupted half-way leaves the work in the journal rather than in a temporary file. A buffer too large to be journalled continuously is copied there once, immediately before the write.
+
+If the file changed underneath you — a formatter, a `git checkout`, a second window — you are asked before anything is overwritten. That question now arrives when you **focus the window or choose the tab**, not only when you try to save, so a file rewritten elsewhere stops being read as current. **Reload** takes what is on disk, **Overwrite** writes your buffer over it, and **Cancel** marks the tab modified so the choice survives being closed.
 
 Unsaved buffers are shadowed into the data directory as you type, and the copy is removed the moment it stops being the only one — a successful save, a closed tab, a graceful quit. Every ordinary way out already prompts; the shadow copy is for the ends that ask nobody, a webview that dies or a power cut. What is left over at the next start therefore means exactly one thing, and you are offered it back. The copies are plain source files, so they can be opened in any editor while the application is not running.
 
 ## Opening files
 
-Every file in the tree can be opened, not only Python. Two things are refused or questioned rather than attempted: anything that is not text — one NUL byte in the first 8 kB, which is git's own test — and anything over 10 MB, which asks first. The limit is about the language server rather than the editor: Monaco tokenises the viewport rather than the document and handles a 32 MB file comfortably, but the whole buffer is sent for analysis on open and after every edit.
+Every file in the tree can be opened, not only Python. Only `.py` and `.pyi` are treated as Python: anything else is plain text, so a STEP export opened to be looked at is neither highlighted as Python, sent to the language server, nor offered to the formatter. Two things are refused or questioned rather than attempted: anything that is not text — one NUL byte in the first 8 kB, which is git's own test — and anything over 10 MB, which asks first. The limit is about the language server rather than the editor: Monaco tokenises the viewport rather than the document and handles a 32 MB file comfortably, but the whole buffer is sent for analysis on open and after every edit.

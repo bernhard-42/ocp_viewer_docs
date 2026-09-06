@@ -28,7 +28,15 @@ The two cell chords are Jupyter's, deliberately — including `Cmd-Enter` on mac
 
 ### Restart and interrupt
 
-**Interrupt** interrupts what the kernel is running. **Restart kernel** throws the kernel away and starts a new one, taking every name in the namespace with it; it is four keys (`Shift-Alt-Cmd-R`, `Ctrl-Shift-Alt-R` elsewhere) because it is not a thing to hit by accident. That chord is delivered whatever has the keyboard, unlike the run commands, which are editor actions — a restart is what you reach for while the console is wedged or the explorer has the caret.
+**Interrupt** interrupts what the kernel is running. Python raises `KeyboardInterrupt` between operations, so a single long native call — a boolean on a large assembly — cannot be interrupted at all; five seconds after an interrupt that has not been obeyed, Studio says so and offers a restart. Letting the kernel stop and then running something else does not count as ignoring it, and does not bring that dialog up.
+
+**Restart kernel** throws the kernel away and starts a new one, taking every name in the namespace with it; it is four keys (`Shift-Alt-Cmd-R`, `Ctrl-Shift-Alt-R` elsewhere) because it is not a thing to hit by accident. That chord is delivered whatever has the keyboard, unlike the run commands, which are editor actions — a restart is what you reach for while the console is wedged or the explorer has the caret.
+
+### Running while something is running
+
+The kernel takes one request at a time, so a Run pressed while a cell is running is **queued** rather than refused, exactly as in Jupyter. The kernel indicator says how many are waiting — `busy`, `busy [+1]`, `busy [+2]` — and counts back down as it reaches them. Nothing appears in the console for a queued run until the kernel starts it, because that is the moment it is given its `In [n]`.
+
+Whichever control you use, the keyboard goes back to the editor afterwards, so the caret is visible where the run left it — Run Cell moves it to the next cell, and Monaco draws no cursor at all while it does not have focus.
 
 ## As a file, in a process of its own
 

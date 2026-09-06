@@ -17,20 +17,34 @@ Everything else the application declares is frozen to the versions this release 
 
 A **local checkout** is installed editable, so what you edit is what runs. Choose the folder with the **Choose…** button — picking one also selects the Local radio, because choosing a folder and then finding it had no effect is the obvious way for this to be annoying. Editable installs are made in the layout static analysis can follow, so a local checkout resolves in [completion and squiggles](editor.md) as well as at runtime.
 
-## The buttons
+## The tab, and its three verbs
 
-**Only Apply and Cancel close the dialog.** Install, Re-install and Upgrade act on the environment and return to it, on success as well as on failure — so there is never a question of what happened or where you now are.
+The tab reads top to bottom as three different jobs, one button each.
 
-| Button                     | What it does                                                                                                                                                                                                                                                                      |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Apply**                  | Saves every field and closes. Touches nothing else — no uv, no kernel restart.                                                                                                                                                                                                    |
-| **Install packages**       | Saves, then makes the environment match what is declared: `uv lock`, then `uv sync`. Adds what is new and leaves every already-locked package where it is.                                                                                                                        |
-| **Re-install `<package>`** | Saves, then `uv sync --reinstall-package <package>`. There is one per picker. A local checkout is editable, so ordinary code edits are already live and this is not needed for them — it is for when the package's own metadata changes, such as a new dependency or entry point. |
+**What this release declares** is the list at the top: the `app` and `core_cad` groups as the environment has them, alphabetically. It is what to read when you want to know which version of something you are running.
+
+**Customization** is the source pickers and the [additional packages](#additional-packages) field, and **Update packages** installs what that section says.
+
+**Upgrade** and **Restore** follow, and each is described below.
+
+| Button | What it does |
+| --- | --- |
+| **Apply** | Saves every field and closes. Touches nothing else — no uv, no kernel restart. |
+| **Update packages** | Saves, then makes the environment match what is declared: `uv sync`. Adds what is new, picks up a changed source, and leaves every already-locked package where it is. |
 | **Upgrade packages** | Saves, then re-locks every package declared with a range — each as far as that range allows — and syncs. See [what an upgrade moves](#what-an-upgrade-moves-and-what-it-leaves). |
+| **Restore packages** | Puts the environment back to what this release ships. See [Restore](#restore). |
 
-Each of the three runs behind the splash with uv's own output on screen, and each is followed by two restarts: the language server, whose index otherwise describes an environment that no longer exists, and the kernel, which has already imported whatever was replaced. The splash waits for you to dismiss it, because after a failure it is the only place that says why.
+**Only Apply and Cancel close the dialog.** Update, Upgrade and Restore act on the environment and return to it, on success as well as on failure — so there is never a question of what happened or where you now are.
+
+Each of the three runs behind the splash with uv's own output on screen. When uv has moved anything, the libraries are then loaded once while the splash is still up — `import OCP`, `import build123d`, and `import cadquery` if you have it — each announced before it begins, because the three together take about two minutes on an Apple M1 the first time after they change. macOS verifies OpenCascade's signed libraries whenever they are replaced, and that time is paid either way: here it is progress on a splash, and otherwise it is a kernel that appears to have hung on your first Run. An update that changed nothing skips it.
+
+Then two restarts: the language server, whose index otherwise describes an environment that no longer exists, and the kernel, which has already imported whatever was replaced. The splash waits for you to dismiss it, because after a failure it is the only place that says why.
 
 Saving without installing is coherent: the application runs `uv sync` on every launch, so a change that was applied but not installed simply lands at the next start.
+
+!!! tip "A local checkout needs no second button"
+
+    There was once a **Re-install** button per package, because a path dependency was installed as a built copy and edits to it did not show. Checkouts are installed editable now, so code edits are live with no command at all — and **Update packages** covers the rest: measured against uv, a plain sync rebuilds an editable package when its own `pyproject.toml` gains a dependency or a console script.
 
 ### The environment's `pyproject.toml` is yours
 
@@ -56,7 +70,8 @@ Settings fills its fields from that file when it opens, so what you see is what 
 | Declared as | On Upgrade |
 | --- | --- |
 | `build123d>=0.11.1` | any newer release |
-| `ocp-viewer-core>=1.0.4,<1.1.0` | within its minor |
+| `ocp-viewer-core>=1.0.5,<1.1.0` | within its minor |
+| `cadquery-ocp-stubs>=7.9.3,<7.10` | within the OpenCascade line it describes |
 | `ipykernel>=7.3.0,<7.4.0`, and the rest of `app` | within their patch level |
 | `basedpyright==1.39.9`, `ruff==0.16.3` | not at all |
 | whatever you put in `user` | as far as what you wrote allows |
