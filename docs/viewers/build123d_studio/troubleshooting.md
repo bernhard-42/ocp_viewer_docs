@@ -50,6 +50,8 @@ How much of the browser's output is captured is **Settings → Application → D
 - the key package versions, under the names people say out loud
 - every log file that exists, including the rotated one, and the snippets file
 
+Every path in it has a copy button beside it, which is what you want when the thing being asked for is one path rather than the whole dialog — the button at the top copies all of it as text, for a bug report.
+
 ## Common situations
 
 | Situation                                                    | What to do                                                                                                                                                                     |

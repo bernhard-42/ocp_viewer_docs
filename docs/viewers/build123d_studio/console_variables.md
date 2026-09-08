@@ -15,7 +15,17 @@ Out[1]: 1256.6370614359173
 
 Ten thousand lines of scrollback are kept, so a traceback from earlier in the session is still there. Right-clicking offers copy and paste; on macOS the standard `Cmd-C` / `Cmd-V` work through the application menu, which is what gets them delivered into a pane the browser would otherwise swallow them in.
 
-The kernel's connection file is named in **Help → About**, for attaching anything else to the same kernel.
+**About** carries a **Kernel connection** section at the foot, with this instance's Jupyter connection file and the command that uses it:
+
+```
+jupyter-console --existing "<the path About shows>"
+```
+
+The quotes are not decoration — the path contains a space on macOS and Windows both. Install `jupyter-console` yourself, outside Studio; the environment here is Settings' to manage.
+
+!!! warning "Leave that console with `Ctrl-D`"
+
+    Typing `exit` shuts the kernel down, and the kernel it shuts down is Studio's. A typed `exit` is executed *by* the kernel, which answers with a request to close it; `Ctrl-D` leaves it running. This is true of any console attached with `--existing`, not just this one.
 
 ## The variable explorer
 

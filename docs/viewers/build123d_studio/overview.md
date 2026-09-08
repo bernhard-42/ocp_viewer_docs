@@ -9,7 +9,7 @@ build123d Studio is a desktop application for macOS, Windows and Linux: a code e
 
 - The complete [CAD Viewer](../../viewer.md) beside the editor: navigation tree, clipping and zebra tools, measurement and analysis tools, [materials](../../pbr_studio.md) and [animation](../../animation.md).
 - Batteries included: one release pins one [uv](https://docs.astral.sh/uv/) and one CPython, so the environment it builds is the same on every machine and never touches any other Python — see [First Run](first_run.md) and [Packages and the environment](packages.md).
-- [Two ways to run](running.md): on a Jupyter kernel that keeps your names between runs, or as a file in a process of its own — and [a debugger](debugging.md) that draws the frame it is stopped in.
+- [Three ways to run](running.md): on a Jupyter kernel that keeps your names between runs, as a file in a process of its own, or [`pytest` over a file or a folder](running.md#tests) — and [a debugger](debugging.md) that draws the frame it is stopped in.
 - A full [editor](editor.md) with completion, type checking, hover, parameter hints, ruff formatting and snippets, backed by a language server running in the same environment as your code.
 - A real [Jupyter console and a variable explorer](console_variables.md) on the kernel your code runs on, for inspecting the objects a script created.
 - Measurements computed in their own process beside the kernel, so analysing a model never competes with running code — see [Concepts](concepts.md).

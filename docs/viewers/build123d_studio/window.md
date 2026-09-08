@@ -11,6 +11,8 @@ The four panes all describe the same object: the script that built it, the model
 
 Left to right, in four groups. Every button carries its current shortcut in its tooltip, so a rebound chord is right there rather than in this table.
 
+Too narrow a window for all of them and the row scrolls. There is no scrollbar — one drawn across the bottom of a 26-pixel button row covers half of every button, and the platforms disagree about how thin it is allowed to be. **Drag the row sideways with the mouse**, or hold `Shift` and use the wheel. Dragging never presses the button it started on: it becomes a drag only after a few pixels of travel.
+
 | Button                   | What it does                                                                                       |
 | ------------------------ | -------------------------------------------------------------------------------------------------- |
 | **Toggle the file tree** | Shows or hides the folder sidebar. There is no tree at all until a folder is open.                 |
@@ -26,7 +28,7 @@ Left to right, in four groups. Every button carries its current shortcut in its 
 | **Interrupt**            | Interrupts what the kernel is running.                                                             |
 | **kernel indicator**     | `starting`, `idle` or `busy` — and it says busy only for code _you_ ran. `busy [+2]` means two more runs are waiting behind it. |
 | **health chip**          | Absent while everything is well; see [Health](#health) below.                                      |
-| **Settings**             | Packages, new-file template, editor, viewer, debugging, shortcuts, application.                    |
+| **Settings**             | Packages, new-file template, editor, viewer, debugging, test, shortcuts, application.             |
 | **About**                | Versions, the environment path, the log paths, and this instance's Jupyter connection file.        |
 | **Command Palette**      | Every editor command by name — see [Commands and shortcuts](commands.md).                          |
 

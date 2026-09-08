@@ -2,7 +2,7 @@
 
 ## The keymap
 
-These sixteen commands are the ones Studio owns and the ones the [Shortcuts tab](#rebinding) edits. Everything else in the editor — find, replace, comment toggling, folding, formatting — is Monaco's and lives in the [command palette](editor.md#the-command-palette).
+These eighteen commands are the ones Studio owns and the ones the [Shortcuts tab](#rebinding) edits. Everything else in the editor — find, replace, comment toggling, folding, formatting — is Monaco's and lives in the [command palette](editor.md#the-command-palette).
 
 | Command                     | macOS          | Windows and Linux        |
 | --------------------------- | -------------- | ------------------------ |
@@ -15,6 +15,8 @@ These sixteen commands are the ones Studio owns and the ones the [Shortcuts tab]
 | Run All Below               | —              | —                        |
 | Run File                    | `⌃F5`          | `Ctrl + F5`              |
 | Restart Kernel              | `⇧⌥⌘R`         | `Ctrl + Shift + Alt + R` |
+| Test File                   | —              | —                        |
+| Test Folder                 | —              | —                        |
 | Debug File _(and Continue)_ | `F5`           | `F5`                     |
 | Continue                    | —              | —                        |
 | Step Over                   | `F10`          | `F10`                    |
@@ -27,6 +29,7 @@ Three groups of decisions are behind that table, and they are all borrowed rathe
 
 - **The cell chords are Jupyter's.** `Shift-Enter` runs and advances, `Ctrl-Enter` runs and stays — including `Cmd-Enter` on macOS, which Jupyter also accepts there. That pair is the muscle memory most build123d users already have, so it is matched exactly rather than improved on. Jupyter has no "run line", and the chord left over takes it.
 - **The debug chords are VS Code's**, `F5` included: it starts a session and continues a paused one, which is why Continue has no chord of its own. `Ctrl-F5` for Run File is VS Code's Run Without Debugging, and it is literally Control on macOS too, as it is there.
+- **The two Test commands have no chord either.** Each asks where to look before it does anything, which makes it a deliberate act rather than one worth repeating from the keyboard — the Shortcuts tab will bind them for anybody who runs the suite all day.
 - **The three marker commands have no chord.** They are about a `# %%` marker rather than about the caret, which is what makes them worth a click and awkward as a keystroke. They are the buttons above each marker, they are in the Run menu, and the Shortcuts tab will bind them for anybody who disagrees.
 
 Restart Kernel is delivered whatever has the keyboard. The rest are editor actions, so they arrive when the editor has focus — which is the difference you want: a restart is what you reach for while the console is wedged or the explorer has the caret.
@@ -56,10 +59,13 @@ On macOS this is the system menu bar. On Windows and Linux it is drawn in the wi
 | **File**                       | New, Open File…, Open Folder… · Save, Save As…, Save All · Close, Close All, Close Folder · Exit _(off macOS)_ |
 | **View**                       | Toggle Sidebar, Toggle Console and Variables                                                                   |
 | **Edit**                       | Cut, Copy, Paste                                                                                               |
-| **Run**                        | The four cell commands · the three marker commands · Run File · Restart Kernel · the seven debug commands      |
+| **Run**                        | The four cell commands · the three marker commands · Restart Kernel · Run File · the seven debug commands      |
+| **Test**                       | Test File, Test Folder                                                                                         |
 | **Help** _(off macOS)_         | Settings…, About                                                                                               |
 
 The Edit menu is not decoration. Without a menu, macOS binds the standard editing shortcuts to nothing at all and `Cmd-C` in the console or in a dialog simply does nothing — the keystroke is swallowed before the page sees it. The menu is the mechanism that delivers it, and on macOS the items carry the platform's own roles, so Cut, Copy and Paste land on whatever actually has focus.
+
+The separators in the Run menu carry the meaning. Everything above Restart Kernel runs *on the kernel* and leaves its names in the namespace the console shares; everything below it runs in a process of its own and leaves nothing behind. Testing is a menu rather than two more Run items because nothing about it starts from the buffer on screen — see [Tests](running.md#tests).
 
 Items that need something to act on are greyed rather than hidden: Close needs a tab, Close Folder needs a project, and the step commands need a session — so the Run menu keeps one shape and you can see what debugging will offer before you start it.
 

@@ -27,12 +27,12 @@ The tab reads top to bottom as three different jobs, one button each.
 
 **Upgrade** and **Restore** follow, and each is described below.
 
-| Button | What it does |
-| --- | --- |
-| **Apply** | Saves every field and closes. Touches nothing else — no uv, no kernel restart. |
-| **Update packages** | Saves, then makes the environment match what is declared: `uv sync`. Adds what is new, picks up a changed source, and leaves every already-locked package where it is. |
+| Button               | What it does                                                                                                                                                                     |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Apply**            | Saves every field and closes. Touches nothing else — no uv, no kernel restart.                                                                                                   |
+| **Update packages**  | Saves, then makes the environment match what is declared: `uv sync`. Adds what is new, picks up a changed source, and leaves every already-locked package where it is.           |
 | **Upgrade packages** | Saves, then re-locks every package declared with a range — each as far as that range allows — and syncs. See [what an upgrade moves](#what-an-upgrade-moves-and-what-it-leaves). |
-| **Restore packages** | Puts the environment back to what this release ships. See [Restore](#restore). |
+| **Restore packages** | Puts the environment back to what this release ships. See [Restore](#restore).                                                                                                   |
 
 **Only Apply and Cancel close the dialog.** Update, Upgrade and Restore act on the environment and return to it, on success as well as on failure — so there is never a question of what happened or where you now are.
 
@@ -42,39 +42,36 @@ Then two restarts: the language server, whose index otherwise describes an envir
 
 Saving without installing is coherent: the application runs `uv sync` on every launch, so a change that was applied but not installed simply lands at the next start.
 
-!!! tip "A local checkout needs no second button"
+### The environment's `pyproject.toml`
 
-    There was once a **Re-install** button per package, because a path dependency was installed as a built copy and edits to it did not show. Checkouts are installed editable now, so code edits are live with no command at all — and **Update packages** covers the rest: measured against uv, a plain sync rebuilds an editable package when its own `pyproject.toml` gains a dependency or a console script.
+Studio builds a real uv project in the [data directory](first_run.md#where-it-all-lives). It is an ordinary `pyproject.toml` and an edit to it does survive a restart — which is exactly why the warning below matters: nothing validates what you put there, and the application finds out only when something it needs has gone. Three regions are rewritten without asking, and the file says so at the top:
 
-### The environment's `pyproject.toml` is yours
-
-Studio builds a real uv project in the [data directory](first_run.md#where-it-all-lives), and after the first start that file belongs to you. Edit it, and the edit survives every restart. Three regions are not yours, and the file says so at the top:
-
-| Region | Written by |
-| --- | --- |
-| the `app` and `core_cad` groups | replaced when you install a new build123d Studio |
-| the `user` group | Settings → Additional packages, when you press Apply |
-| `[tool.uv.sources]` | Settings → the source pickers, when you press Apply |
-| everything else — your comments, your own package index, anything you add | nobody but you |
+| Region                          | Written by                                           |
+| ------------------------------- | ---------------------------------------------------- |
+| the `app` and `core_cad` groups | replaced when you install a new build123d Studio     |
+| the `user` group                | Settings → Additional packages, when you press Apply |
+| `[tool.uv.sources]`             | Settings → the source pickers, when you press Apply  |
 
 Settings fills its fields from that file when it opens, so what you see is what uv sees. If you have edited it in a way the dialog cannot read, it says so rather than showing you stale values.
 
-!!! tip "Adding a package with uv"
+!!! warning "Adding a package with uv"
 
-    `uv add <package>` writes into `[project].dependencies`, not into a group — so `Upgrade packages`, which moves whole groups, will not touch it, and a plain `uv add pkg==1.2.3` pins it where nothing can move it. Use `uv add --group user <package>` and it lands where Settings and Upgrade both expect it. Either way it survives a new release; the group is the one an upgrade can reach.
+    **Don't manually change pyproject.toml! There is no guarantee the app will work afterwards.**
+
+    If you decide to do it anyhow, `uv add <package>` writes into `[project].dependencies`, not into a group — so `Upgrade packages`, which moves whole groups, will not touch it, and a plain `uv add pkg==1.2.3` pins it where nothing can move it. Use `uv add --group user <package>` and it lands where Settings and Upgrade both expect it. Either way it survives a new release; the group is the one an upgrade can reach.
 
 ### What an upgrade moves, and what it leaves
 
 `Upgrade packages` moves the three groups, each package as far as its own range allows:
 
-| Declared as | On Upgrade |
-| --- | --- |
-| `build123d>=0.11.1` | any newer release |
-| `ocp-viewer-core>=1.0.5,<1.1.0` | within its minor |
-| `cadquery-ocp-stubs>=7.9.3,<7.10` | within the OpenCascade line it describes |
-| `ipykernel>=7.3.0,<7.4.0`, and the rest of `app` | within their patch level |
-| `basedpyright==1.39.9`, `ruff==0.16.3` | not at all |
-| whatever you put in `user` | as far as what you wrote allows |
+| Declared as                                      | On Upgrade                               |
+| ------------------------------------------------ | ---------------------------------------- |
+| `build123d>=0.11.1`                              | any newer release                        |
+| `ocp-viewer-core>=1.0.5,<1.1.0`                  | within its minor                         |
+| `cadquery-ocp-stubs>=7.9.3,<7.10`                | within the OpenCascade line it describes |
+| `ipykernel>=7.3.0,<7.4.0`, and the rest of `app` | within their patch level                 |
+| `basedpyright==1.39.9`, `ruff==0.16.3`           | not at all                               |
+| whatever you put in `user`                       | as far as what you wrote allows          |
 
 Three packages that ocp-viewer-core brings with it — `ocp-tessellate`, `pillow` and `threejs-materials` — move as well, because a fix in the tessellator is a fix in what you see and can arrive without ocp-viewer-core itself changing.
 

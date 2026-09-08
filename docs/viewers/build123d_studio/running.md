@@ -50,6 +50,22 @@ The viewer is the deliberate exception: a `show()` in the file reaches the same 
 
 Debugging is the same mechanism with a debugger attached — see [Debugging](debugging.md).
 
+## Tests
+
+**Test → Test File** and **Test → Test Folder** run `pytest` over whatever you pick. Each raises a chooser first — a `.py` file, or a folder — and then runs `python -m pytest <what you chose>` through the same machinery Run File uses: the report arrives in the **Run/Debug** tab, the Stop beside it ends the run, and the process is gone when it finishes.
+
+`pytest` is part of the environment; you do not install it. It arrives with the release, like `ruff` and the language server.
+
+Both items save every unsaved buffer before they start, which Run File does not: pytest reads from disk, and the test you just edited is the one you meant to run.
+
+One child runs at a time, as everywhere else here. Asking for a test run while something else is running says so rather than starting nothing.
+
+!!! note "It is `pytest`, not a test explorer"
+
+    There is no tree of tests, no green ticks and no re-run-failed. pytest prints its own report and the report is the feature — a second view of the same truth would be one more thing to keep in step with it.
+
+**Settings → Test** carries one switch. **Ignore warnings** adds `-W ignore` to the run; it is off by default, which is pytest's own behaviour and the honest one — a `DeprecationWarning` out of build123d or OCP is worth seeing at least once. Turn it on when a hundred tests each raise the same one and bury the summary.
+
 ## Drawing
 
 ```python
