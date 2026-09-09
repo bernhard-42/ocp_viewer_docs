@@ -38,6 +38,7 @@ Every setting is also a CLI flag (`--tree_width 300`, boolean flags as `--axes` 
 | Setting | Default | Description |
 | ------- | ------- | ----------- |
 | `theme` | `browser` | `light` / `dark` / `browser` (follow the browser) |
+| `debug` | `false` | Print what the server does; as a viewer setting it also reaches `show()`'s `debug` in every client |
 | `no_glass` | `false` | Disable glass mode |
 | `no_tools` | `false` | Hide the toolbar |
 | `tree_width` | `240` | Navigation tree width in px |
@@ -70,5 +71,9 @@ Every setting is also a CLI flag (`--tree_width 300`, boolean flags as `--axes` 
 | `direct_intensity` | `1.1` | Direct light intensity |
 | `metalness` | `0.3` | Material metalness |
 | `roughness` | `0.65` | Material roughness |
+
+`--timeit` is a flag without a row: it is not stored in the file, but a server started with it answers `timeit: true` as a viewer setting, so every client's `show()` prints its Python and JavaScript timings until a `set_defaults(timeit=False)` or a show keyword says otherwise.
+
+Only a flag you actually type counts as a choice: an option left at its default never overrides the file, whatever the built-in default happens to be.
 
 Not viewer settings, read straight off the command line: `--port` and `--host` (where to listen), `--create_configfile`, and `--max_reconnect_attempts` (how long the page keeps trying to reconnect when the server goes away; `-1` for infinite).

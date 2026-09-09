@@ -6,11 +6,11 @@ How the shared pieces are wired in the standalone viewer. The general mechanisms
 
 ```text
 your Python process ──ws──▶ python -m ocp_viewer ──ws──▶ browser tab
-     show()                  (Flask + websockets,          ocp-viewer-core JS page
+     show()                  (websockets server,           ocp-viewer-core JS page
                               relay + state + backend)       └─▶ three-cad-viewer
 ```
 
-Three processes: your Python process runs the core's show pipeline; the **server** (`python -m ocp_viewer`) relays messages and keeps the viewer's state; the **browser tab** runs the core's JavaScript page embedding three-cad-viewer, served by that same server together with its static copies of the JS packages.
+Three processes: your Python process runs the core's show pipeline; the **server** (`python -m ocp_viewer`) relays messages and keeps the viewer's state; the **browser tab** runs the core's JavaScript page embedding three-cad-viewer, served by that same server together with its static copies of the JS packages. The server is the `websockets` library's threaded server — the same library the Python side speaks through — answering the page and its files from its HTTP hook; there is no web framework in front of it. Every send to the page is serialized by that library, so a config sent right behind a large model arrives after it, intact.
 
 ## Python to CAD Viewer
 

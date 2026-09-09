@@ -6,7 +6,7 @@ All four viewers share the same three-level configuration, with the same precede
 2. **`set_defaults(...)`** — per Python process. Overrides the viewer settings for every subsequent `show*` call in this process.
 3. **Keywords on `show` / `show_object` / `show_objects` / `show_all`** — per call. Override both levels below, for this call only.
 
-Note that not all parameters are available in the viewer settings, since some don't make sense globally (e.g. `helper_scale`, which depends on the size of the bounding box of the currently shown object).
+Note that not all parameters are available in the viewer settings, since some don't make sense globally (e.g. `helper_scale`, which depends on the size of the bounding box of the currently shown object). For such keys, and for any key a viewer does not store, a built-in fallback sits underneath the three levels — `timeit` and `debug` off, `show_locals` on, `helper_scale` 1, `collapse` root and a few more — and it is only ever the answer when none of the three levels supplies the key.
 
 There is a fourth participant that is not a level of its own: what you change in the running viewer — a toolbar toggle, a moved clipping slider — counts as viewer state and survives into the next `show` at the viewer-settings tier, so a toggle you clicked is not silently undone unless a `set_defaults` or a show keyword sets it explicitly. Inspect the effective result with `combined_config()` (see [Viewer state](#viewer-state) below).
 
@@ -41,7 +41,7 @@ set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
 
 - `get_default(key)` / `get_defaults()`
 
-    Read a single default or the full merged default dict (viewer settings + `set_defaults`).
+    Read a single default or the full merged default dict (built-in fallbacks, then viewer settings, then `set_defaults`).
 
 ## Viewer state
 

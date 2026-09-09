@@ -12,7 +12,7 @@ into the environment that also holds your CAD library (build123d or cadquery). T
 python -m ocp_viewer
 ```
 
-and open the printed URL in a browser — `http://127.0.0.1:3939` by default. The `ocp-viewer` console script does the same.
+and open the printed URL in a browser — `http://127.0.0.1:3939` by default. The `ocp-viewer` console script does the same, and takes the same flags. Stop the server with Ctrl-C; a page that is still open keeps trying to reconnect until it is closed or the server is back.
 
 From Python, in the same environment:
 
@@ -22,6 +22,10 @@ from ocp_viewer import *
 
 show(Box(1, 2, 3))
 ```
+
+## Installing from a checkout
+
+For local use straight from a clone — `uv add path/to/ocp-viewer`, `uv pip install path/to/ocp-viewer` or `pip install path/to/ocp-viewer` — run `make assets` in the checkout first. The page's JavaScript and stylesheet are copied in from npm and are not in git, so a package built from a checkout that never ran it ships without them; a server started from such a package says so and names the files. `make dist` runs it for you, and a released wheel from PyPI carries them.
 
 ## Remote use over SSH
 

@@ -22,7 +22,7 @@ And three that come back: updates (what changed in the viewer), listen (a receiv
 | Viewer | Transport | Who is in the middle |
 | ------ | --------- | -------------------- |
 | VS Code CAD Viewer | WebSocket to the extension, which relays into the webview | the extension host is the server |
-| OCP Viewer | WebSocket to the Flask server, relayed verbatim to the browser page | the server |
+| OCP Viewer | WebSocket to the standalone's server, relayed verbatim to the browser page | the server |
 | Jupyter CadQuery | ipywidgets traitlets over the Jupyter comm channel | the Jupyter server's widget machinery |
 | build123d Studio | IPC between kernel, sidecar and the app's webview | the sidecar |
 
