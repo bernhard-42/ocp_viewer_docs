@@ -92,8 +92,13 @@ nav:
       - Jupyter CadQuery:
           - Overview: viewers/jupyter_cadquery/overview.md
           - Installation: viewers/jupyter_cadquery/installation.md
+          - Sidecars, windows and cells: viewers/jupyter_cadquery/addressing.md
+          - Working in the notebook: viewers/jupyter_cadquery/notebook.md
+          - Replay: viewers/jupyter_cadquery/replay.md
+          - Export: viewers/jupyter_cadquery/export.md
           - Workspace Config: viewers/jupyter_cadquery/workspace_config.md
-          - Addressing a viewer: viewers/jupyter_cadquery/addressing.md
+          - Jupyter CadQuery API: viewers/jupyter_cadquery/api.md
+          - Troubleshooting: viewers/jupyter_cadquery/troubleshooting.md
           - Concepts: viewers/jupyter_cadquery/concepts.md
       - build123d Studio:
           - Overview: viewers/build123d_studio/overview.md

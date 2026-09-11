@@ -152,6 +152,8 @@ Valid keywords to configure the viewer (`**kwargs`):
 - `cad_width=` / `height=` size the viewer where the caller decides its size — in a notebook cell. A VS Code panel, a browser window and the Studio app size themselves, so those viewers refuse both.
 - `pinning=` controls whether the view offers the "pin as PNG" button.
 
+Sidecars, windows, cells and their sizes are described in [Jupyter CadQuery's chapter](viewers/jupyter_cadquery/addressing.md).
+
 ### Typically useful parameters
 
 Example:

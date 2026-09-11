@@ -14,7 +14,7 @@ Jupyter CadQuery is the one viewer without the core's JavaScript page: its front
 
 ## Python to CAD Viewer
 
-The transport is the **widget's traitlets** over the Jupyter comm channel — no socket of this viewer's own, no port. A traitlet has the same name on both sides, so this transport skips the camelCase translation the socket viewers do: what Python sets is what the JavaScript reads. Models are sent as binary buffers through the same channel; the two questions a show asks are answered in-process (`config` from `~/.jcq_config`, `status` from the widget's synced state). A sidecar is [addressed by title](addressing.md), not dialled by port.
+The transport is the **widget's traitlets** over the Jupyter comm channel — no socket of this viewer's own, no port. A traitlet has the same name on both sides, so this transport skips the camelCase translation the socket viewers do: what Python sets is what the JavaScript reads. Models are sent as binary buffers through the same channel; the two questions a show asks are answered in-process (`config` from `~/.jcq_config`, `status` from the widget's synced state). A viewer is [addressed by title](addressing.md#addressing-a-viewer), not dialled by port.
 
 ## Where the backend runs and how measurements happen
 
