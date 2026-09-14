@@ -116,6 +116,7 @@ nav:
           - Concepts: viewers/build123d_studio/concepts.md
   - CAD Viewer:
       - Overview: viewer.md
+      - Live view: live.md
       - Mouse and Keys: mouse_keys.md
       - Tabs: tabs.md
       - Analysis tools:

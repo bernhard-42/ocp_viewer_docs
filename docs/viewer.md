@@ -4,6 +4,8 @@ Every viewer embeds the same CAD Viewer window — the JavaScript half of `ocp-v
 
 Almost everything described here can also be driven from Python: the initial state via keywords on the `show*` commands (see [show](show.md)), and a running viewer via [set_viewer_config](set_viewer_config.md). The UI and the Python keywords are two handles on the same state — a toggle you click in the toolbar is the same setting as the keyword of the same name.
 
+A [live view](live.md) of the viewer is on the next page — the real thing, embedded and interactive.
+
 ## Layout
 
 ![viewer overview](assets/viewer-overview.png#only-light)
