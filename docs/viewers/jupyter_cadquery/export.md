@@ -12,6 +12,16 @@ export_html("part.html")
 
 `viewer=` addresses the viewer [the usual way](addressing.md#addressing-a-viewer): a named sidecar, else the default sidecar, else the viewer the last `show` produced. A sidecar or window is exported as a cell viewer of the same size — the page has no JupyterLab to dock into.
 
+!!! warning "Open the page through a web server"
+
+    On some systems the browser's security rules stop a page opened straight from the file system (`file://`) from loading what it needs, and the viewer stays empty - seen on Windows with Chrome and Brave. Serve the folder instead and open the page from there:
+
+    ```bash
+    python -m http.server 8000      # in the folder with the export
+    ```
+
+    then `http://localhost:8000/part.html`.
+
 The page carries the model but loads the viewer's JavaScript from the npm registry — `cad-viewer-widget` at exactly the version installed when the export was made — so it needs an internet connection when opened, and only versions that were published render. An export made from a development install of an unpublished version shows an empty page; re-export from a kernel running a released version.
 
 ## A notebook as HTML
