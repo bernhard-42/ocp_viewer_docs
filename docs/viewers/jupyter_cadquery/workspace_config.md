@@ -28,7 +28,7 @@ The keys and their built-in defaults (aligned with the other viewers):
 | `tree_width` | `240` | Navigation tree width in px |
 | `new_tree_behavior` | `true` | Eye icon controls the whole object, mesh icon only the wireframe — see [Tree](../../tabs.md#tree) |
 | `control` | `trackball` | `trackball` or `orbit` mouse control |
-| `modifier_keys` | shift/ctrl/meta/alt | Mapping to JS modifier key names, for the [mouse bindings](../../mouse_keys.md#modifier-keys) |
+| `modifier_keys` | per platform | `{"macOS": {...}, "default": {...}}` — one mapping to JS modifier key names per platform, for the [mouse bindings](../../mouse_keys.md#modifier-keys); the viewer gets this machine's (`default` is Windows and Linux, where `meta` is `altKey`). A flat map, as older files hold, is used as it is |
 | `up` | `Z` | Up direction |
 | `pan_speed`, `rotate_speed`, `zoom_speed` | `1` | Mouse speeds |
 | `axes` | `false` | Show axes |

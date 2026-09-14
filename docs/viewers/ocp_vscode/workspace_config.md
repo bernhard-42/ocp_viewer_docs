@@ -33,7 +33,7 @@ Visual defaults applied to every newly shown object.
 | `default_opacity`   | number  | `0.5`             | Opacity for transparent objects                                                                                                    |
 | `explode`           | boolean | `false`           | Turn explode mode on                                                                                                               |
 | `reset_camera`      | enum    | `KEEP`            | Camera behavior between `show` calls — see [Keeping the camera orientation](../../reset_camera.md)                                 |
-| `modifier_keys`     | object  | see settings.json | Mapping of `shift` / `ctrl` / `meta` / `alt` to JS modifier key names, for the [mouse bindings](../../mouse_keys.md#modifier-keys) |
+| `modifier_keys`     | object  | per platform | `{"macOS": {...}, "default": {...}}` — one mapping of `shift` / `ctrl` / `meta` / `alt` to JS modifier key names per platform, for the [mouse bindings](../../mouse_keys.md#modifier-keys); the extension applies the one for the platform it runs on (`default` is Windows and Linux, where `meta` is `altKey`) |
 
 ## OcpCadViewer.render.\*
 
