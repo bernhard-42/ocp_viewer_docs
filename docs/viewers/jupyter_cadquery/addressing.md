@@ -33,7 +33,7 @@ show(part, viewer="Left", anchor="split-left")
 show(part)                    # no open_viewer before: a cell viewer
 ```
 
-![Viewer locations](https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/master/screenshots/viewer-locations.png)
+![Viewer locations](../../assets/jupyter_cadquery/viewer-locations.png)
 
 ## Size
 

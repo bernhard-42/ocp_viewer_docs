@@ -2,7 +2,7 @@
 
 Replay shows how a CadQuery object came to be: every step of the fluent-API chain that built it, one after the other, with the result of each step drawn in the viewer. It is CadQuery only — build123d has no fluent stack to replay — and it is a notebook feature: the step selector is an ipywidget beside the viewer.
 
-![Replay](https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/master/screenshots/replay.gif)
+![Replay](../../assets/jupyter_cadquery/replay.gif)
 
 ## Enabling it
 

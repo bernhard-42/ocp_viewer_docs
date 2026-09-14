@@ -23,19 +23,19 @@ Outside JupyterLab — a plain Python process, an editor of your choice — the 
 
 The viewer with a build123d hexapod, in a sidecar:
 
-![Hexapod](https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/master/screenshots/hexapod.png)
+![Hexapod](../../assets/jupyter_cadquery/hexapod.png)
 
 [Measurement mode](../../measure.md): distances between objects, angles between edges and faces, and the properties (center, area, volume) of what is selected:
 
-![Measurement](https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/master/screenshots/measure.gif)
+![Measurement](../../assets/jupyter_cadquery/measure.gif)
 
 The [animation system](../../animation.md) exploding an assembly around the origin:
 
-![Exploded quadruped](https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/master/screenshots/explode.gif)
+![Exploded quadruped](../../assets/jupyter_cadquery/explode.gif)
 
 and a self-defined animation, the crawling hexapod:
 
-![Animated hexapod](https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/master/screenshots/hexapod-crawling.gif)
+![Animated hexapod](../../assets/jupyter_cadquery/hexapod-crawling.gif)
 
 The notebooks behind these pictures are in the repository's [examples folder](https://github.com/bernhard-42/jupyter-cadquery/tree/master/examples).
 
