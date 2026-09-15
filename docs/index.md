@@ -29,18 +29,6 @@ The chapters _[CAD Viewer](#the-cad-viewer)_ and _[The Python API](#the-python-a
 
 The underlying concepts, e.g. how the pieces fit together, are explained in the _[Concepts](#concepts)_ chapter.
 
-!!! info "One vocabulary, two import styles"
-
-    Every name shown on these pages — `show`, `set_defaults`, `Camera`, all of them — is exported identically by all four viewer packages. The examples use the portable form, which resolves to whichever viewer your environment runs:
-
-    ```python
-    from ocp_viewer_core.viewer import show
-    ```
-
-    Importing from your viewer's own package works exactly the same — `from ocp_vscode import show` in VS Code, `from ocp_viewer import show` for OCP Viewer, and so on. The import line is the only thing that names your viewer; the behavior after it is the same everywhere. [Importing](importing.md) explains both styles.
-
-    The one exception is a handful of keywords that address the viewer's surface rather than its content — `port` (ocp_vscode, ocp_viewer), `viewer` and its sidecar companions `anchor`, `cad_width`, `height`, `pinning` (jupyter_cadquery). Which viewer accepts which is spelled out in [show — Viewer-specific keywords](show.md#viewer-specific-keywords).
-
 ## Viewers
 
 One chapter per viewer for what genuinely differs: installation, settings storage, port discovery and `set_port`, sidecars, visual debugging integrations, editor tooling, troubleshooting.
@@ -56,12 +44,14 @@ One chapter per viewer for what genuinely differs: installation, settings storag
 - [Mouse and Keys](mouse_keys.md) — navigation and selection bindings, and remapping the modifier keys
 - [Tabs](tabs.md) — the tree panel's five tabs: Tree, Clip, Zebra, Material, Studio
 - Analysis tools:
-  - [Overview](measure_select.md) — picking and filters, programmatic activation, mesh-based vs CAD-exact numbers
-  - [Measure mode](measure.md) — the Distance and Properties tools and their panels
-  - [Object selection](selector.md) — pick faces, edges or vertices and use their indices in code
+    - [Overview](measure_select.md) — picking and filters, programmatic activation, mesh-based vs CAD-exact numbers
+    - [Measure mode](measure.md) — the Distance and Properties tools and their panels
+    - [Object selection](selector.md) — pick faces, edges or vertices and use their indices in code
 - [Dynamic features](dynamic_features.md) — explode and the animation bar
 
 ## The Python API
+
+- [Importing](importing.md) — one vocabulary, two import styles: your viewer's own package, or the portable `ocp_viewer_core.viewer`
 
 **Showing objects:**
 

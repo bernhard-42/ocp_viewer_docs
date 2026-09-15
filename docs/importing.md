@@ -2,6 +2,18 @@
 
 All four viewer packages export the same Python API: every function, class and enum on these pages — `show`, `set_defaults`, `Camera`, `ColorMap`, `Animation`, all of them — is available under the same name in `ocp_vscode`, `ocp_viewer`, `jupyter_cadquery` and `build123d_studio`. That leaves two equally valid ways to write the import line.
 
+!!! info "One vocabulary, two import styles"
+
+    The examples on these pages use the portable form, which resolves to whichever viewer your environment runs:
+
+    ```python
+    from ocp_viewer_core.viewer import show
+    ```
+
+    Importing from your viewer's own package works exactly the same — `from ocp_vscode import show` in VS Code, `from ocp_viewer import show` for OCP Viewer, and so on. The import line is the only thing that names your viewer; the behavior after it is the same everywhere.
+
+The one exception is a handful of keywords that address the viewer's surface rather than its content — `port` (ocp_vscode, ocp_viewer), `viewer` and its sidecar companions `anchor`, `cad_width`, `height`, `pinning` (jupyter_cadquery). Which viewer accepts which is spelled out in [show — Viewer-specific keywords](show.md#viewer-specific-keywords).
+
 ## From your viewer's package
 
 The classic form names the viewer you are working with:
