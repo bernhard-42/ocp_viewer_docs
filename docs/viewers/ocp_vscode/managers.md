@@ -39,7 +39,7 @@ The snippets the paste buttons insert come from the setting `OcpCadViewer.advanc
 
 ## The Library Manager
 
-The Library Manager lists the Python libraries the extension cares about — _build123d_, _cadquery_, _ipykernel_, _ocp_tessellate_, _ocp_vscode_ — each with its installed version in the currently selected environment, rescanned when the environment changes (or on demand via the "Refresh libraries list" command).
+The Library Manager lists the Python libraries the extension cares about — _build123d_, _cadquery_, _ipykernel_, _ocp_tessellate_, _ocp_viewer_core_, _ocp_vscode_ — each with its installed version in the currently selected environment, rescanned when the environment changes (or on demand via the "Refresh libraries list" command).
 
 ![](../../assets/ocp_vscode-lib-manager-installed.png#only-light){.center width=32%}
 ![](../../assets/ocp_vscode-lib-manager-installed-dark.png#only-dark){.center width=32%}
@@ -63,6 +63,7 @@ The commands the Library Manager runs come from two settings, `OcpCadViewer.adva
     "build123d": ["{pip-install} --upgrade git+https://github.com/gumyr/build123d"],
     "cadquery_ocp": ["{pip-install} --upgrade cadquery_ocp"],
     "ocp_vscode": ["{pip-install} --upgrade ocp_vscode~={ocp_vscode_version}"],
+    "ocp_viewer_core": ["{pip-install} --upgrade ocp_viewer_core"],
     "ocp_tessellate": ["{pip-install} --upgrade ocp_tessellate"],
     "ipykernel": ["{pip-install} --upgrade ipykernel"],
     "jupyter_console": ["{pip-install} --upgrade jupyter_console"]

@@ -77,6 +77,7 @@ nav:
           - Running code: viewers/ocp_vscode/running.md
           - Visual debugging: viewers/ocp_vscode/visual_debugging.md
           - Jupyter Console: viewers/ocp_vscode/jupyter_console.md
+          - Migration from 4.0: viewers/ocp_vscode/migration.md
           - Commands and snippets: viewers/ocp_vscode/commands.md
           - Troubleshooting: viewers/ocp_vscode/troubleshooting.md
           - Concepts: viewers/ocp_vscode/concepts.md
