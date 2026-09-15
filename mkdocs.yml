@@ -98,6 +98,7 @@ nav:
           - Export: viewers/jupyter_cadquery/export.md
           - Workspace Config: viewers/jupyter_cadquery/workspace_config.md
           - Jupyter CadQuery API: viewers/jupyter_cadquery/api.md
+          - Migration from 4.x: viewers/jupyter_cadquery/migration.md
           - Troubleshooting: viewers/jupyter_cadquery/troubleshooting.md
           - Concepts: viewers/jupyter_cadquery/concepts.md
       - build123d Studio:
