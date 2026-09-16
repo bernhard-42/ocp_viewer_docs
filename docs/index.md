@@ -3,7 +3,7 @@
 There are four viewers in the OCP Viewer ecosystem:
 
 - [ocp_vscode](https://github.com/bernhard-42/vscode-ocp-cad-viewer) (the VS Code extension)
-- [ocp_viewer](https://github.com/bernhard-42/ocp-viewer) (the standalone viewer)
+- [ocp_viewer](https://github.com/bernhard-42/ocp_viewer) (the standalone viewer)
 - [Jupyter CadQuery](https://github.com/bernhard-42/jupyter-cadquery) (for Jupyter Lab)
 - [build123d Studio](https://github.com/bernhard-42/build123d-studio) (the standalone application with an integrated python environment)
 
