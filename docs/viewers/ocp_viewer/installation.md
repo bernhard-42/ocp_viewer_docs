@@ -9,10 +9,16 @@ pip install ocp_viewer
 into the environment that also holds your CAD library (build123d or cadquery). Then start it:
 
 ```bash
+ocp-viewer
+```
+
+or, equivalently, as a module of the environment's Python:
+
+```bash
 python -m ocp_viewer
 ```
 
-and open the printed URL in a browser — `http://127.0.0.1:3939` by default. The `ocp-viewer` console script does the same, and takes the same flags. Stop the server with Ctrl-C; a page that is still open keeps trying to reconnect until it is closed or the server is back.
+and open the printed URL in a browser — `http://127.0.0.1:3939` by default. Both forms are the same program and take the same flags; `ocp-viewer` is the console script the package installs next to `python`, `python -m ocp_viewer` spells out which interpreter it runs in. Stop the server with Ctrl-C; a page that is still open keeps trying to reconnect until it is closed or the server is back.
 
 From Python, in the same environment:
 

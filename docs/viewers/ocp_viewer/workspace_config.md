@@ -4,9 +4,11 @@ OCP Viewer takes its settings from three places, lowest to highest precedence:
 
 1. built-in defaults
 2. the config file `~/.ocpvscode_standalone` (if present)
-3. CLI flags passed to `python -m ocp_viewer`
+3. CLI flags passed to `ocp-viewer` / `python -m ocp_viewer`
 
 These form the viewer-settings tier of the [config system](../../config.md) — the starting values that `set_defaults()` overrides per Python process and show keywords per call.
+
+Not a settings file, but also in your home directory: `~/.ocpvscode`, the registry of running viewers that discovery reads — see [Addressing a viewer](addressing.md#the-registry-ocpvscode).
 
 ## The config file `~/.ocpvscode_standalone`
 
@@ -33,7 +35,7 @@ Only keys that exist in the built-in defaults are honored; everything else is ig
 
 ## Settings and defaults
 
-Every setting is also a CLI flag (`--tree_width 300`, boolean flags as `--axes` or `--no_glass`); `python -m ocp_viewer --help` lists them all.
+Every setting is also a CLI flag (`--tree_width 300`, boolean flags as `--axes` or `--no_glass`); `ocp-viewer --help` lists them all.
 
 | Setting                                   | Default        | Description                                                                                                                                                                                                                                                                                         |
 | ----------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
