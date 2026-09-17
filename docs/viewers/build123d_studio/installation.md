@@ -33,7 +33,7 @@ mkdir -p ~/.local/bin
 case ":$PATH:" in *":$HOME/.local/bin:"*) echo "on PATH" ;; *) echo "NOT on PATH" ;; esac
 ```
 
-Where the launcher comes from differs by platform, because the packages do:
+Where the launcher is differs by platform:
 
 === "macOS"
 
@@ -53,7 +53,7 @@ Where the launcher comes from differs by platform, because the packages do:
 
 === "Linux"
 
-    A **separate download** called `studio`, beside the AppImage on the Releases page — an AppImage is a single read-only file, so there is nothing to copy it out of:
+    A **separate download** called `studio`, beside the AppImage on the Releases page:
 
     ```bash
     install -m 755 studio ~/.local/bin/
@@ -66,6 +66,6 @@ Where the launcher comes from differs by platform, because the packages do:
     install -m 755 squashfs-root/usr/bin/studio ~/.local/bin/
     ```
 
-**Run the application once first.** The launcher does not work out where the application is from its own location — once copied it has no relationship to the package it came from. The application records its own location on every start instead, and the script reads that. Which also means moving the application fixes itself: start it once from wherever it is now.
+**Run the application once first.** The application records its own location on every start, and the launcher reads that — so after moving the application, start it once from its new place.
 
-Every form starts a new instance, so several projects can be open at once. That matters most on macOS, where double-clicking an already-running application activates the existing window rather than starting a second one.
+Every form starts a new instance, so several projects can be open at once — on macOS too, where double-clicking a running application only activates its existing window.

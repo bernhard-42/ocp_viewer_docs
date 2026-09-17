@@ -1,3 +1,11 @@
+/* Tables are reference material here - keywords, file types, settings - and
+   the theme's cell padding (.9375em 1.25em) spreads a seven-column table
+   across the page with more air than text. Tighter, for every table. */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: 0.4em 0.7em;
+}
+
 /* Keyword reference tables: the first column holds one identifier. Never
    break inside it - the theme's code spans break words to keep tables
    narrow, which wraps a keyword's last characters onto a second line. The

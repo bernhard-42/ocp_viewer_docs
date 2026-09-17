@@ -1,16 +1,16 @@
 # Running code
 
-There are two ways to run something, and they behave differently on purpose. Understanding the difference is worth more than anything else on this page.
+There are two ways to run something, and they behave differently.
 
 ## On the kernel
 
-**Run Cell**, **Run Selection** and **Run All** send code to a Jupyter kernel that stays alive between runs, and the [Console](console_variables.md) at the bottom is a real `jupyter console` attached to that same kernel. So everything you run leaves its names behind: build a shape with `Shift-Enter`, then type `part.volume` in the console below and get an answer. The [variable explorer](console_variables.md#the-variable-explorer) shows that same namespace and expands on demand.
+**Run Cell**, **Run Selection** and **Run All** send code to a Jupyter kernel that stays alive between runs; the [Console](console_variables.md) at the bottom is a `jupyter console` on that same kernel. Everything you run leaves its names behind: build a shape with `Shift-Enter`, then type `part.volume` in the console and get an answer. The [variable explorer](console_variables.md#the-variable-explorer) shows the same namespace.
 
-This is the mode for building something up incrementally, and it is where the application's Jupyter heritage shows.
+This is the mode for building something up incrementally.
 
 ### Cells
 
-`# %%` on a line of its own marks a cell boundary, as in Jupyter, VS Code, Spyder and jupytext. Everything up to the next marker belongs to that cell, text ahead of the first marker is a cell in its own right, and a file with no markers at all is one cell — so "run cell" means something in a plain script too.
+`# %%` on a line of its own marks a cell boundary, as in Jupyter, VS Code, Spyder and jupytext. Everything up to the next marker belongs to that cell; text before the first marker is a cell of its own; a file with no markers is one cell.
 
 | Command                    | Default chord      | What it sends                                       |
 | -------------------------- | ------------------ | --------------------------------------------------- |
@@ -22,49 +22,49 @@ This is the mode for building something up incrementally, and it is where the ap
 | **Run All Above**          | —                  | Everything up to this marker                        |
 | **Run All Below**          | —                  | This marker and everything after it                 |
 
-The last three have no chord by default: they are about a _marker_ rather than about the caret, which is what makes them worth a click and awkward as a keystroke. They appear instead as buttons above every `# %%` marker — five of them, one of which is an interrupt — which is on by default and switched off in **Settings → Editor → Show cell actions**. They are in the **Run** menu as well, and the [Shortcuts tab](commands.md#rebinding) will bind them for anybody who disagrees.
+The last three have no chord by default. They are buttons above every `# %%` marker — five, one of them an interrupt — on by default and switched off in **Settings → Editor → Show cell actions**; they are in the **Run** menu; and the [Shortcuts tab](commands.md#rebinding) can bind them.
 
-The two cell chords are Jupyter's, deliberately — including `Cmd-Enter` on macOS, which Jupyter also accepts there.
+The cell chords are Jupyter's, including `Cmd-Enter` on macOS.
 
 ### Restart and interrupt
 
-**Interrupt** interrupts what the kernel is running. Python raises `KeyboardInterrupt` between operations, so a single long native call — a boolean on a large assembly — cannot be interrupted at all; five seconds after an interrupt that has not been obeyed, Studio says so and offers a restart. Letting the kernel stop and then running something else does not count as ignoring it, and does not bring that dialog up.
+**Interrupt** interrupts what the kernel is running. Python raises `KeyboardInterrupt` between operations, so a single long native call — a boolean on a large assembly — cannot be interrupted; five seconds after an interrupt that has not been obeyed, Studio says so and offers a restart.
 
-**Restart kernel** throws the kernel away and starts a new one, taking every name in the namespace with it; it is four keys (`Shift-Alt-Cmd-R`, `Ctrl-Shift-Alt-R` elsewhere) because it is not a thing to hit by accident. That chord is delivered whatever has the keyboard, unlike the run commands, which are editor actions — a restart is what you reach for while the console is wedged or the explorer has the caret.
+**Restart kernel** starts a new kernel; every name in the namespace goes with the old one. Its chord is four keys (`Shift-Alt-Cmd-R`, `Ctrl-Shift-Alt-R` elsewhere) and works whatever has the keyboard, unlike the run commands, which need the editor to have focus.
 
 ### Running while something is running
 
-The kernel takes one request at a time, so a Run pressed while a cell is running is **queued** rather than refused, exactly as in Jupyter. The kernel indicator says how many are waiting — `busy`, `busy [+1]`, `busy [+2]` — and counts back down as it reaches them. Nothing appears in the console for a queued run until the kernel starts it, because that is the moment it is given its `In [n]`.
+The kernel takes one request at a time; a Run pressed while a cell is running is **queued**, as in Jupyter. The kernel indicator shows how many are waiting — `busy`, `busy [+1]`, `busy [+2]` — and counts down as they run. A queued run appears in the console when the kernel starts it, with its `In [n]`.
 
-Whichever control you use, the keyboard goes back to the editor afterwards, so the caret is visible where the run left it — Run Cell moves it to the next cell, and Monaco draws no cursor at all while it does not have focus.
+After any run the keyboard returns to the editor, so the caret is visible where the run left it.
 
 ## As a file, in a process of its own
 
-**Run File** (`Ctrl-F5`) and **Debug File** (`F5`) save the buffer and run the _file from disk_ in a separate process, with the same interpreter and the same environment. Nothing it defines reaches the kernel, and when it ends the process is gone with everything in it.
+**Run File** (`Ctrl-F5`) and **Debug File** (`F5`) save the buffer and run the _file from disk_ in a separate process with the same interpreter and environment. Nothing it defines reaches the kernel; when it ends, the process and everything in it is gone.
 
-That is the mode for "does this script actually work from a clean start", and it is what you want when the kernel's accumulated namespace is hiding a missing import.
+This is the mode for "does this script work from a clean start" — the check that finds an import the kernel's accumulated namespace was hiding.
 
-Output appears in the **Run/Debug** tab beside the console, never in the Console tab — the Console tab is the kernel and the Run/Debug tab is the other process, and neither ever describes the other. Pressing Run File again while it runs stops it. Starting a run while a debug session is live is refused rather than allowed to produce two processes claiming the same panes.
+Output appears in the **Run/Debug** tab, never in the Console tab: the Console tab is the kernel, the Run/Debug tab is the other process. Pressing Run File again while it runs stops it. A run cannot start while a debug session is live.
 
-The viewer is the deliberate exception: a `show()` in the file reaches the same viewer you were already looking at, because the process is given the viewer's address. A picture is not state.
+A `show()` in the file reaches the viewer you are looking at: the process is given the viewer's address.
 
 Debugging is the same mechanism with a debugger attached — see [Debugging](debugging.md).
 
 ## Tests
 
-**Test → Test File** and **Test → Test Folder** run `pytest` over whatever you pick. Each raises a chooser first — a `.py` file, or a folder — and then runs `python -m pytest <what you chose>` through the same machinery Run File uses: the report arrives in the **Run/Debug** tab, the Stop beside it ends the run, and the process is gone when it finishes.
+**Test → Test File** and **Test → Test Folder** run `pytest` over what you pick. Each opens a chooser — a `.py` file, or a folder — and runs `python -m pytest <what you chose>` the way Run File runs a file: the report arrives in the **Run/Debug** tab, Stop ends the run, and the process is gone when it finishes.
 
-`pytest` is part of the environment; you do not install it. It arrives with the release, like `ruff` and the language server.
+`pytest` is part of the environment, like `ruff` and the language server; you do not install it.
 
-Both items save every unsaved buffer before they start, which Run File does not: pytest reads from disk, and the test you just edited is the one you meant to run.
+Both items save every unsaved buffer before they start — pytest reads from disk.
 
-One child runs at a time, as everywhere else here. Asking for a test run while something else is running says so rather than starting nothing.
+One child process runs at a time. Asking for a test run while something else is running says so.
 
 !!! note "It is `pytest`, not a test explorer"
 
-    There is no tree of tests, no green ticks and no re-run-failed. pytest prints its own report and the report is the feature — a second view of the same truth would be one more thing to keep in step with it.
+    There is no tree of tests, no green ticks and no re-run-failed. pytest prints its report, and the report is the feature.
 
-**Settings → Test** carries one switch. **Ignore warnings** adds `-W ignore` to the run; it is off by default, which is pytest's own behaviour and the honest one — a `DeprecationWarning` out of build123d or OCP is worth seeing at least once. Turn it on when a hundred tests each raise the same one and bury the summary.
+**Settings → Test** has one switch. **Ignore warnings** adds `-W ignore` to the run. It is off by default, pytest's own behaviour; turn it on when a hundred tests each raise the same `DeprecationWarning` and bury the summary.
 
 ## Drawing
 
@@ -76,12 +76,12 @@ b = Box(1, 2, 3)
 show(b)
 ```
 
-`show_all()` draws everything drawable in scope, which is usually what you want while exploring. New files start from a template that already has the imports in it, and the template is editable in **Settings → New file**.
+`show_all()` draws everything drawable in scope. New files start from a template with the imports in it, editable in **Settings → New file**.
 
-Everything the shared API offers — [`show`](../../show.md), [`show_object`](../../show_object.md), [`push_object`](../../push_object.md), [`show_all`](../../show_all.md), [`set_defaults`](../../config.md), the [colour maps](../../colormaps.md), [materials](../../pbr_studio.md) and [animation](../../animation.md) — is exported by `build123d_studio` under exactly the names the other viewers use. There is one viewer per window, so no `port` keyword exists and none is needed.
+Everything the shared API offers — [`show`](../../show.md), [`show_object`](../../show_object.md), [`push_object`](../../push_object.md), [`show_all`](../../show_all.md), [`set_defaults`](../../config.md), the [colour maps](../../colormaps.md), [materials](../../pbr_studio.md) and [animation](../../animation.md) — is exported by `build123d_studio` under the names the other viewers use. There is one viewer per window, so there is no `port` keyword.
 
 ## Where your code runs
 
-With a folder open, the kernel's working directory is the folder root and stays there, whichever file you are editing — so a relative path in your code means the same thing everywhere in the project. With no folder open, the working directory follows the active file instead.
+With a folder open, the kernel's working directory is the folder root, whichever file you are editing, so a relative path means the same thing everywhere in the project. With no folder open, the working directory follows the active file.
 
-One folder is open at a time. Opening another closes the tabs from the old one, asking once about anything unsaved.
+One folder is open at a time. Opening another closes the tabs of the old one, asking once about anything unsaved.

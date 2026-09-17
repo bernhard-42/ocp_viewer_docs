@@ -1,43 +1,49 @@
 # Console and variables
 
-The bottom row of the window is the kernel described twice: as a transcript you can type at, and as a table you can open.
+The bottom row of the window shows the kernel twice: as a transcript you can type at, and as a table you can open.
 
 ## The console
 
-The **Console** tab is a real `jupyter console` attached to the same kernel [Run Cell](running.md#on-the-kernel) sends to. Nothing is interpreted on the way: keystrokes go to a pty, bytes come back and are written verbatim. So it behaves like IPython because it _is_ IPython — line editing, history search, tab completion, `?` and `??`, and the magics all come from the other side rather than from a widget imitating them.
+The **Console** tab is a `jupyter console` attached to the same kernel [Run Cell](running.md#on-the-kernel) sends to. Keystrokes go to a pty and its output is written back verbatim, so it is IPython: line editing, history search, tab completion, `?` and `??`, and the magics.
 
-That is what makes the two halves of the window fit together: run a cell with `Shift-Enter`, then ask the console about what it left behind.
+Run a cell with `Shift-Enter`, then ask the console about what it left behind:
 
 ```text
 In [1]: part.volume
 Out[1]: 1256.6370614359173
 ```
 
-Ten thousand lines of scrollback are kept, so a traceback from earlier in the session is still there. Right-clicking offers copy and paste; on macOS the standard `Cmd-C` / `Cmd-V` work through the application menu, which is what gets them delivered into a pane the browser would otherwise swallow them in.
+Ten thousand lines of scrollback are kept. Right-clicking offers copy and paste; on macOS `Cmd-C` / `Cmd-V` work through the application menu.
 
-**About** carries a **Kernel connection** section at the foot, with this instance's Jupyter connection file and the command that uses it:
+**About** has a **Kernel connection** section with this instance's Jupyter connection file and the command that uses it:
 
 ```
 jupyter-console --existing "<the path About shows>"
 ```
 
-The quotes are not decoration — the path contains a space on macOS and Windows both. Install `jupyter-console` yourself, outside Studio; the environment here is Settings' to manage.
+Keep the quotes: the path contains a space on macOS and Windows. Install `jupyter-console` outside Studio; the environment here is managed by Settings.
 
 !!! warning "Leave that console with `Ctrl-D`"
 
-    Typing `exit` shuts the kernel down, and the kernel it shuts down is Studio's. A typed `exit` is executed *by* the kernel, which answers with a request to close it; `Ctrl-D` leaves it running. This is true of any console attached with `--existing`, not just this one.
+    Typing `exit` shuts down the kernel — Studio's kernel. `Ctrl-D` leaves it running. This is true of any console attached with `--existing`.
 
 ## The variable explorer
 
-The pane beside the console lists what is in the namespace: name, type, and a short `repr`, with a length in brackets for anything sized and build123d's own `label` where an object carries one. Drag the boundaries between the columns to re-proportion them; the widths are remembered.
+The pane beside the console lists what is in the namespace: name, type and a short `repr`, with a length in brackets for anything sized and build123d's `label` where an object has one. Drag the boundaries between the columns to re-proportion them; the widths are remembered.
 
-Rows are pushed by the sidecar whenever the kernel goes idle, so the table is current after a run and after typing in the console, with nothing to refresh and no polling. That listing is deliberately cheap — it reads only what is already there, never anything that computes geometry.
+The rows are refreshed whenever the kernel goes idle — after a run, after a line in the console. The listing reads only what is already there and computes no geometry.
 
-Expanding a row asks for its contents at that moment, and goes as deep as the data does: a row inside a row inside a row is addressed by position, so an assembly unrolls by its children the way it is built. Long collections are paged rather than truncated.
+Expanding a row asks for its contents at that moment, as deep as the data goes: rows inside rows are addressed by position, so an assembly unrolls by its children. Long collections are paged.
 
-### What a click will and will not compute
+**Filter and sort.** The box above the table filters the rows: type part of a name — or of a build123d label — and only matching variables stay, through every refresh, until Escape clears it. Clicking **Name** or **Type** in the header sorts by that column; a second click reverses it, a third returns to the order the names were defined in.
 
-Expanding a build123d shape adds its face, edge and vertex counts. It does not add volume, area or the bounding box, and that is measured rather than cautious — on a suspension assembly, with OCCT caching none of it:
+**Selection.** A click on a row selects it; the chevron opens it. Cmd-click (Ctrl-click on Windows and Linux) adds a row to the selection, Shift-click extends it. Right-clicking offers **Show** and **Copy** for everything selected: Show runs `show(a, b, c)` on the kernel, the line appearing in the console; Copy puts the names on the clipboard as `a, b, c`. Rows below a variable are addressed by position and have no name, so they cannot be selected. `_imported`, the result of Show on a CAD file in the tree, is a plain variable like any other.
+
+### What a click computes
+
+Expanding a build123d shape adds its face, edge and vertex counts. Anything one-dimensional — an `Edge`, a `Wire`, a `Line`, a `Spline` — adds its start and end point (`line @ 0` and `line @ 1` in a script). An edge or a face adds its geometry: line, circle, bspline, plane, cylinder, sphere. The small geometry types open to their values: a `BoundBox` to min, max, size, center and diagonal; a `Vertex` or `Vector` to its coordinates; a `Location` — and so `Pos` and `Rot` — to position and orientation; an `Axis` to position and direction; a `Plane` to its origin and three directions. Each of these is a plain read, under a millisecond whatever the size of the object.
+
+Volume, area and the bounding box of a shape are not computed. On a suspension assembly, each expansion would cost:
 
 | Property                       | Cost per expansion |
 | ------------------------------ | ------------------ |
@@ -46,23 +52,23 @@ Expanding a build123d shape adds its face, edge and vertex counts. It does not a
 | `volume`                       | 2.8 s              |
 | `bounding_box()`               | 19.1 s             |
 
-The counts are enough to tell two versions of a model apart, which is what the pane is for. The rest belongs in the console, where you ask for it and can see what it costs:
+Ask for those in the console:
 
 ```text
 In [2]: rc.volume
 ```
 
-The viewer already shows the extent `bounding_box()` would report, and `show()` prints it.
+The viewer shows the extent `bounding_box()` would report, and `show()` prints it.
 
-## Which world the pane is describing
+## Which world the pane describes
 
-The tab on show decides, and only that:
+The active tab decides:
 
-| Tab on show                         | The explorer shows             |
+| Tab                                 | The explorer shows             |
 | ----------------------------------- | ------------------------------ |
 | **Console**                         | The kernel's namespace         |
 | **Run/Debug**, with a debug session | The scopes of the paused frame |
-| **Run/Debug**, with nothing running | Nothing — the pane goes away   |
-| **Backend**                         | Nothing — the pane goes away   |
+| **Run/Debug**, with nothing running | Nothing — the pane is hidden   |
+| **Backend**                         | Nothing — the pane is hidden   |
 
-The two worlds share no addresses, so nothing is carried across when it switches. Nothing switches back on its own either: after a run or a session ends, the output is still there and still worth reading.
+Nothing switches back on its own: after a run or a session ends, the output stays on screen.

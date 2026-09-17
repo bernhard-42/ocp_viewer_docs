@@ -18,4 +18,4 @@ Four processes: the **app** (a Neutralino window whose webview runs the editor a
 
 ## Where the backend runs and how measurements happen
 
-The [measurement backend](../../concepts/backend.md) runs as its **own measurement process** beside the kernel — deliberately not on the kernel, so a measurement never competes with your running code. The sidecar keeps the id-to-shape mapping of the last show and feeds it to that process; when you pick shapes with an analysis tool, the webview's notification goes to the sidecar, the measurement process computes the exact answer from the BRep, and the sidecar delivers it back into the page.
+The [measurement backend](../../concepts/backend.md) runs as its **own measurement process** beside the kernel, so a measurement never competes with your running code. The sidecar keeps the id-to-shape mapping of the last show and feeds it to that process; when you pick shapes with an analysis tool, the webview's notification goes to the sidecar, the measurement process computes the exact answer from the BRep, and the sidecar delivers it back into the page.

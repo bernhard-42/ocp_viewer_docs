@@ -1,21 +1,21 @@
 # The window
 
-One window, five surfaces: a folder tree down the left, the editor and the [CAD Viewer](../../viewer.md) across the top, and the console and the variable explorer across the bottom. Everything else — settings, About, the command palette — is a dialog over it.
+One window, five surfaces: a folder tree down the left, the editor and the [CAD Viewer](../../viewer.md) across the top, and the console and the variable explorer across the bottom. Settings, About and the command palette are dialogs over it.
 
 ![](../../assets/build123d-studio.png#only-light)
 ![](../../assets/build123d-studio-dark.png#only-dark)
 
-The four panes all describe the same object: the script that built it, the model it produced, the console it printed to, and the object unrolled in the explorer.
+The four panes show the same object from four sides: the script that builds it, the model it produces, the console it prints to, and the object unrolled in the explorer.
 
 ## The toolbar
 
-Left to right, in four groups. Every button carries its current shortcut in its tooltip, so a rebound chord is right there rather than in this table.
+Left to right, in four groups. Every button's tooltip carries its current shortcut, so a rebound chord shows there.
 
-Too narrow a window for all of them and the row scrolls. There is no scrollbar — one drawn across the bottom of a 26-pixel button row covers half of every button, and the platforms disagree about how thin it is allowed to be. **Drag the row sideways with the mouse**, or hold `Shift` and use the wheel. Dragging never presses the button it started on: it becomes a drag only after a few pixels of travel.
+If the window is too narrow for the whole row, the row scrolls: **drag it sideways with the mouse**, or hold `Shift` and use the wheel. A drag never presses the button it started on. There is no scrollbar.
 
 | Button                   | What it does                                                                                       |
 | ------------------------ | -------------------------------------------------------------------------------------------------- |
-| **Toggle the file tree** | Shows or hides the folder sidebar. There is no tree at all until a folder is open.                 |
+| **Toggle the file tree** | Shows or hides the folder sidebar. There is no tree until a folder is open.                        |
 | **New File**             | A new buffer from the template in **Settings → New file**.                                         |
 | **Open File**            | Opens a file in a new tab.                                                                         |
 | **Save File**            | Saves the active tab, formatting it first if Format on Save is on.                                 |
@@ -24,56 +24,62 @@ Too narrow a window for all of them and the row scrolls. There is no scrollbar �
 | **Run Cell**             | Runs the `# %%` cell at the caret on the kernel and moves to the next.                             |
 | **Run Selection**        | Runs the selection on the kernel, or the current line if there is no selection.                    |
 | **Run All**              | Sends the whole buffer to the kernel.                                                              |
-| **Restart kernel**       | Throws the kernel away and starts a new one. The namespace goes with it.                           |
+| **Restart kernel**       | Starts a new kernel. The namespace goes with the old one.                                          |
 | **Interrupt**            | Interrupts what the kernel is running.                                                             |
-| **kernel indicator**     | `starting`, `idle` or `busy` — and it says busy only for code _you_ ran. `busy [+2]` means two more runs are waiting behind it. |
-| **health chip**          | Absent while everything is well; see [Health](#health) below.                                      |
+| **kernel indicator**     | `starting`, `idle` or `busy` — busy only for code _you_ ran. `busy [+2]` means two more runs are waiting behind it. |
+| **health chip**          | Absent while everything is well; see [Health](#health).                                            |
 | **Settings**             | Packages, new-file template, editor, viewer, debugging, test, shortcuts, application.             |
-| **About**                | Versions, the environment path, the log paths, and this instance's Jupyter connection file.        |
+| **About**                | Versions, the environment path, the log files, the snippets file and this instance's Jupyter connection file, each with Copy and Open. |
 | **Command Palette**      | Every editor command by name — see [Commands and shortcuts](commands.md).                          |
 
 ## Tabs
 
-The strip above the editor is one tab per open buffer, rebuilt from the buffers themselves. A tab shows a dot while its buffer differs from disk, and two files with the same name are told apart by as much of their path as it takes and no more — `parts/bracket.py` and `spares/bracket.py`, not two identical labels. Overflow scrolls rather than folding into a dropdown.
+One tab per open buffer. A tab shows a dot while its buffer differs from disk. Two files with the same name are told apart by as much of their path as it takes — `parts/bracket.py` and `spares/bracket.py`. Too many tabs scroll.
 
-Choosing a tab puts the keyboard in the editor and restores the caret where it was, so what you type next lands in the file the tab named.
+Choosing a tab puts the keyboard in the editor with the caret where it was, so what you type next lands in that file.
 
 ## The folder tree
 
-Present only when a folder is open. It reads a directory the first time that directory is expanded and not before, which is what makes it usable on a CAD project: the folder full of STEP and STL exports is not read until you ask for it. What it has read is kept current by a watcher on the project root, so a file written by a script appears without a refresh — and the header carries **New file**, **New folder** and **Refresh** for the times you want to force it.
+Present when a folder is open. A directory is read the first time it is expanded, so a folder of STEP and STL exports is not read until you open it. What has been read is kept current by a watcher on the project root: a file written by a script appears without a refresh. The header has **New file**, **New folder** and **Refresh**.
 
-Every file is shown, not only Python: a build123d project is exports, images and a README as much as it is `.py`. Three names are hidden because nobody opens them — `__pycache__`, `.git` and `.DS_Store`. Dotfiles in general stay, because `.gitignore` and `.python-version` are files people do open.
+Every file is shown, not only Python. `__pycache__`, `.git` and `.DS_Store` are hidden; other dotfiles such as `.gitignore` and `.python-version` are shown.
 
-Right-clicking a row opens the tree's own menu; renaming a file there moves the tab that holds it with it.
+**Filter.** The box under the header filters the tree: type part of a name — `robot` — or an extension — `.py`, `.stl` — and only matching files stay; Escape clears it. It filters what the tree has read: a folder you have not opened stays in the list and opens filtered; a folder that has been read and holds nothing matching is hidden with everything under it.
 
-Opening something that is not text is refused rather than attempted — one NUL byte in the first 8 kB is the whole test, the same one git uses — and anything over 10 MB asks first, because the whole buffer goes to the language server on every edit.
+**Right-click** opens the row's menu: **Rename…**, **Delete…**, and for a CAD file — `.stl`, `.step`/`.stp`, `.brep`, `.dxf`, `.svg` — **Show**. Renaming a file moves its tab with it.
+
+**Show** runs build123d's importer on the kernel and shows the result. The console shows `# Importing frame.step ...` while it loads, then the line that ran — `from build123d import import_step; from build123d_studio import show, Camera; _imported = import_step(".../frame.step"); show(_imported, reset_camera=Camera.RESET)` — which is also the line to copy into a script. The result is bound to `_imported` and shown in the variable explorer; showing another file rebinds it. To keep a model, give it a name of your own: `frame = _imported`. The importer's defaults apply (the STL's unit, an SVG's `flip_y`); call the importer yourself with arguments when the default is not what you want. A click on a CAD file opens it in the editor, like any file — a STEP or an SVG is text and can be edited.
+
+Binary files are not opened: a file with a NUL byte in its first 8 kB is refused. Files over 10 MB ask before opening, because a Python buffer is sent whole to the language server on every edit.
 
 ## The bottom pane
 
-Three tabs over one pane, and the rule between them is worth knowing because it decides what the variable explorer beside them is describing:
+Three tabs over one pane:
 
-- **Console** — a real `jupyter console` on the kernel your cells run on. See [Console and variables](console_variables.md).
+- **Console** — a `jupyter console` on the kernel your cells run on. See [Console and variables](console_variables.md).
 - **Run/Debug** — the output of the separate process started by Run File or Debug File, and while a debug session is live, an evaluate line into the paused frame.
-- **Backend** — what the measurement process says as it says it: which shape id was clicked, what it indexed, why a measurement could not be taken. Read-only, and the same lines go to `backend.log`.
+- **Backend** — what the measurement process reports: which shape was clicked, what it indexed, why a measurement could not be taken. Read-only; the same lines go to `backend.log`.
 
-**The tab decides what the panes beside it are about.** Console means the kernel, so the explorer shows the kernel's namespace. Run/Debug with a session behind it means the debugged process, so the explorer shows the paused frame. Run/Debug with nothing behind it — a plain Run File, a finished session, or simply having clicked the tab — means nothing, so the explorer goes away rather than showing a namespace the output is not about. Nothing switches back on its own, because the output is still there and still worth reading.
+**The active tab decides what the variable explorer shows.** Console: the kernel's namespace. Run/Debug with a live session: the paused frame. Run/Debug without a session — a plain Run File, a finished session, or the tab clicked with nothing running — no explorer. Nothing switches back on its own; the output stays readable.
 
-While a debug session is live, the step controls — continue, step over, step into, step out, restart, stop — appear in that same tab row, beside the output they act on.
+While a debug session is live, the step controls — continue, step over, step into, step out, restart, stop — sit in the same tab row.
+
+**Camera shortcut.** The button at the right end of the tab row shows the kernel's `reset_camera` default, the one `show()` uses when you pass none: a flip-camera icon means the next show resets the camera to fit the model; a photo-camera icon means the camera stays where you left it (`KEEP`, or `CENTER` from Settings). A click switches between the two by running `set_defaults(reset_camera=…)` on the kernel; the line appears in the console, and the icon changes when the kernel confirms it. The button always shows the kernel's current default, so a `set_defaults()` in your own script, a line typed in the console or a `reset_defaults()` all show in it. It changes the session's default only: a kernel restart brings back what Settings → Viewer → reset_camera says.
 
 ## Health
 
-Everything below the window has a lifecycle of its own — the model channel that carries `show()`, the measurement process, the kernel, the language server, the console — and each can die while the window still looks entirely well. The chip in the toolbar is what says so.
+The model channel that carries `show()`, the measurement process, the kernel, the language server and the console each have a lifecycle of their own, and each can fail while the window looks well. The chip in the toolbar says so.
 
-It is hidden while everything is well, because a status light that is always on is a status light nobody reads. It appears as `degraded` (working, with something worth knowing) or `failed` (not working), showing the worst state anything is in; its tooltip lists every subsystem with what it last said. Clicking it opens the **Backend** tab, which is where the reason is. A subsystem that newly fails brings that tab forward on its own — once, not every time it speaks again.
+It is hidden while everything is well. It shows `degraded` (working, with something to know) or `failed` (not working) — the worst state of any subsystem — and its tooltip lists every subsystem with what it last reported. Clicking it opens the **Backend** tab, where the reason is. A subsystem that newly fails brings that tab forward once.
 
-`starting` is not a fault and is not shown: at the moment the window appears, the measurement process is still loading the geometry kernel and will be for a second or two.
+`starting` is not a fault and is not shown: when the window appears, the measurement process is still loading the geometry kernel for a second or two.
 
 ## Layout
 
-The two rows split independently — the editor/viewer ratio and the console/explorer ratio are separate numbers — because a single grid would force one to follow the other. Drag any splitter; the result is remembered, as is the window's own size and position, in the [data directory](first_run.md#where-it-all-lives) rather than beside the application, so an update does not take the layout with it.
+The editor/viewer split and the console/explorer split are independent. Drag any splitter; the result is remembered, as are the window's size and position, in the [data directory](first_run.md#where-it-all-lives), so an update keeps the layout.
 
-**View → Toggle Sidebar** hides the tree without closing the folder, and **View → Toggle Console and Variables** hides the whole bottom row. Both survive a restart. Which files were open, and where the caret was in each, is restored too.
+**View → Toggle Sidebar** hides the tree without closing the folder; **View → Toggle Console and Variables** hides the whole bottom row. Both survive a restart, as do the open files and the caret position in each.
 
 ## Theme
 
-Untouched, the whole window follows the desktop's own light or dark setting and changes with it. **Settings → Application → Appearance → Dark mode** pins it either way, and it then stops following. It is one setting for the window rather than one per surface — the editor, the viewer and the terminal all move together.
+The window follows the desktop's light or dark setting and changes with it. **Settings → Application → Appearance → Dark mode** pins it either way. It is one setting for the whole window: editor, viewer and terminal change together.
