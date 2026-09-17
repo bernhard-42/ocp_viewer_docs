@@ -37,7 +37,7 @@ Expanding a row asks for its contents at that moment, as deep as the data goes: 
 
 **Filter and sort.** The box above the table filters the rows: type part of a name — or of a build123d label — and only matching variables stay, through every refresh, until Escape clears it. Clicking **Name** or **Type** in the header sorts by that column; a second click reverses it, a third returns to the order the names were defined in.
 
-**Selection.** A click on a row selects it; the chevron opens it. Cmd-click (Ctrl-click on Windows and Linux) adds a row to the selection, Shift-click extends it. Right-clicking offers **Show** and **Copy** for everything selected: Show runs `show(a, b, c)` on the kernel, the line appearing in the console; Copy puts the names on the clipboard as `a, b, c`. Rows below a variable are addressed by position and have no name, so they cannot be selected. `_imported`, the result of Show on a CAD file in the tree, is a plain variable like any other.
+**Selection.** A click on a row selects it; the chevron opens it. Cmd-click (Ctrl-click on Windows and Linux) adds a row to the selection, Shift-click extends it. Right-clicking offers **Show** and **Copy** for everything selected: Show runs `show(a, b, c, names=["a", "b", "c"])` on the kernel — the variable names become the names in the viewer's tree — with the line appearing in the console; Copy puts the names on the clipboard as `a, b, c`. Rows below a variable are addressed by position and have no name, so they cannot be selected. `_imported`, the result of Show on a CAD file in the tree, is a plain variable like any other.
 
 ### What a click computes
 
