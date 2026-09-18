@@ -13,7 +13,7 @@ Everything else the application declares is frozen to the versions this release 
 
 !!! warning
 
-    The GitHub option builds and runs whatever is on that branch at the moment it is fetched — unreleased code. It needs `git`; without it the option is disabled and says so.
+    The GitHub option builds and runs whatever is on that branch at the moment it is fetched — unreleased code. It needs `git`; without it the option is disabled and says so. The check runs `git --version` when Settings opens and believes git's own banner over the exit code; a check that could not tell — a shell that did not answer — is asked again next time rather than remembered, and a stored GitHub choice is only reverted to PyPI when git is confirmed absent.
 
 A **local checkout** is installed editable: what you edit is what runs. Choose the folder with **Choose…**, which also selects the Local radio. Editable installs use the layout static analysis can follow, so a local checkout resolves in [completion and squiggles](editor.md) as well as at runtime.
 

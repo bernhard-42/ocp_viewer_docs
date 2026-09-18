@@ -84,6 +84,7 @@ Every file in the tree can be opened, not only Python. What the editor does for 
 | JSON `.json` | yes | syntax | yes | — | JSONC accepted |
 | YAML `.yaml` `.yml` | yes | — | indentation | — | |
 | TOML `.toml` | yes | — | indentation | — | |
+| pictures `.png` `.jpg` `.jpeg` `.gif` `.webp` | shown, not edited | — | — | — | a tab of its own, fitted to the pane |
 | other | plain text | — | — | — | |
 
-Only Python goes to the language server and the formatter. JSON is checked by Monaco's JSON service, which accepts comments and trailing commas (JSONC) — `snippets.json` is written that way. TOML is highlighting only. Binary files are not opened: a file with a NUL byte in its first 8 kB is refused (git's own test for text). Files over 10 MB ask before opening: Monaco itself handles large files well, but a Python buffer is sent whole to the language server on open and after every edit.
+Only Python goes to the language server and the formatter. JSON is checked by Monaco's JSON service, which accepts comments and trailing commas (JSONC) — `snippets.json` is written that way. TOML is highlighting only. A picture is drawn rather than opened as text; there is nothing to save in its tab. Other binary files are not opened: a file with a NUL byte in its first 8 kB is refused (git's own test for text). Files over 10 MB ask before opening: Monaco itself handles large files well, but a Python buffer is sent whole to the language server on open and after every edit.

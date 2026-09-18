@@ -28,7 +28,7 @@ The cell chords are Jupyter's, including `Cmd-Enter` on macOS.
 
 ### Restart and interrupt
 
-**Interrupt** interrupts what the kernel is running. Python raises `KeyboardInterrupt` between operations, so a single long native call — a boolean on a large assembly — cannot be interrupted; five seconds after an interrupt that has not been obeyed, Studio says so and offers a restart.
+**Interrupt** interrupts what the kernel is running; with nothing running it does nothing. Python raises `KeyboardInterrupt` between operations, so a single long native call — a boolean on a large assembly — cannot be interrupted; five seconds after an interrupt that has not been obeyed, Studio says so and offers a restart.
 
 **Restart kernel** starts a new kernel; every name in the namespace goes with the old one. Its chord is four keys (`Shift-Alt-Cmd-R`, `Ctrl-Shift-Alt-R` elsewhere) and works whatever has the keyboard, unlike the run commands, which need the editor to have focus.
 
@@ -44,9 +44,13 @@ After any run the keyboard returns to the editor, so the caret is visible where 
 
 This is the mode for "does this script work from a clean start" — the check that finds an import the kernel's accumulated namespace was hiding.
 
-Output appears in the **Run/Debug** tab, never in the Console tab: the Console tab is the kernel, the Run/Debug tab is the other process. Pressing Run File again while it runs stops it. A run cannot start while a debug session is live.
+Output appears in the **Run/Debug** tab, never in the Console tab: the Console tab is the kernel, the Run/Debug tab is the other process. Pressing Run File again while it runs stops it, as does the **Stop** button that appears in the bottom pane's tab row. A run cannot start while a debug session is live.
 
-A `show()` in the file reaches the viewer you are looking at: the process is given the viewer's address.
+A `show()` in the file reaches the viewer you are looking at: the process is given the viewer's address. Import it as `from build123d_studio import show`, or with the universal `from ocp_viewer_core.viewer import show`, which finds this viewer through the environment the process was started with. `from ocp_vscode import show` does not reach it — that is a client for the VS Code extension's viewer.
+
+### The PATH a run gets
+
+Everything Studio starts — the kernel, the console, Run File, tests, make — sees the environment's own `bin` (`Scripts` on Windows) first on `PATH`, so `python`, `pytest` and `ruff` are the ones Studio installed. On macOS and Linux, what your login shell puts on `PATH` follows: Studio asks your account's default shell once at startup, the way an editor launched from the dock does, so Homebrew and the like are there even though the application was not started from a terminal. Windows keeps the `PATH` the system gives every application. The Backend tab's log has a `PATH:` line saying what was adopted.
 
 Debugging is the same mechanism with a debugger attached — see [Debugging](debugging.md).
 
@@ -58,13 +62,21 @@ Debugging is the same mechanism with a debugger attached — see [Debugging](deb
 
 Both items save every unsaved buffer before they start — pytest reads from disk.
 
-One child process runs at a time. Asking for a test run while something else is running says so.
+One child process runs at a time. Asking for a test run while something else is running says so, and where Stop is.
 
 !!! note "It is `pytest`, not a test explorer"
 
     There is no tree of tests, no green ticks and no re-run-failed. pytest prints its report, and the report is the feature.
 
 **Settings → Test** has one switch. **Ignore warnings** adds `-W ignore` to the run. It is off by default, pytest's own behaviour; turn it on when a hundred tests each raise the same `DeprecationWarning` and bury the summary.
+
+## Make
+
+A project with a `Makefile` — `Makefile`, `makefile` or `GNUmakefile` — can run its targets from the tree: right-click the file and its targets are listed below a line, **Make ▸ build**, **Make ▸ test**, … Picking one runs `make <target>` in the Makefile's folder the way a test run runs: the output arrives in the **Run/Debug** tab, **Stop** ends it, and one such process runs at a time.
+
+The list is read from the file at every right-click, so a target added in a terminal is in the next menu. It is the rules written in the file, in their order, without make's own dot targets; a target that expects a variable — `bump part=minor` — is listed too and runs without it, and make says what it wanted. The entries appear only when `make` is on the `PATH` a run gets; without it, the Makefile is a file like any other.
+
+On Windows, GNU make runs recipes through `sh.exe` if one is on `PATH` and through `cmd.exe` otherwise, exactly as it would from a terminal; a Makefile written for a Unix shell fails there in the same way it would in a command prompt.
 
 ## Drawing
 
