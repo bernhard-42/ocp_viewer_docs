@@ -12,6 +12,7 @@ build123d Studio is a desktop application for macOS, Windows and Linux: a code e
 - [Three ways to run](running.md): on a Jupyter kernel that keeps your names between runs, as a file in a process of its own, or [`pytest` over a file or a folder](running.md#tests) — and [a debugger](debugging.md) that draws the frame it is stopped in.
 - A full [editor](editor.md) with completion, type checking, hover, parameter hints, ruff formatting and snippets, backed by a language server running in the same environment as your code.
 - A real [Jupyter console and a variable explorer](console_variables.md) on the kernel your code runs on, for inspecting the objects a script created.
+- A [parameter panel](parameters.md): decorate the function that builds your model, and a floating window with a slider, a dropdown or a checkbox per parameter rebuilds it on every change.
 - Measurements computed in their own process beside the kernel, so analysing a model never competes with running code — see [Concepts](concepts.md).
 - The `studio` launcher: `studio some/folder` or `studio part.py` opens a project from the command line — see [Installation](installation.md#the-studio-command).
 

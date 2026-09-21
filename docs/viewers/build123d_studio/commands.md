@@ -52,7 +52,7 @@ On macOS the menu is the system menu bar. On Windows and Linux it is in the wind
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------- |
 | **build123d Studio** _(macOS)_ | About, Settings…, Quit                                                                                         |
 | **File**                       | New, Open File…, Open Folder… · Save, Save As…, Save All · Close, Close All, Close Folder · Exit _(off macOS)_ |
-| **View**                       | Toggle Sidebar, Toggle Console and Variables                                                                   |
+| **View**                       | Toggle Sidebar, Toggle Console and Variables, Toggle Parameters                                                |
 | **Edit**                       | Cut, Copy, Paste                                                                                               |
 | **Run**                        | The four cell commands · the three marker commands · Restart Kernel · Run File · the seven debug commands      |
 | **Test**                       | Test File, Test Folder                                                                                         |

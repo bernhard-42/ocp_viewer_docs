@@ -56,6 +56,10 @@ Every file is shown, not only Python. `__pycache__`, `.git` and `.DS_Store` are 
 
 Binary files are not opened: a file with a NUL byte in its first 8 kB is refused — except pictures, which get a tab of their own. Files over 10 MB ask before opening, because a Python buffer is sent whole to the language server on every edit.
 
+## The parameter window
+
+A model function with a `@ui` decorator gets a small floating window of its own, over the panes, with a control per parameter. It is dragged by its header, closed with ✕ or `Escape`, and reopened from **View ▸ Toggle Parameters**. See [Parameters](parameters.md).
+
 ## The bottom pane
 
 Three tabs over one pane:
@@ -88,4 +92,4 @@ The editor/viewer split and the console/explorer split are independent. Drag any
 
 ## Theme
 
-The window follows the desktop's light or dark setting and changes with it. **Settings → Application → Appearance → Dark mode** pins it either way. It is one setting for the whole window: editor, viewer and terminal change together.
+The window follows the desktop's light or dark setting and changes with it. **Settings → Application → Appearance** offers **Dark**, **Light** and **System**; System is the default and the first two pin one. It is one setting for the whole window: editor, viewer and terminal change together.

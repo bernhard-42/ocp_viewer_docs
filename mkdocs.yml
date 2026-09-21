@@ -110,6 +110,7 @@ nav:
           - Running code: viewers/build123d_studio/running.md
           - Debugging: viewers/build123d_studio/debugging.md
           - Console and variables: viewers/build123d_studio/console_variables.md
+          - Parameters: viewers/build123d_studio/parameters.md
           - The editor: viewers/build123d_studio/editor.md
           - Packages and the environment: viewers/build123d_studio/packages.md
           - Workspace Config: viewers/build123d_studio/workspace_config.md
