@@ -34,13 +34,13 @@ The signature stays plain Python: the name, the type annotation and the default 
 | `interval` | `(lo, hi)`: a slider between the two.                                                                      |
 | `step`     | What one click of a number field's buttons, or one notch of the slider, changes the value by. Default `1`. |
 
-The control is decided by the annotation where the `Param` says nothing: `bool` is a checkbox, `int` and `float` are number fields with a step up and a step down, anything else is a text field. A `float` always shows a decimal point — `3.0`, never `3` — and as many decimals as its `step` has: with `step=0.25` the field reads `3.25`.
+The control is decided by the annotation where the `Param` says nothing: `bool` is a checkbox, `int` and `float` are number fields with a step up and a step down, anything else is a text field — a parameter without an annotation too, and its value reaches the function as a string, so annotate what the window should show. A `float` always shows a decimal point — `3.0`, never `3` — and as many decimals as its `step` has: with `step=0.25` the field reads `3.25`.
 
 A parameter that has a default may be left out of the decorator; it is not in the window and the function's own default fills it. A parameter without a default cannot be left out, and Studio says so when the function is defined. A name that is not a parameter is refused in the same way, so a parameter renamed in the signature but not in the decorator cannot silently vanish from the window.
 
 ## The window
 
-Run the file. When the kernel goes idle, Studio finds every `@ui` function in the namespace and opens the parameter window for it. If there are several, a dropdown in its header picks one.
+Run the code on the kernel — **Run All**, or the cell that defines the function. When the kernel goes idle, Studio finds every `@ui` function in its namespace and opens the parameter window for it. If there are several, a dropdown in its header picks one. **Run File** and **Debug File** run the file in a process of its own, so nothing they define reaches the kernel and no window appears. The window's call is `show(...)`, so the script needs `from build123d_studio import show` — the line the new-file template starts with.
 
 The window floats above the panes: drag it by its header to wherever it is least in the way — beside the viewer, usually — and it comes back there next time. Its width is fixed; it scrolls when the parameters do not fit.
 
@@ -60,7 +60,7 @@ The result is not bound to a name. `candle_stand()` in the script and `show(cand
 
 ## The example
 
-`candleStand.scad` from the OpenSCAD examples, translated to build123d — `examples/candle_stand.py` in the Studio repository. Its customizer comments (`// [70:large,50:medium,30:small]`, `/* [ Candle Holder ] */`) are what the decorator replaces. Open it in Studio and run it; the window appears with five groups, and the dropdown, the slider and the checkbox are the three kinds of `Param` at work.
+`candleStand.scad` from the OpenSCAD examples, translated to build123d — `examples/candle_stand.py` in the Studio repository. Its customizer comments (`// [70:large,50:medium,30:small]`, `/* [ Candle Holder ] */`) are what the decorator replaces. It uses [bd-materials](https://pypi.org/project/bd-materials/) for the brass finish, which is not part of the environment: add `bd-materials` under **Settings → Packages → Additional packages** first (see [Additional packages](packages.md#additional-packages)), or delete the `bd_materials` import and the `.material` line. Open it in Studio and run it with **Run All**; the window appears with five groups, and the dropdown, the slider and the checkbox are the three kinds of `Param` at work.
 
 ![](../../assets/studio-parameters.png#only-light)
 ![](../../assets/studio-parameters-dark.png#only-dark)
