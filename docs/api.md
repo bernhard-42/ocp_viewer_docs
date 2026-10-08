@@ -10,6 +10,19 @@ Function signatures on this page and on [the config system](config.md) page show
 
   Save the current viewer view to a PNG. `filename` is taken relative to the current working directory unless it's absolute. With `polling=True` the call returns only after the file has been written; this is what `Animation.save_as_gif` relies on internally.
 
+  The PNG has an alpha channel and its background is transparent: the viewer clears its canvas to alpha 0, and the file is that canvas as it is. That composites onto any page, and it surprises anyone who flattens it the quick way — Pillow's `Image.open(f).convert("RGB")` turns every transparent pixel black. Paste it onto a background instead:
+
+  ```python
+  from PIL import Image
+
+  shot = Image.open("part.png")
+  flat = Image.new("RGB", shot.size, "white")
+  flat.paste(shot, mask=shot.getchannel("A"))
+  flat.save("part-white.png")
+  ```
+
+  In the [PBR Studio](pbr_studio.md) the `studio_background` setting decides: `TRANSPARENT` keeps the alpha, every other value is painted into the picture.
+
 ## Clear viewer
 
 - `show_clear()`

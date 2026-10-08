@@ -16,7 +16,7 @@ show(part, port=3999, reset_camera=Camera.RESET)
 save_screenshot("part.png", port=3999)
 ```
 
-`save_screenshot` returns once the file exists; it gives up after two seconds with a warning if no browser answered. The `port=` keyword addresses the server the headless page is attached to — see [Addressing a viewer](addressing.md).
+`save_screenshot` returns once the file exists; it gives up after two seconds with a warning if no browser answered. The `port=` keyword addresses the server the headless page is attached to — see [Addressing a viewer](addressing.md). The PNG's background is transparent — see [Screenshots](../../api.md#screenshots) before flattening it with Pillow.
 
 !!! warning "Camera"
 
