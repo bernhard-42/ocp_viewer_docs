@@ -89,6 +89,7 @@ nav:
           - Editor support:
               - NeoVim: viewers/ocp_viewer/neovim.md
           - Docker: viewers/ocp_viewer/docker.md
+          - Headless screenshots: viewers/ocp_viewer/headless.md
           - Concepts: viewers/ocp_viewer/concepts.md
       - Jupyter CadQuery:
           - Overview: viewers/jupyter_cadquery/overview.md
