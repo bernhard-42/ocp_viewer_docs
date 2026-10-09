@@ -71,12 +71,12 @@ set_colormap(None)
 
 ### Procedural palettes
 
-| Factory                                                                                    | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ColorMap.golden_ratio(colormap="hsv", alpha=1.0, reverse=False)`                          | Walks the colormap by the inverse golden ratio so successive colors are maximally distinct |
-| `ColorMap.seeded(seed_value=42, colormap="hsv", alpha=1.0, **params)`                      | Deterministic random walk through the colormap (use `colormap="rgb"` to draw RGB directly) |
-| `ColorMap.segmented(length=10, colormap="hsv", alpha=1.0, reverse=False)`                  | Equally spaced samples across a continuous colormap                                        |
-| `ColorMap.listed(length=10, colormap="mpl:plasma", colors=None, alpha=1.0, reverse=False)` | Subsample a matplotlib listed colormap, or pass `colors=[...]` to use your own list        |
+| Factory                                                                                    | Description                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ColorMap.golden_ratio(colormap="hsv", alpha=1.0, reverse=False, hue_offset=0.0)`          | Walks the colormap by the inverse golden ratio so successive colors are maximally distinct; `hue_offset` (0 to 1) shifts the first color and all that follow |
+| `ColorMap.seeded(seed_value=42, colormap="hsv", alpha=1.0, **params)`                      | Deterministic random walk through the colormap (use `colormap="rgb"` to draw RGB directly)                                                                   |
+| `ColorMap.segmented(length=10, colormap="hsv", alpha=1.0, reverse=False)`                  | Equally spaced samples across a continuous colormap                                                                                                          |
+| `ColorMap.listed(length=10, colormap="mpl:plasma", colors=None, alpha=1.0, reverse=False)` | Subsample a matplotlib listed colormap, or pass `colors=[...]` to use your own list                                                                          |
 
 ```python
 golden_ratio = ColorMap.golden_ratio()
