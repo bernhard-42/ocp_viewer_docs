@@ -60,7 +60,7 @@ The result is not bound to a name. `candle_stand()` in the script and `show(cand
 
 ## The example
 
-`candleStand.scad` from the OpenSCAD examples, translated to build123d — `examples/candle_stand.py` in the Studio repository. Its customizer comments (`// [70:large,50:medium,30:small]`, `/* [ Candle Holder ] */`) are what the decorator replaces. It uses [bd-materials](https://pypi.org/project/bd-materials/) for the brass finish, which is not part of the environment: add `bd-materials` under **Settings → Packages → Additional packages** first (see [Additional packages](packages.md#additional-packages)), or delete the `bd_materials` import and the `.material` line. Open it in Studio and run it with **Run All**; the window appears with five groups, and the dropdown, the slider and the checkbox are the three kinds of `Param` at work.
+`candleStand.scad` from the OpenSCAD examples, translated to build123d — `examples/candle_stand.py` in the Studio repository. Its customizer comments (`// [70:large,50:medium,30:small]`, `/* [ Candle Holder ] */`) are what the decorator replaces. Open it in Studio and run it with **Run All**; the window appears with five groups, and the dropdown, the slider and the checkbox are the three kinds of `Param` at work.
 
 ![](../../assets/studio-parameters.png#only-light)
 ![](../../assets/studio-parameters-dark.png#only-dark)
