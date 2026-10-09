@@ -23,6 +23,18 @@
 
 The extension depends on VS Code using the correct Python interpreter. The most reliable ways: start VS Code from the command line in the desired Python environment, or select the interpreter in VS Code first via the Python extension's "Select Interpreter".
 
+## Spurious aborts: "KeyboardInterrupt", "Aborted", "Operation cancelled by user"
+
+The "OCP backend" terminal reports `KeyboardInterrupt` or "Aborted" when the viewer opens, and the **Quickstart** buttons in the [Viewer Manager](managers.md#the-viewer-manager) report "Operation cancelled by user" - without anything having been cancelled.
+
+This has been seen with the VS Code extension **Python Environments** activating environments in terminals by command, its default ([issue #241](https://github.com/bernhard-42/vscode-ocp-cad-viewer/issues/241)). **⇒** Switch its activation to shell startup in your user settings:
+
+```json
+"python-envs.terminal.autoActivationType": "shellStartup"
+```
+
+The setting applies to terminals opened afterwards, so close the "OCP backend" terminal and any other open terminal, then start the viewer again. If the aborts persist, disable the Python Environments extension.
+
 ## RuntimeError: Cannot access viewer config. Is the viewer running?
 
 The additional warning at the top of the stacktrace says:
