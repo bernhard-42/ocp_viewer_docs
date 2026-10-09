@@ -6,9 +6,9 @@ Function signatures on this page and on [the config system](config.md) page show
 
 ## Screenshots
 
-- `save_screenshot(filename, polling=True, progress_only=False)`
+- `save_screenshot(filename, polling=True, progress_only=False, timeout_s=2)`
 
-  Save the current viewer view to a PNG. `filename` is taken relative to the current working directory unless it's absolute. With `polling=True` the call returns only after the file has been written; this is what `Animation.save_as_gif` relies on internally.
+  Save the current viewer view to a PNG. `filename` is taken relative to the current working directory unless it's absolute. With `polling=True` the call returns only after the file has been written, or after `timeout_s` seconds with a warning; this is what `Animation.save_as_gif` relies on internally.
 
   The PNG has an alpha channel and its background is transparent: the viewer clears its canvas to alpha 0, and the file is that canvas as it is. That composites onto any page, and it surprises anyone who flattens it the quick way — Pillow's `Image.open(f).convert("RGB")` turns every transparent pixel black. Paste it onto a background instead:
 
