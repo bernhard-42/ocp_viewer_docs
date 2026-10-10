@@ -47,6 +47,7 @@ One chapter per viewer for what genuinely differs: installation, settings storag
     - [Overview](measure_select.md) — picking and filters, programmatic activation, mesh-based vs CAD-exact numbers
     - [Measure mode](measure.md) — the Distance and Properties tools and their panels
     - [Object selection](selector.md) — pick faces, edges or vertices and use their indices in code
+    - [Coordinate selection](coordinate_selection.md) — `Cmd-C` / `Ctrl-C` copies the coordinates of the point under the cursor
 - [Dynamic features](dynamic_features.md) — explode and the animation bar
 
 ## The Python API

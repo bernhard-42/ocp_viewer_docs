@@ -1,6 +1,6 @@
 # Analysis tools
 
-Three analysis tools live in the toolbar — **Distance**, **Properties** and **Select** — one active at a time, and mutually exclusive with [explode](dynamic_features.md). [Measure mode](measure.md) covers the first two, [Object selection](selector.md) the third; the picking mechanics here are shared by all of them.
+Three analysis tools live in the toolbar — **Distance**, **Properties** and **Select** — one active at a time, and mutually exclusive with [explode](dynamic_features.md). [Measure mode](measure.md) covers the first two, [Object selection](selector.md) the third; the picking mechanics here are shared by all of them. A fourth has no toolbar button: [Coordinate selection](coordinate_selection.md), `Cmd-C` / `Ctrl-C` over the model.
 
 ## Picking and filters
 

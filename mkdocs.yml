@@ -127,6 +127,7 @@ nav:
           - Overview: measure_select.md
           - Measure mode: measure.md
           - Object selection: selector.md
+          - Coordinate selection: coordinate_selection.md
       - Dynamic features: dynamic_features.md
   - The Python API:
       - Importing: importing.md
