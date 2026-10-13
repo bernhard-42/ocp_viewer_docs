@@ -125,6 +125,7 @@ Valid keywords to configure the viewer (`**kwargs`):
 | `render_joints` | Render build123d joints (default=False) |
 | `show_parent` | Render parent of faces, edges or vertices as wireframe (default=False) |
 | `show_locals` | In build123d show local part/sketch/line in addition to the relocated object (default=True) |
+| `python_enumeration` | Number repeated object names from 0 like Python indices, `Solid(0)`, `Solid(1)`, ... (default=True). `False` restores the former names `Solid`, `Solid(2)`, ... - see [Names of repeated objects](#names-of-repeated-objects) |
 | `helper_scale` | Scale of rendered helpers (locations, axis, mates for MAssemblies) (default=1).<br>If it is a float < 1, use the max distance to nested bounding box times helper_scale to determine the absolute value of it |
 
 **Debug**
@@ -133,6 +134,17 @@ Valid keywords to configure the viewer (`**kwargs`):
 | ------- | ----------- |
 | `debug` | Show debug statements in the viewer's browser console (default=False) |
 | `timeit` | Show timing information from level 0-3 (default=False) |
+
+### Names of repeated objects
+
+When several objects in one group would get the same name - a list of three boxes shows three `Solid`s - the names are made unique with a number. By default they are numbered from 0 like Python indices, so the tree matches the list. `python_enumeration=False` restores the former names:
+
+| `python_enumeration` | Names of three boxes in a list |
+| -------------------- | ------------------------------ |
+| `True` (default) | `Solid(0)`, `Solid(1)`, `Solid(2)` |
+| `False` | `Solid`, `Solid(2)`, `Solid(3)` |
+
+A name that occurs once keeps no number either way. The names are the tree paths that [animation](animation.md) tracks, saved states and selections address, and the same path means a different object in the two schemes: `/Group/Solid(2)` is the third box by default and the second with `False`. A script written for the former names gets them back with `python_enumeration=False` - for one call as a `show` keyword, for the Python process with `set_defaults(python_enumeration=False)`, or permanently in the viewer's settings: `OcpCadViewer.render.python_enumeration` in [OCP CAD Viewer](viewers/ocp_vscode/workspace_config.md), `--no_python_enumeration` or the config file in [OCP Viewer](viewers/ocp_viewer/workspace_config.md), `~/.jcq_config` in [Jupyter CadQuery](viewers/jupyter_cadquery/workspace_config.md), and **Number repeated names from 0** in [build123d Studio](viewers/build123d_studio/workspace_config.md)'s Viewer settings.
 
 ### Viewer-specific keywords
 

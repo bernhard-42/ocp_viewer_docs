@@ -55,5 +55,6 @@ The keys and their built-in defaults (aligned with the other viewers):
 | `direct_intensity` | `1.1` | Direct light intensity |
 | `metalness` | `0.3` | Material metalness |
 | `roughness` | `0.65` | Material roughness |
+| `python_enumeration` | `true` | Number repeated object names from 0, `Solid(0)`, `Solid(1)`, ...; `false` restores the former names `Solid`, `Solid(2)`, ... - see [Names of repeated objects](../../show.md#names-of-repeated-objects) |
 
 Sidecar geometry (`cad_width`, `height`, `anchor`, `pinning`) is not a stored setting — a notebook cell decides it per `open_viewer` / `show` call, see [Addressing a viewer](addressing.md).

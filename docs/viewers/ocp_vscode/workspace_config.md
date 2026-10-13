@@ -52,6 +52,7 @@ Tessellation and material defaults.
 | `direct_intensity`       | number | `1.1`          | Direct light intensity              |
 | `metalness`              | number | `0.3`          | Material metalness                  |
 | `roughness`              | number | `0.65`         | Material roughness                  |
+| `python_enumeration`     | boolean | `true`        | Number repeated object names from 0, `Solid(0)`, `Solid(1)`, ...; `false` restores the former names `Solid`, `Solid(2)`, ... - see [Names of repeated objects](../../show.md#names-of-repeated-objects) |
 
 ## OcpCadViewer.advanced.\*
 
