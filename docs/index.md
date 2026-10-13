@@ -94,11 +94,11 @@ This documentation describes the following versions — patch releases within ea
 
 | Component                                                                                         | Documented version |
 | ------------------------------------------------------------------------------------------------- | ------------------ |
-| [ocp-viewer-core](https://github.com/bernhard-42/ocp-viewer-core)                                 | 1.0.x              |
-| [OCP CAD Viewer for VS Code](https://github.com/bernhard-42/vscode-ocp-cad-viewer) (`ocp_vscode`) | 4.1.x              |
-| [OCP Viewer](https://github.com/bernhard-42/ocp-viewer) (`ocp_viewer`)                            | 1.1.x              |
-| [Jupyter CadQuery](https://github.com/bernhard-42/jupyter-cadquery) (`jupyter_cadquery`)          | 5.1.x              |
-| [cad-viewer-widget](https://github.com/bernhard-42/cad-viewer-widget)                             | 4.1.x              |
-| [build123d Studio](https://github.com/bernhard-42/build123d-studio)                               | 0.7.x              |
-| [three-cad-viewer](https://github.com/bernhard-42/three-cad-viewer)                               | 5.0.x              |
-| [ocp-tessellate](https://github.com/bernhard-42/ocp-tessellate)                                   | 3.5.x              |
+| [ocp-viewer-core](https://github.com/bernhard-42/ocp-viewer-core)                                 | 1.1.x              |
+| [OCP CAD Viewer for VS Code](https://github.com/bernhard-42/vscode-ocp-cad-viewer) (`ocp_vscode`) | 4.2.x              |
+| [OCP Viewer](https://github.com/bernhard-42/ocp-viewer) (`ocp_viewer`)                            | 1.2.x              |
+| [Jupyter CadQuery](https://github.com/bernhard-42/jupyter-cadquery) (`jupyter_cadquery`)          | 5.2.x              |
+| [cad-viewer-widget](https://github.com/bernhard-42/cad-viewer-widget)                             | 4.2.x              |
+| [build123d Studio](https://github.com/bernhard-42/build123d-studio)                               | 0.9.x              |
+| [three-cad-viewer](https://github.com/bernhard-42/three-cad-viewer)                               | 5.1.x              |
+| [ocp-tessellate](https://github.com/bernhard-42/ocp-tessellate)                                   | 3.6.x              |
