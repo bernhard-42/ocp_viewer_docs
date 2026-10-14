@@ -96,7 +96,7 @@ This documentation describes the following versions — patch releases within ea
 | ------------------------------------------------------------------------------------------------- | ------------------ |
 | [ocp-viewer-core](https://github.com/bernhard-42/ocp-viewer-core)                                 | 1.1.x              |
 | [OCP CAD Viewer for VS Code](https://github.com/bernhard-42/vscode-ocp-cad-viewer) (`ocp_vscode`) | 4.2.x              |
-| [OCP Viewer](https://github.com/bernhard-42/ocp-viewer) (`ocp_viewer`)                            | 1.2.x              |
+| [OCP Viewer](https://github.com/bernhard-42/ocp_viewer) (`ocp_viewer`)                            | 1.2.x              |
 | [Jupyter CadQuery](https://github.com/bernhard-42/jupyter-cadquery) (`jupyter_cadquery`)          | 5.2.x              |
 | [cad-viewer-widget](https://github.com/bernhard-42/cad-viewer-widget)                             | 4.2.x              |
 | [build123d Studio](https://github.com/bernhard-42/build123d-studio)                               | 0.9.x              |

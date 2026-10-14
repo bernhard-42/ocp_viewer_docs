@@ -31,7 +31,7 @@ show(Box(1, 2, 3))
 
 ## Installing from a checkout
 
-For local use straight from a clone — `uv add path/to/ocp-viewer`, `uv pip install path/to/ocp-viewer` or `pip install path/to/ocp-viewer` — run `make assets` in the checkout first. The page's JavaScript and stylesheet are copied in from npm and are not in git, so a package built from a checkout that never ran it ships without them; a server started from such a package says so and names the files. `make dist` runs it for you, and a released wheel from PyPI carries them.
+For local use straight from a clone — `uv add path/to/ocp_viewer`, `uv pip install path/to/ocp_viewer` or `pip install path/to/ocp_viewer` — run `make assets` in the checkout first. The page's JavaScript and stylesheet are copied in from npm and are not in git, so a package built from a checkout that never ran it ships without them; a server started from such a package says so and names the files. `make dist` runs it for you, and a released wheel from PyPI carries them.
 
 ## Remote use over SSH
 
