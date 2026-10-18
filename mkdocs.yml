@@ -129,6 +129,8 @@ nav:
           - Object selection: selector.md
           - Coordinate selection: coordinate_selection.md
       - Dynamic features: dynamic_features.md
+  - Tools:
+      - Batch screenshots: tools/tcv_screenshots.md
   - The Python API:
       - Importing: importing.md
       - Showing objects:
