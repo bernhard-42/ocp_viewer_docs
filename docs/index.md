@@ -100,6 +100,6 @@ This documentation describes the following versions — patch releases within ea
 | [Jupyter CadQuery](https://github.com/bernhard-42/jupyter-cadquery) (`jupyter_cadquery`)          | 5.2.x              |
 | [cad-viewer-widget](https://github.com/bernhard-42/cad-viewer-widget)                             | 4.2.x              |
 | [build123d Studio](https://github.com/bernhard-42/build123d-studio)                               | 0.9.x              |
-| [tcv_screenshots](https://github.com/bernhard-42/tcv_screenshots)                                 | 0.4.x              |
+| [tcv_screenshots](https://github.com/bernhard-42/tcv_screenshots)                                 | 1.0.x              |
 | [three-cad-viewer](https://github.com/bernhard-42/three-cad-viewer)                               | 5.1.x              |
 | [ocp-tessellate](https://github.com/bernhard-42/ocp-tessellate)                                   | 3.6.x              |
