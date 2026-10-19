@@ -1,8 +1,8 @@
 # Batch screenshots
 
-[tcv_screenshots](https://github.com/bernhard-42/tcv_screenshots) renders CAD models to PNG files without a viewer window: it runs your example files, collects the models they save and draws each one in a headless Chromium with the CAD Viewer. It is meant for documentation images and CI jobs - every screenshot is reproducible from code, and nothing has to be open or clicked.
+[tcv_screenshots](https://github.com/bernhard-42/tcv_screenshots) renders CAD models to PNG files without a viewer window: it runs your example files, collects the screenshots they request and draws each one in a headless Chromium with the CAD Viewer. It is meant for documentation images and CI jobs - every screenshot is reproducible from code, and nothing has to be open or clicked.
 
-It draws through the same pipeline as the viewers, so `save_model` takes the same objects and keywords as [`show`](../show.md) and gives the same picture: colors, alphas, materials and studio mode, joints, clipping, camera settings. Unlike the [headless screenshots of OCP Viewer](../viewers/ocp_viewer/headless.md), there is no server to start and no browser to manage: one command does everything.
+It draws through the same pipeline as the viewers, so `screenshot` takes the same objects and keywords as [`show`](../show.md) and gives the same picture: colors, alphas, materials and studio mode, joints, clipping, camera settings. Unlike the [headless screenshots of OCP Viewer](../viewers/ocp_viewer/headless.md), there is no server to start and no browser to manage: one command does everything.
 
 ## Installation
 
@@ -19,7 +19,7 @@ tcv_screenshots renders in an installed Google Chrome or Microsoft Edge when the
 
 ## Writing examples
 
-An example is a Python file with a `main()` function that saves models with `save_model` and returns `get_saved_models()`:
+An example is a Python file with a `main()` function that requests screenshots with `screenshot` and returns `get_screenshots()`:
 
 ```python
 from build123d import *
@@ -28,35 +28,35 @@ part = fillet(Box(30, 20, 10).edges().filter_by(Axis.Z), 3) - Cylinder(4, 10)
 
 
 def main():
-    from tcv_screenshots import save_model, get_saved_models
+    from tcv_screenshots import screenshot, get_screenshots
 
-    save_model(part, name="part", cad_width=800, height=600)
-    return get_saved_models()
+    screenshot(part, name="part", cad_width=800, height=600)
+    return get_screenshots()
 ```
 
-This writes `part.png`. An example can save several models, e.g. the steps of an incremental construction, each under its own `name`:
+This writes `part.png`. An example can request several screenshots, e.g. the steps of an incremental construction, each under its own `name`:
 
 ```python
 from build123d import *
-from tcv_screenshots import Render, save_model, get_saved_models
+from tcv_screenshots import Render, screenshot, get_screenshots
 
 size = {"cad_width": 500, "height": 375}
 
 box = Box(10, 10, 10)
-save_model(box, name="step1_box", **size)
+screenshot(box, name="step1_box", **size)
 
 filleted = fillet(box.edges(), 1)
-save_model(filleted, name="step2_fillet", **size)
+screenshot(filleted, name="step2_fillet", **size)
 
 final = filleted - Cylinder(2, 10)
-save_model(final, name="step3_hole", modes=[Render.FACES], **size)
+screenshot(final, name="step3_hole", modes=[Render.FACES], **size)
 
 
 def main():
-    return get_saved_models()
+    return get_screenshots()
 ```
 
-`save_model(*cad_objs, name, **kwargs)`:
+`screenshot(*cad_objs, name, **kwargs)`:
 
 - `cad_objs` - the objects to draw, like the positional arguments of `show`. Several objects are separate arguments; a list is drawn as one object
 - `name` - the PNG file name, without `.png`
@@ -112,7 +112,7 @@ Files that do not import `tcv_screenshots` are skipped. A failing example is rep
 
 !!! tip "Finding a camera position"
 
-    Run `tcv_screenshots -f example.py --no-headless --pause`, turn the model into position with the mouse, then press Enter. The printed `position`, `quaternion`, `target` and `zoom` can be passed to `save_model` as they are.
+    Run `tcv_screenshots -f example.py --no-headless --pause`, turn the model into position with the mouse, then press Enter. The printed `position`, `quaternion`, `target` and `zoom` can be passed to `screenshot` as they are.
 
 ## Browser
 
@@ -158,30 +158,30 @@ from build123d import Box
 from tcv_screenshots import (
     collect_models,
     get_failed_models,
-    get_saved_models,
+    get_screenshots,
     render_models,
-    save_model,
+    screenshot,
     set_defaults,
 )
 
-# Defaults for every following save_model, the keywords of show
+# Defaults for every following screenshot call, the keywords of show
 set_defaults(cad_width=1000, height=1000)
 
 # Run example files and directories of examples, each with a main() as above
 collected = collect_models("examples", "more/extra_example.py")
 
-# Or save models directly, without example files
-save_model(Box(1, 2, 3), name="box")
-failed_saves = [name for name, _traceback in get_failed_models()]
+# Or request screenshots directly, without example files
+screenshot(Box(1, 2, 3), name="box")
+failed_screenshots = [name for name, _traceback in get_failed_models()]
 
-rendered = render_models(collected.models + get_saved_models(), "screenshots")
-print(rendered.written)                                    # the PNG files
-print(collected.failed + failed_saves + rendered.failed)  # names of what failed
+rendered = render_models(collected.models + get_screenshots(), "screenshots")
+print(rendered.written)                                         # the PNG files
+print(collected.failed + failed_screenshots + rendered.failed)  # names of what failed
 ```
 
-- `collect_models(*paths, models_dir=None)` returns `models` and `failed`. Each example runs with the defaults set before the call; a `set_defaults` inside one example does not reach the next. Models saved before the call stay available to `get_saved_models()`
+- `collect_models(*paths, models_dir=None)` returns `models` and `failed`. Each example runs with the defaults set before the call; a `set_defaults` inside one example does not reach the next. Screenshots requested before the call stay available to `get_screenshots()`
 - `render_models(models, output_dir, *, headless=True, pause=False, debug=False, gpu=True, browser=None)` writes `<output_dir>/<name>.png` and returns `written` and `failed`. Where an event loop is already running (e.g. Jupyter), use `await render_models_async(...)` with the same arguments
-- `save_model` does not raise: a model it cannot create is printed as `FAILURE` with its traceback, and `get_failed_models()` returns it. Neither function exits; use the returned names for the exit status of your script
+- `screenshot` does not raise: a screenshot it cannot create is printed as `FAILURE` with its traceback, and `get_failed_models()` returns it. Neither function exits; use the returned names for the exit status of your script
 - `set_defaults`, `get_defaults` and `reset_defaults` work as in the viewers, see [The config system](../config.md)
 
 !!! info "Repeated parts"
