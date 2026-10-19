@@ -88,16 +88,18 @@ Every screenshot starts with a fresh viewer: no setting of one screenshot (clipp
 
 ```bash
 # a single example, PNGs into the current directory
-python -m tcv_screenshots -f example.py
+tcv_screenshots -f example.py
 
 # a directory of examples
-python -m tcv_screenshots -d examples -o screenshots
+tcv_screenshots -d examples -o screenshots
 ```
+
+Installing the package adds the `tcv_screenshots` command to the environment's `bin` folder (macOS, Linux) or `Scripts` folder (Windows, `tcv_screenshots.exe`). `python -m tcv_screenshots` does the same, e.g. when that folder is not on the `PATH`.
 
 | Option                     | Meaning |
 | -------------------------- | ------- |
 | `-f`, `--file FILE`        | A single example file |
-| `-d`, `--directory DIR`    | All `*.py` files of a directory, sorted by name (files starting with `_` are left out); requires `-o` |
+| `-d`, `--directory DIR`    | All `*.py` files of a directory, sorted by name (files starting with `_` or `.` are left out); requires `-o` |
 | `-o`, `--output-folder DIR` | Where the PNG files go |
 | `--no-gpu`                 | Render with the software renderer SwiftShader, see [GPU or SwiftShader](#gpu-or-swiftshader) |
 | `--browser BROWSER`        | Use only `chrome`, `msedge` or `chromium` (Playwright's own), see [Browser](#browser) |
@@ -110,14 +112,14 @@ Files that do not import `tcv_screenshots` are skipped. A failing example is rep
 
 !!! tip "Finding a camera position"
 
-    Run `python -m tcv_screenshots -f example.py --no-headless --pause`, turn the model into position with the mouse, then press Enter. The printed `position`, `quaternion`, `target` and `zoom` can be passed to `save_model` as they are.
+    Run `tcv_screenshots -f example.py --no-headless --pause`, turn the model into position with the mouse, then press Enter. The printed `position`, `quaternion`, `target` and `zoom` can be passed to `save_model` as they are.
 
 ## Browser
 
 Every run uses the first browser that works: Microsoft Edge, Google Chrome, Playwright's Chromium on Windows (where Edge is always installed), and Google Chrome, Microsoft Edge, Playwright's Chromium on macOS and Linux. A browser that is not installed is skipped within milliseconds, so nothing is stored between runs. The browser in use is printed (`Browser: chrome 155.0...`).
 
 ```bash
-python -m tcv_screenshots --check
+tcv_screenshots --check
 ```
 
 lists every candidate with its version and renderer and names the one a run would use; if none works, it says to run `playwright install chromium`. `--browser chrome|msedge|chromium` uses exactly one browser. An installed Chrome or Edge updates itself, so screenshots can change slightly with its versions; for reproducible screenshots, e.g. in CI, use `--browser chromium`, whose version only changes with Playwright's. Firefox and Safari cannot be used.
@@ -142,7 +144,7 @@ Without a usable GPU, Chromium falls back to SwiftShader and a warning says so. 
 - name: Generate screenshots
   run: |
     playwright install chromium
-    python -m tcv_screenshots -d examples -o screenshots --browser chromium --no-gpu
+    tcv_screenshots -d examples -o screenshots --browser chromium --no-gpu
 ```
 
 The repository's [workflow](https://github.com/bernhard-42/tcv_screenshots/blob/main/.github/workflows/screenshots.yml) runs this on Linux, macOS and Windows.
