@@ -116,7 +116,7 @@ Files that do not import `tcv_screenshots` are skipped. A failing example is rep
 
 ## Browser
 
-Every run uses the first browser that works: Microsoft Edge, Google Chrome, Playwright's Chromium on Windows (where Edge is always installed), and Google Chrome, Microsoft Edge, Playwright's Chromium on macOS and Linux. A browser that is not installed is skipped within milliseconds, so nothing is stored between runs. The browser in use is printed (`Browser: chrome 155.0...`).
+Every run uses the first browser that works: Microsoft Edge, Google Chrome, Playwright's Chromium on Windows (where Edge is always installed), and Google Chrome, Microsoft Edge, Playwright's Chromium on macOS and Linux. A browser that is not installed is skipped within milliseconds, so nothing is stored between runs. On Linux, Playwright looks for Chrome and Edge only at `/opt/google/chrome/chrome` and `/opt/microsoft/msedge/msedge`, where e.g. Google's `.deb` package installs Chrome; a Flatpak install (`flatpak run com.google.Chrome`) is not found, and the run goes on with the next browser. The browser in use is printed (`Browser: chrome 155.0...`).
 
 ```bash
 tcv_screenshots --check
