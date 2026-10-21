@@ -37,7 +37,7 @@ Expanding a row asks for its contents at that moment, as deep as the data goes: 
 
 **Filter and sort.** The box above the table filters the rows: type part of a name — or of a build123d label — and only matching variables stay, through every refresh, until Escape clears it. Clicking **Name** or **Type** in the header sorts by that column; a second click reverses it, a third returns to the order the names were defined in.
 
-**Selection.** A click on a row selects it; the chevron opens it. Cmd-click (Ctrl-click on Windows and Linux) adds a row to the selection, Shift-click extends it. Right-clicking offers **Show** and **Copy** for everything selected: Show runs `show(a, b, c, names=["a", "b", "c"])` on the kernel — the variable names become the names in the viewer's tree — with the line appearing in the console; Copy puts the names on the clipboard as `a, b, c`. Rows below a variable are addressed by position and have no name, so they cannot be selected. `_imported`, the result of Show on a CAD file in the tree, is a plain variable like any other.
+**Selection.** A click on a row selects it; the chevron opens it. Cmd-click (Ctrl-click on Windows and Linux) adds a row to the selection, Shift-click extends it. Right-clicking offers **Show** and **Copy** for everything selected: Show runs `show(a, b, c, names=["a", "b", "c"])` on the kernel — the variable names become the names in the viewer's tree — with the line appearing in the console; Copy puts the names on the clipboard as `a, b, c`. For a single build123d object it also offers **Export…** — see [Import and export](#import-and-export). Rows below a variable are addressed by position and have no name, so they cannot be selected. `_imported`, the result of Show on a CAD file in the tree, is a plain variable like any other.
 
 ### What a click computes
 
@@ -59,6 +59,51 @@ In [2]: rc.volume
 ```
 
 The viewer shows the extent `bounding_box()` would report, and `show()` prints it.
+
+## Import and export
+
+Both read their options from build123d itself: the dialog shows the parameters of the `import_*` or `export_*` function, with their defaults, so a newer build123d brings its new options with it. Both run as one line in the console, which can be copied into a script, and both remember the options per format for the next time. Cancel at any step ends it.
+
+### Import
+
+**File → Import…** reads a CAD file into a variable.
+
+1. The open dialog asks for the file: BREP, DXF, STEP (`.step`, `.stp`), STL or SVG.
+2. A dialog asks for the variable's name — the file's name made into a Python name, `frame-v2.step` becoming `frame_v2` — and shows the importer's options.
+3. The import runs on the kernel, and the variable appears in the explorer:
+
+```python
+from build123d import import_stl, Unit
+bracket = import_stl("/work/bracket.stl", model_unit=Unit.IN)
+```
+
+| Format | Importer      | Options                                            |
+| ------ | ------------- | -------------------------------------------------- |
+| BREP   | `import_brep` | —                                                  |
+| DXF    | `import_dxf`  | —                                                  |
+| STEP   | `import_step` | —                                                  |
+| STL    | `import_stl`  | `model_unit`                                       |
+| SVG    | `import_svg`  | `flip_y`, `align`, `ignore_visibility`, `label_by` |
+
+Only options changed from their defaults appear in the line. Nothing is shown in the viewer; `show(bracket)` does that.
+
+### Export
+
+Right-click a variable in the explorer and choose **Export…**. It is offered for a build123d shape, an assembly, or a builder — `BuildPart`, `BuildSketch`, `BuildLine` — whose `part`, `sketch` or `line` is exported; it is greyed for anything else and when more than one row is selected.
+
+1. A dialog asks for the format — STEP, STL, BREP, OBJ or GLTF — and shows that function's options.
+2. **Export** closes the dialog and opens the save panel, which suggests the variable's name with the format's extension. The name is used as typed.
+3. The export runs on the kernel and says what it wrote:
+
+```python
+from build123d import export_step, Unit
+if export_step(bracket, "/work/bracket.step", unit=Unit.IN):
+    print("Exported bracket to /work/bracket.step")
+else:
+    print("export_step returned False: /work/bracket.step was not written")
+```
+
+STEP and GLTF keep an assembly's structure, names and colours. STL and OBJ write one mesh: an assembly is flattened, without names or colours, and the dialog says so.
 
 ## Which world the pane describes
 

@@ -64,14 +64,15 @@ Settings fills its fields from that file when it opens. If the file has been edi
 
 | Declared as                                      | On Upgrade                               |
 | ------------------------------------------------ | ---------------------------------------- |
-| `build123d>=0.11.1`                              | any newer release                        |
-| `ocp-viewer-core>=1.0.5,<1.1.0`                  | within its minor                         |
-| `cadquery-ocp-stubs>=7.9.3,<7.10`                | within the OpenCascade line it describes |
+| `build123d>=0.13.0`                              | any newer release                        |
+| `ocp-viewer-core>=1.1.2,<1.2.0`                  | within its minor                         |
+| `ocp-tessellate>=3.6.3`                          | within ocp-viewer-core's range           |
+| `cadquery-ocp-stubs>=8.0,<8.1`                   | within the OpenCascade line it describes |
 | `ipykernel>=7.3.0,<7.4.0`, and the rest of `app` | within their patch level                 |
 | `basedpyright==1.39.9`, `ruff==0.16.3`           | not at all                               |
 | whatever you put in `user`                       | as far as what you wrote allows          |
 
-Three packages ocp-viewer-core brings with it — `ocp-tessellate`, `pillow` and `threejs-materials` — move as well: a fix in the tessellator is a fix in what you see.
+Three packages ocp-viewer-core brings with it — `ocp-tessellate`, `pillow` and `threejs-materials` — move as well: a fix in the tessellator is a fix in what you see. ocp-viewer-core sets their ranges; Studio adds a minimum for `ocp-tessellate`, so a release brings the tessellator it was tested with to an environment that already has an older one.
 
 Everything else is build123d's own dependency tree — `numpy`, `scipy`, `fonttools` and some forty more — and moves when build123d moves it.
 

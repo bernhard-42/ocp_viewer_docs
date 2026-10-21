@@ -48,15 +48,15 @@ A chord with no modifier is refused unless it is a function key. A chord bound t
 
 On macOS the menu is the system menu bar. On Windows and Linux it is in the window's title bar: `Alt` shows the underlines, `Alt-F` opens File, the arrow keys walk the menus.
 
-| Menu                           | Items                                                                                                          |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| **build123d Studio** _(macOS)_ | About, Settings…, Quit                                                                                         |
-| **File**                       | New, Open File…, Open Folder… · Save, Save As…, Save All · Close, Close All, Close Folder · Exit _(off macOS)_ |
-| **View**                       | Toggle Sidebar, Toggle Console and Variables, Toggle Parameters                                                |
-| **Edit**                       | Cut, Copy, Paste                                                                                               |
-| **Run**                        | The four cell commands · the three marker commands · Restart Kernel · Run File · the seven debug commands      |
-| **Test**                       | Test File, Test Folder                                                                                         |
-| **Help** _(off macOS)_         | Settings…, About                                                                                               |
+| Menu                           | Items                                                                                                                    |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **build123d Studio** _(macOS)_ | About, Settings…, Quit                                                                                                   |
+| **File**                       | New, Open File…, Open Folder… · Save, Save As…, Save All · Close, Close All, Close Folder · Import… · Exit _(off macOS)_ |
+| **View**                       | Toggle Sidebar, Toggle Console and Variables, Toggle Parameters                                                          |
+| **Edit**                       | Cut, Copy, Paste                                                                                                         |
+| **Run**                        | The four cell commands · the three marker commands · Restart Kernel · Run File · the seven debug commands                |
+| **Test**                       | Test File, Test Folder                                                                                                   |
+| **Help** _(off macOS)_         | Settings…, About                                                                                                         |
 
 On macOS the Edit menu is what delivers `Cmd-C`, `Cmd-X` and `Cmd-V` to the console and to dialogs; its items use the platform's own roles, so they act on whatever has focus.
 

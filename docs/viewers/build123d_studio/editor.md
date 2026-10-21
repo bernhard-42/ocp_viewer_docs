@@ -30,6 +30,10 @@ ruff runs isolated: the line length in Settings is the one used, whatever a proj
 
 Above **50 000 lines** a buffer is saved without formatting, and the log says so.
 
+## Minimap
+
+The minimap is the scaled-down view of the whole buffer at the editor's right edge. **Settings → Editor → Show minimap** turns it off and on, at once and for the next start. It is on by default.
+
 ## Find
 
 `Cmd`/`Ctrl-F` opens Monaco's find widget. `Alt-Enter` there selects **every** match, as in VS Code, so the next thing typed replaces all of them. Elsewhere in the editor `Alt-Enter` is **Run All**.
