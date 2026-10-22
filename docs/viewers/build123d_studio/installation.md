@@ -20,6 +20,16 @@ gh attestation verify build123d-studio-*.dmg --repo bernhard-42/build123d-studio
 
 The ordinary way for your platform: drag the `.app` to Applications on macOS, unzip the Windows package, store the Linux AppImage where you like it. The application's own directory is never written to, so it can be installed read-only.
 
+!!! note "Linux: a program for the file dialogs"
+
+    On Linux the file dialogs — Open, Save As, Import…, Export… — are drawn by an outside program: **zenity**, **kdialog**, **matedialog** or **qarma**, whichever is installed. Ubuntu 26.04's desktop brings zenity; elementary OS 8 brings none of them. Without one, those commands open no dialog, and a banner at the top of the window says so. Install one, then restart build123d Studio:
+
+    ```bash
+    sudo apt install zenity
+    ```
+
+    zenity before 4.0.5 — Ubuntu 24.04 and its derivatives ship 4.0.1 — leaves the suggested file name out of the save dialog; the dialog works, and the name is typed by hand.
+
 Then continue with [First Run](first_run.md) — the first start builds the Python environment and takes a few minutes.
 
 ## The `studio` command
