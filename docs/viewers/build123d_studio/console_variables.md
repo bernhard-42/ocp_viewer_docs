@@ -62,7 +62,7 @@ The viewer shows the extent `bounding_box()` would report, and `show()` prints i
 
 ## Import and export
 
-Both read their options from build123d itself: the dialog shows the parameters of the `import_*` or `export_*` function, with their defaults, so a newer build123d brings its new options with it. Both run as one line in the console, which can be copied into a script, and both remember the options per format for the next time. Cancel at any step ends it.
+Both read their options from build123d itself: the dialog shows the parameters of the `import_*` or `export_*` function, with their defaults, so a newer build123d brings its new options with it. Both run their code in the console, where it can be copied into a script, and both remember the options per format for the next time. Cancel at any step ends it.
 
 ### Import
 
@@ -70,11 +70,13 @@ Both read their options from build123d itself: the dialog shows the parameters o
 
 1. The open dialog asks for the file: BREP, DXF, STEP (`.step`, `.stp`), STL or SVG.
 2. A dialog asks for the variable's name — the file's name made into a Python name, `frame-v2.step` becoming `frame_v2` — and shows the importer's options.
-3. The import runs on the kernel, and the variable appears in the explorer:
+3. The import runs on the kernel and shows the result, named after the variable, with the camera fitted to it. The variable appears in the explorer:
 
 ```python
 from build123d import import_stl, Unit
+from build123d_studio import show, Camera
 bracket = import_stl("/work/bracket.stl", model_unit=Unit.IN)
+show(bracket, names=["bracket"], reset_camera=Camera.RESET)
 ```
 
 | Format | Importer      | Options                                            |
@@ -85,7 +87,9 @@ bracket = import_stl("/work/bracket.stl", model_unit=Unit.IN)
 | STL    | `import_stl`  | `model_unit`                                       |
 | SVG    | `import_svg`  | `flip_y`, `align`, `ignore_visibility`, `label_by` |
 
-Only options changed from their defaults appear in the line. Nothing is shown in the viewer; `show(bracket)` does that.
+Only options changed from their defaults appear in the call.
+
+**Add import code at cursor position** in the dialog, off by default, also puts the import statement into the open file, where the caret was when Import… was chosen: the assignment, after a `from build123d import …` line for whatever the call needs that the file does not import yet — the importer, and `Unit` or `Align` for an option — where `from build123d import *` covers everything. The `show` stays in the console. The lines go on their own lines: above the caret's line when the caret is at its start, below it otherwise.
 
 ### Export
 
