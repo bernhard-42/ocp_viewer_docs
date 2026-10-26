@@ -37,7 +37,9 @@ Expanding a row asks for its contents at that moment, as deep as the data goes: 
 
 **Filter and sort.** The box above the table filters the rows: type part of a name — or of a build123d label — and only matching variables stay, through every refresh, until Escape clears it. Clicking **Name** or **Type** in the header sorts by that column; a second click reverses it, a third returns to the order the names were defined in.
 
-**Selection.** A click on a row selects it; the chevron opens it. Cmd-click (Ctrl-click on Windows and Linux) adds a row to the selection, Shift-click extends it. Right-clicking offers **Show** and **Copy** for everything selected: Show runs `show(a, b, c, names=["a", "b", "c"])` on the kernel — the variable names become the names in the viewer's tree — with the line appearing in the console; Copy puts the names on the clipboard as `a, b, c`. For a single build123d object it also offers **Export…** — see [Import and export](#import-and-export). Rows below a variable are addressed by position and have no name, so they cannot be selected. `_imported`, the result of Show on a CAD file in the tree, is a plain variable like any other.
+**Selection.** A click on a row selects it; the chevron opens it. Cmd-click (Ctrl-click on Windows and Linux) adds a row to the selection, Shift-click extends it, across levels. Right-clicking offers **Show** and **Copy** for everything selected: Show runs `show(a, b, c, names=["a", "b", "c"])` on the kernel — the variable names become the names in the viewer's tree — with the line appearing in the console; Copy puts the names on the clipboard as `a, b, c`. For a single build123d object it also offers **Export…** — see [Import and export](#import-and-export). `_imported`, the result of Show on a CAD file in the tree, is a plain variable like any other.
+
+**Rows inside a variable.** A row inside a list, tuple, dict or build123d assembly is selected, shown, copied and exported like a variable, through the Python expression that reaches it: `parts[2]`, `parts['lid']`, `hexapod.children[5].children[1]`. What has no index — a shape's topology, a set, a dict entry whose key cannot be written as Python — is reached by its position in iteration, so the Solid of an assembly's first part is `list(hexapod.children[0])[0]`. In the viewer's tree such a row is called by its build123d label, or by its expression where it has none: `show(hexapod.children[0], names=["bottom"])`. A part inside an assembly is shown and exported at its own location, which is relative to its parent assembly: moving the assembly does not move the part shown on its own. Closing a row deselects whatever was selected under it.
 
 ### What a click computes
 
@@ -93,10 +95,10 @@ Only options changed from their defaults appear in the call.
 
 ### Export
 
-Right-click a variable in the explorer and choose **Export…**. It is offered for a build123d shape, an assembly, or a builder — `BuildPart`, `BuildSketch`, `BuildLine` — whose `part`, `sketch` or `line` is exported; it is greyed for anything else and when more than one row is selected.
+Right-click a variable in the explorer and choose **Export…**. It is offered for a build123d shape, an assembly, or a builder — `BuildPart`, `BuildSketch`, `BuildLine` — whose `part`, `sketch` or `line` is exported, at the top level or [inside a variable](#the-variable-explorer); it is greyed for anything else and when more than one row is selected.
 
 1. A dialog asks for the format — STEP, STL, BREP, OBJ or GLTF — and shows that function's options.
-2. **Export** closes the dialog and opens the save panel, which suggests the variable's name with the format's extension. The name is used as typed.
+2. **Export** closes the dialog and opens the save panel, which suggests the variable's name with the format's extension — for a row inside a variable its label, or its expression where it has none, with `/`, `:` and the other characters a file name cannot hold replaced by `_`. The name is used as typed.
 3. The export runs on the kernel and says what it wrote:
 
 ```python
