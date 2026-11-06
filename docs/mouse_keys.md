@@ -12,6 +12,10 @@
 
 Two control styles exist: **trackball** (the default — free rotation, no fixed up axis) and **orbit** (the up axis stays up). Choose with `orbit_control=True/False` on `show`. The rotate, pan and zoom sensitivities are the `rotate_speed`, `pan_speed` and `zoom_speed` settings.
 
+A rotate drag that starts on the model turns the camera around the point under the cursor, which stays where it is on screen. A drag that starts on the background turns around the centre of the bounding box of the visible objects. The mouse wheel, trackpad pinch and middle-button drag zoom towards the cursor (for a drag, towards where it started). The camera target moves with the pivot; **Reset** and **Recenter** put it back.
+
+Two settings switch this off, separately: `cursor_pivot=False` rotates around the camera target, `zoom_to_cursor=False` zooms towards the centre of the view. Both default to `True`. They are arguments of `show` and `set_defaults`, `set_viewer_config` changes them on a running viewer, and every viewer stores them in its workspace config.
+
 ## Mouse selection
 
 | Action              | Binding                                                    |
@@ -20,17 +24,26 @@ Two control styles exist: **trackball** (the default — free rotation, no fixed
 | Isolate element     | `shift` + double-click, or `shift` + click on a tree label |
 | Hide element        | `meta` + double-click, or `meta` + click on a tree label   |
 | Hide other elements | `shift` + `meta` + click on a tree label                   |
-| Set camera target   | `shift` + `meta` + double-click on the object              |
+| Set camera target   | `shift` + `meta` + double-click on the object, only with `cursor_pivot=False` |
 
 Independent of any tool, the element under the cursor is continuously highlighted as the mouse moves, with a live mesh-based readout of its attributes; the toolbar's filter dropdown restricts what gets highlighted.
 
 ![live status](assets/viewer-status.png#only-light){ .center width="48%" }
 ![live status dark](assets/viewer-status-dark.png#only-dark){ .center width="48%" }
 
-Picking an element highlights it, draws its axis-aligned bounding box, and writes its path, name and bounding box into the info box. Setting the camera target re-aims the camera at the picked element's bounding-box center (also logged in the info box) — useful for rotating around a detail instead of the whole assembly.
+A double-click picks what the highlight shows, so the filter applies to it too: with "All", a double-click on or near an edge picks the edge (vertices come before edges, edges before faces), and with "Solid" it picks the whole solid. A double-click on something the filter excludes does nothing. `shift` and `meta` double-clicks act on the whole object the element under the cursor belongs to, and ignore the filter.
+
+Picking highlights the element, draws the axis-aligned bounding box of the picked face or edge (a vertex gets a marker instead), and writes its path, name and bounding box (for a vertex, its coordinates) into the info box. A second double-click on the same element removes the box. A click on a tree label boxes the whole object.
 
 ![picking](assets/viewer-picking.png#only-light){ .center width="48%" }
 ![picking dark](assets/viewer-picking-dark.png#only-dark){ .center width="48%" }
+
+`shift` + `meta` + double-click on an object depends on `cursor_pivot`:
+
+- **`cursor_pivot=True` (the default):** it does nothing, and the viewer's help does not list it. A rotation centre need not be set by hand, because every rotate drag that starts on the model turns around the point under the cursor.
+- **`cursor_pivot=False`:** it sets the camera target. The camera re-aims at the clicked point (at the object's bounding-box center if the viewer cannot read the point back), whatever the filter is set to, and later rotations turn around it. That is useful for rotating around a detail instead of the whole assembly.
+
+`shift` + `meta` + click on a tree label (hide other elements) works the same either way.
 
 ## Modifier keys
 

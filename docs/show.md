@@ -102,6 +102,8 @@ Valid keywords to configure the viewer (`**kwargs`):
 | `pan_speed` | Speed of mouse panning (default=1) |
 | `rotate_speed` | Speed of mouse rotate (default=1) |
 | `zoom_speed` | Speed of mouse zoom (default=1) |
+| `cursor_pivot` | Rotate around the point under the cursor, or around the centre of the visible objects when the drag starts on the background; `False` rotates around the camera target (default=True) |
+| `zoom_to_cursor` | Zoom towards the cursor with the wheel, trackpad pinch and middle-button drag; `False` zooms towards the centre of the view (default=True) |
 
 **Renderer**
 

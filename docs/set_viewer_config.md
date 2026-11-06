@@ -40,6 +40,8 @@ set_viewer_config(<keyword arguments>)
 | `pan_speed` | (float) Speed of mouse panning |
 | `rotate_speed` | (float) Speed of mouse rotate |
 | `zoom_speed` | (float) Speed of mouse zoom |
+| `cursor_pivot` | (bool) Rotate around the point under the cursor, or around the centre of the visible objects when the drag starts on the background; `False` rotates around the camera target |
+| `zoom_to_cursor` | (bool) Zoom towards the cursor with the wheel, trackpad pinch and middle-button drag; `False` zooms towards the centre of the view |
 | `states` | (dict) Set the visibility state of cad objects. Format: `{'path': [1, 1]}`.<br>`[1,1]` → `[0,1]` (first element of the tuple) toggles faces, `[1,1]` → `[1,0]` (second element of the tuple) toggles edges |
 | `tab` | (string/[UiTab](enums.md#uitab)) Select a tab in the viewer: "tree" \| "clip" \| "zebra" \| "material" \| "studio" (or use `UiTab.TREE`, `UiTab.CLIP`, `UiTab.ZEBRA`, `UiTab.MATERIAL`, `UiTab.STUDIO`) |
 | `clip_slider_0` | (float) Set clipping slider 0 to a value |

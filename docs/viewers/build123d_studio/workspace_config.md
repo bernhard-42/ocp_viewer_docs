@@ -5,7 +5,7 @@ Studio's viewer settings live in **Settings → Viewer**, reached from the toolb
 The tab groups them as:
 
 - **Layout and tree** — glass mode, toolbar, tree width, initial tree collapse, new tree behaviour (eye icon controls the whole object, mesh icon only the wireframe — see [Tree](../../tabs.md#tree))
-- **Camera and controls** — camera behavior on a new model (`reset_camera`, default `KEEP` — see [Keeping the camera orientation](../../reset_camera.md)), orthographic camera, up axis, orbit vs trackball control, rotate/zoom/pan speeds, and the modifier keys for the [mouse bindings](../../mouse_keys.md#modifier-keys)
+- **Camera and controls** — camera behavior on a new model (`reset_camera`, default `KEEP` — see [Keeping the camera orientation](../../reset_camera.md)), orthographic camera, up axis, orbit vs trackball control, rotate/zoom/pan speeds, rotating around and zooming towards the cursor (`cursor_pivot`, `zoom_to_cursor`), and the modifier keys for the [mouse bindings](../../mouse_keys.md#modifier-keys)
 - **Grid and axes** — axes, axes at the origin, the XY/XZ/YZ grid planes, grid centering, grid font size, ticks
 - **Objects** — black edges, transparency and its opacity, explode
 - **Rendering** — deviation and angular tolerance (tessellation), ambient/direct intensity, metalness, roughness, and the default colours for shapes, edges, thick edges, faces and vertices, and **Number repeated names from 0** (on: `Solid(0)`, `Solid(1)`, ...; off restores the former names `Solid`, `Solid(2)`, ... - see [Names of repeated objects](../../show.md#names-of-repeated-objects))

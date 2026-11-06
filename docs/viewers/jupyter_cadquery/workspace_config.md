@@ -31,6 +31,8 @@ The keys and their built-in defaults (aligned with the other viewers):
 | `modifier_keys` | per platform | `{"macOS": {...}, "default": {...}}` — one mapping to JS modifier key names per platform, for the [mouse bindings](../../mouse_keys.md#modifier-keys); the viewer gets this machine's (`default` is Windows and Linux, where `meta` is `altKey`). A flat map, as older files hold, is used as it is |
 | `up` | `Z` | Up direction |
 | `pan_speed`, `rotate_speed`, `zoom_speed` | `1` | Mouse speeds |
+| `cursor_pivot` | `true` | Rotate around the point under the cursor |
+| `zoom_to_cursor` | `true` | Zoom towards the cursor |
 | `axes` | `false` | Show axes |
 | `axes0` | `true` | Show axes at origin |
 | `grid` | `[false, false, false]` | Grid planes XY / XZ / YZ |

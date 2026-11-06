@@ -88,7 +88,7 @@ A small **filter dropdown** (All / Vertex / Edge / Face / Solid) in the toolbar 
 The scrollable log under the tree panel. It shows, newest first:
 
 - on startup: the three-cad-viewer version and the active control mode (trackball/orbit)
-- on pick: the element's tree path and name, and its bounding box as a min/max/center table per axis
+- on pick: the object's tree path and name, the picked face, edge or vertex inside it, and its bounding box as a min/max/center table per axis (for a vertex, its coordinates)
 - on set-camera-target: the new target coordinates
 
 Fold it away with the **Info** toggle when you need the vertical space.

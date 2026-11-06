@@ -17,6 +17,8 @@ Visual defaults applied to every newly shown object.
 | `up`                | enum    | `Z`               | Up direction: `Z` / `Y`                                                                                                            |
 | `rotate_speed`      | number  | `1`               | Rotation speed                                                                                                                     |
 | `zoom_speed`        | number  | `1`               | Zoom speed                                                                                                                         |
+| `cursor_pivot`      | boolean | `true`            | Rotate around the point under the cursor |
+| `zoom_to_cursor`    | boolean | `true`            | Zoom towards the cursor |
 | `pan_speed`         | number  | `1`               | Pan speed                                                                                                                          |
 | `axes`              | boolean | `false`           | Show axes                                                                                                                          |
 | `axes0`             | boolean | `true`            | Show axes at origin `(0,0,0)`                                                                                                      |
