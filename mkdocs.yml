@@ -149,6 +149,14 @@ nav:
           - Materials and Studio: pbr_studio.md
           - ImageFace: image_face.md
       - Animation: animation.md
+  - CAD Kernel plugins:
+      - Overview: plugins/overview.md
+      - The tessellation protocol: plugins/tessellation.md
+      - The show protocol: plugins/show.md
+      - The backend protocol: plugins/backend.md
+      - Registration and entry points: plugins/entry_points.md
+      - Measuring objects of mixed kernels: plugins/mixed.md
+      - Toy plugins and testing: plugins/examples.md
   - Concepts:
       - Architecture: concepts/architecture.md
       - Python to CAD Viewer communication: concepts/communication.md

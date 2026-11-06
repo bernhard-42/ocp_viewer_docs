@@ -135,6 +135,12 @@ Valid keywords to configure the viewer (`**kwargs`):
 | `debug` | Show debug statements in the viewer's browser console (default=False) |
 | `timeit` | Show timing information from level 0-3 (default=False) |
 
+### Objects that cannot be drawn
+
+An object passed to `show` directly that nothing can draw raises a `TypeError` that names its type: `show cannot draw an object of type my_module.Foo; if it belongs to another kernel, is its plugin installed?`. Nothing is shown then, not even the objects beside it.
+
+Inside a list, tuple or dict such an object is left out, and [show_all](show_all.md) leaves it out of a scope, because a scope and a container usually hold more than CAD objects. Numbers and strings are left out without an error everywhere.
+
 ### Names of repeated objects
 
 When several objects in one group would get the same name - a list of three boxes shows three `Solid`s - the names are made unique with a number. By default they are numbered from 0 like Python indices, so the tree matches the list. `python_enumeration=False` restores the former names:

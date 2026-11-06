@@ -23,4 +23,4 @@ The backend itself has no transport: it answers by returning. Whoever delivered 
 | Jupyter CadQuery | inside a Jupyter *server* extension, reached over HTTP |
 | build123d Studio | its own measurement process beside the kernel |
 
-Each viewer's Concepts page has the full picture. When no backend is reachable, the tools fall back to mesh-based values and the panels title themselves "(mesh based)" — approximate, but honest about it.
+Each viewer's Concepts page has the full picture. For the bodies of CAD kernels other than OCCT, the backend asks the kernel's plugin, see [the backend protocol](../plugins/backend.md). When no backend is reachable, the tools fall back to mesh-based values and the panels title themselves "(mesh based)" — approximate, but honest about it.

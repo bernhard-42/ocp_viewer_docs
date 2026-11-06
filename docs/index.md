@@ -25,7 +25,7 @@ They are all built on [ocp-viewer-core](https://github.com/bernhard-42/ocp-viewe
 
 This documentation first introduces the four viewers in _[Viewers](#viewers)_: how they are installed, how to run code, where settings are stored, and their viewer-specific features.
 
-The chapters _[CAD Viewer](#the-cad-viewer)_ and _[The Python API](#the-python-api)_ then document the shared part, valid for every viewer.
+The chapters _[CAD Viewer](#the-cad-viewer)_ and _[The Python API](#the-python-api)_ then document the shared part, valid for every viewer. _[CAD Kernel plugins](#cad-kernel-plugins)_ shows how objects of CAD kernels other than OCCT are shown and measured, and how to write a plugin for one.
 
 The underlying concepts, e.g. how the pieces fit together, are explained in the _[Concepts](#concepts)_ chapter.
 
@@ -78,6 +78,16 @@ One chapter per viewer for what genuinely differs: installation, settings storag
 **Animation:**
 
 - [Animation](animation.md) — drive keyframe animations on shown assemblies
+
+## CAD Kernel plugins
+
+- [Overview](plugins/overview.md) — using a plugin, with [ocp-viewer-smlibpy](https://github.com/bernhard-42/ocp-viewer-smlibpy) for SMLib as the example, and the three protocols a plugin implements
+- [The tessellation protocol](plugins/tessellation.md) — `TessellationProtocol`, the kernel's shapes as meshes in the viewer's layout: `tessellate`, `discretize_edges`, `convert_vertices`, `bounding_box`, `cache_id`
+- [The show protocol](plugins/show.md) — `ShowProtocol`, what makes `show` and `show_all` take a kernel's objects: `is_object`, `convert`, `line`, `serialize`, `get_children`, `get_location`
+- [The backend protocol](plugins/backend.md) — `BackendProtocol`, how the measurement backend measures a kernel's shapes: what reaches it, and `deserialize`, `moved`, `parts`, `kind`, `center`, `properties`, `closest_points`, `closest_directions`
+- [Registration and entry points](plugins/entry_points.md) — how the viewer finds a plugin, in the user's process and in the backend's: `register_show`, `register_plugin` and the two entry points in `pyproject.toml`
+- [Measuring objects of mixed kernels](plugins/mixed.md) — measuring a kernel's objects against OCCT objects, through a conversion with `to_occt`
+- [Toy plugins and testing](plugins/examples.md) — two complete minimal plugins, and what to test for a real kernel
 
 ## Concepts
 
