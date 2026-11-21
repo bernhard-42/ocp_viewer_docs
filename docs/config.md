@@ -49,6 +49,8 @@ set_defaults(reset_camera=Camera.CENTER, helper_scale=5)
 
     Return the live state dict of the viewer (camera position, current tab, visibility states, …).
 
+    In VS Code, OCP Viewer and build123d Studio it also holds the select tool's current selection as `selected`, `{"<object path>/<kind>": [indices]}`, and the last double-click pick as `lastPick`, with `path` and `name` of the picked tree node, `component` (the full path of the picked face, edge or vertex, e.g. `/box/faces/faces_3`), `point` (the world coordinates of the double-clicked point, `None` for a click in the tree, and while parts are displaced by explode mode or an animation) and the picked element's `boundingBox` and `boundingSphere`. Each comes with a counter, `selection_seq` and `pick_seq`, that moves with every new selection or pick, so a script tells a new one from the same one read twice. A new model clears `lastPick`. Jupyter CadQuery reports the pick through the viewer's `last_pick` property instead, see [Working in the notebook](viewers/jupyter_cadquery/notebook.md).
+
 - `workspace_config()`
 
     Return the viewer's configuration as the viewer currently sees it. Raises `RuntimeError` if the viewer isn't reachable.

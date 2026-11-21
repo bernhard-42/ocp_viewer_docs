@@ -97,8 +97,8 @@ EntryPoints((EntryPoint(name='smlib', value='ocp_viewer_smlibpy.backend', group=
 
 | what you see | what is wrong |
 |---|---|
-| `show` raises `TypeError: show cannot draw an object of type smlibpy.shapes.Part; if it belongs to another kernel, is its plugin installed?`. Inside a list or dict the object is left out **without an error or a warning**, as it is by `show_all` | the entry point of the group `ocp_viewer.kernels.show` is missing, or the plugin is not installed in the script's environment |
-| The warning `Kernel plugin 'ocp_viewer_smlibpy.show' ('smlib') failed to load: ...`, then the same `TypeError` for an object passed to `show` directly | the entry point's value names a module that is missing, or its import raises. The warning gives the reason, and everything else is still shown |
+| `show` prints `show: skipped smlibpy.shapes.Part (no kernel plugin installed?)` and draws the other objects, passed directly or inside a list, tuple or dict; `show_all` leaves the object out without a line | the entry point of the group `ocp_viewer.kernels.show` is missing, or the plugin is not installed in the script's environment |
+| The warning `Kernel plugin 'ocp_viewer_smlibpy.show' ('smlib') failed to load: ...`, then the same `show: skipped` line | the entry point's value names a module that is missing, or its import raises. The warning gives the reason, and everything else is still shown |
 | The warning `Kernel plugin 'ocp_viewer_smlibpy.show' was imported, but did not register its kernel tag 'smlib' with register_show` | the key of the entry point is not the tag the plugin registers, or the module does not call `register_show` when imported |
 | The warning `is_object of kernel plugin 'smlib' raised: ...`, once per plugin | the plugin's `is_object` raises. For that question the object counts as not the kernel's |
 | `ValueError: Kernel plugin 'smlib' was written for plugin interface 2, ...` | the plugin needs a newer ocp-tessellate or ocp-viewer-core |

@@ -40,7 +40,7 @@ After any run the keyboard returns to the editor, so the caret is visible where 
 
 ## As a file, in a process of its own
 
-**Run File** (`Ctrl-F5`) and **Debug File** (`F5`) save the buffer and run the _file from disk_ in a separate process with the same interpreter and environment. Nothing it defines reaches the kernel; when it ends, the process and everything in it is gone.
+**Run File** (`Ctrl-F5`) saves the buffer, **Debug File** (`F5`) every changed file (see [Debugging](debugging.md)), and both run the _file from disk_ in a separate process with the same interpreter and environment. Nothing it defines reaches the kernel; when it ends, the process and everything in it is gone.
 
 This is the mode for "does this script work from a clean start" — the check that finds an import the kernel's accumulated namespace was hiding.
 

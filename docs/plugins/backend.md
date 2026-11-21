@@ -122,7 +122,7 @@ Two names. The shape's type: `"Vertex"`, `"Edge"`, `"Wire"`, `"Face"`, `"Shell"`
 
 ### `center`
 
-Of a circle, ellipse, hyperbola or parabola its location, of a cylinder, cone, sphere, torus or surface of revolution the origin of its axis, of any other edge its middle, of any other face or a body its center of mass, of a vertex its point. `None` if the shape has none, such as a degenerate edge: the panel then says `not measured: a shape without a center`.
+Of a circle, ellipse, hyperbola or parabola its location, of a cylinder or cone face the point on its axis at the face's middle (the face's center of mass projected onto the axis, not the origin of the surface's own coordinate system, which can be anywhere on the infinite axis), of a sphere, torus or surface of revolution the origin of its axis, of any other edge its middle, of any other face or a body its center of mass, of a vertex its point. `None` if the shape has none, such as a degenerate edge: the panel then says `not measured: a shape without a center`.
 
 ### `ShapeProperties`
 

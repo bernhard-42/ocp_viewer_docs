@@ -139,9 +139,9 @@ Valid keywords to configure the viewer (`**kwargs`):
 
 ### Objects that cannot be drawn
 
-An object passed to `show` directly that nothing can draw raises a `TypeError` that names its type: `show cannot draw an object of type my_module.Foo; if it belongs to another kernel, is its plugin installed?`. Nothing is shown then, not even the objects beside it.
+An object that nothing can draw is left out, passed directly or inside a list, tuple or dict, and the objects beside it are drawn. Each such type is named once per show: `show: skipped my_module.Foo (no kernel plugin installed?)`. Builtin values such as `None`, numbers and strings are left out silently. When nothing is left to draw, `show` prints `show: No CAD objects to show` and sends nothing, so the viewer keeps what it shows.
 
-Inside a list, tuple or dict such an object is left out, and [show_all](show_all.md) leaves it out of a scope, because a scope and a container usually hold more than CAD objects. Numbers and strings are left out without an error everywhere.
+[show_all](show_all.md) leaves such objects out of a scope without naming them, because a scope usually holds more than CAD objects.
 
 ### Names of repeated objects
 

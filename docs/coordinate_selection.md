@@ -6,7 +6,7 @@ With the mouse over the model, `Cmd-C` (macOS) or `Ctrl-C` (Windows, Linux) copi
 12.3457, 0.0000, -7.5000
 ```
 
-The status line at the bottom of the canvas confirms it with `copied: …`. The coordinates are world coordinates of the visible surface where the cursor touches it, ready to be pasted into code, e.g. `Pos(12.3457, 0.0000, -7.5000)`. No toolbar tool needs to be active.
+The status line at the bottom of the canvas confirms it with `copied: …`. The coordinates are world coordinates of the visible surface where the cursor touches it, ready to be pasted into code, e.g. `Pos(12.3457, 0.0000, -7.5000)`. No toolbar tool needs to be active. It works on [image faces](image_face.md) and on the back sides of faces and open shells too.
 
 `Cmd-C` / `Ctrl-C` copies nothing — and keeps its normal meaning — when
 

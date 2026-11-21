@@ -1,6 +1,6 @@
 # Debugging
 
-**Debug File** is [Run File](running.md#as-a-file-in-a-process-of-its-own) with a debugger attached: the buffer is saved and the file on disk runs in a process of its own, under [debugpy](https://github.com/microsoft/debugpy). The kernel is not involved: the console keeps working, the namespace is unchanged afterwards, and the objects the debugged file made die with its process.
+**Debug File** is [Run File](running.md#as-a-file-in-a-process-of-its-own) with a debugger attached: every changed file is saved, as VS Code does, and the file on disk runs in a process of its own, under [debugpy](https://github.com/microsoft/debugpy). The kernel is not involved: the console keeps working, the namespace is unchanged afterwards, and the objects the debugged file made die with its process. **Restart Debugging** saves the same way, so a restart runs what is in the editors; a file that has never been saved is saved only when it is on screen.
 
 ## Breakpoints
 

@@ -109,7 +109,8 @@ This documentation describes the following versions — patch releases within ea
 | [OCP Viewer](https://github.com/bernhard-42/ocp_viewer) (`ocp_viewer`)                            | 1.3.x              |
 | [Jupyter CadQuery](https://github.com/bernhard-42/jupyter-cadquery) (`jupyter_cadquery`)          | 5.3.x              |
 | [cad-viewer-widget](https://github.com/bernhard-42/cad-viewer-widget)                             | 4.3.x              |
-| [build123d Studio](https://github.com/bernhard-42/build123d-studio)                               | 0.9.x              |
-| [tcv_screenshots](https://github.com/bernhard-42/tcv_screenshots)                                 | 1.0.x              |
+| [build123d Studio](https://github.com/bernhard-42/build123d-studio)                               | 0.10.x             |
+| [tcv_screenshots](https://github.com/bernhard-42/tcv_screenshots)                                 | 1.1.x              |
 | [three-cad-viewer](https://github.com/bernhard-42/three-cad-viewer)                               | 5.2.x              |
 | [ocp-tessellate](https://github.com/bernhard-42/ocp-tessellate)                                   | 3.7.x              |
+| [ocp-viewer-smlibpy](https://github.com/bernhard-42/ocp-viewer-smlibpy)                           | 0.1.x              |

@@ -125,6 +125,7 @@ A few things worth noting:
 - The reference face lives in the XY plane by default. Use e.g. `location=Plane.XZ.location` to put the image on the "front" plane (or other `plane.location`)
 - Pair it with `transparent=True` in `show` so the image isn't hidden by opaque geometry.
 - If you want the image to sit slightly behind the model along the normal, multiply the location by a small offset: `Plane.XZ.location * Location((0, 0, -0.1))`.
+- The image face can be clicked, highlighted and used as a rotation pivot like any other face, and `Cmd-C` / `Ctrl-C` over it copies the point under the cursor, see [Coordinate selection](coordinate_selection.md). Reading a point off the reference this way gives its model coordinates directly.
 
 !!! tip "Gotchas"
 

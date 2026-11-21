@@ -4,12 +4,9 @@ Studio builds its own Python environment on [first run](first_run.md) and manage
 
 ## What is fixed and what is not
 
-Two packages have a source picker:
+One package has a source picker: **build123d** — PyPI (the released version), the `dev` branch on GitHub, or a local checkout.
 
-- **build123d** — PyPI (the released version), the `dev` branch on GitHub, or a local checkout
-- **ocp-viewer-core** — PyPI, the `main` branch on GitHub, or a local checkout
-
-Everything else the application declares is frozen to the versions this release was built and tested against. `ocp-viewer-core` matches the three-cad-viewer build in the frontend, and its metadata sets `ocp-tessellate`'s range.
+Everything else the application declares is frozen to the versions this release was built and tested against. `ocp-viewer-core` matches the three-cad-viewer build in the frontend, and its metadata sets `ocp-tessellate`'s range. To run ocp-viewer-core or ocp-tessellate from a local checkout or from GitHub, put it into [Additional packages](#additional-packages), e.g. `git+https://github.com/bernhard-42/ocp-viewer-core@main`; a path or a git line there wins over the declared range. Up to 0.9, ocp-viewer-core had a picker of its own; a choice made in it moves to Additional packages by itself at the next start.
 
 !!! warning
 
@@ -23,7 +20,7 @@ Top to bottom:
 
 **What this release declares** — the `app` and `core_cad` groups as the environment has them, alphabetically: which version of what you are running.
 
-**Customization** — the source pickers and the [additional packages](#additional-packages) field, with **Update packages** under them.
+**Customization** — build123d's source picker and the [additional packages](#additional-packages) field, with **Update packages** under them.
 
 **Upgrade** and **Restore** — see below.
 
@@ -48,7 +45,7 @@ Studio keeps a uv project in the [data directory](first_run.md#where-it-all-live
 | ------------------------------- | ---------------------------------------------------- |
 | the `app` and `core_cad` groups | replaced when you install a new build123d Studio     |
 | the `user` group                | Settings → Additional packages, when you press Apply |
-| `[tool.uv.sources]`             | Settings → the source pickers, when you press Apply  |
+| `[tool.uv.sources]`             | Settings → build123d's source picker, when you press Apply |
 
 Settings fills its fields from that file when it opens. If the file has been edited in a way the dialog cannot read, it says so.
 
@@ -65,8 +62,8 @@ Settings fills its fields from that file when it opens. If the file has been edi
 | Declared as                                      | On Upgrade                               |
 | ------------------------------------------------ | ---------------------------------------- |
 | `build123d>=0.13.0`                              | any newer release                        |
-| `ocp-viewer-core>=1.1.2,<1.2.0`                  | within its minor                         |
-| `ocp-tessellate>=3.6.3`                          | within ocp-viewer-core's range           |
+| `ocp-viewer-core>=1.2.0,<1.3.0`                  | within its minor                         |
+| `ocp-tessellate>=3.7.0`                          | within ocp-viewer-core's range           |
 | `cadquery-ocp-stubs>=8.0,<8.1`                   | within the OpenCascade line it describes |
 | `ipykernel>=7.3.0,<7.4.0`, and the rest of `app` | within their patch level                 |
 | `basedpyright==1.39.9`, `ruff==0.16.3`           | not at all                               |
@@ -99,7 +96,7 @@ The package name is taken from the last path segment when it is not given. When 
 
 Two rules:
 
-- **A package the application already declares cannot be named**: `build123d`, `ocp-viewer-core`, `jupyter_console`, `orjson`, `websockets`, `pywinpty` and `basedpyright`. uv intersects duplicate declarations, so such an entry would do nothing, or make the environment unsolvable.
+- **A package the application already declares cannot be named**: `build123d`, `jupyter_console`, `orjson`, `websockets`, `pywinpty` and `basedpyright`. uv intersects duplicate declarations, so such an entry would do nothing, or make the environment unsolvable. `ocp-viewer-core` and `ocp-tessellate` are the exception: a path or a git line for them wins over the declared range, and a plain version outside the range is refused by uv and the change rolled back.
 - **The same package cannot be given twice.**
 
 Packages those bring in — `ocp-tessellate`, `ipykernel`, `prompt_toolkit` and the rest — can be constrained here; uv enforces the parent's range on top of what you write.

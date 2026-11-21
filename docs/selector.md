@@ -2,7 +2,18 @@
 
 ## Tool
 
-![select-tool](./assets/select-tool.png) Click on faces, edges, or vertices to select their indices. Do not mix vertices, edges and faces and apply it to just one solid, compound, face or line. The indices are copied to the system clipboard as a comma-separated list, ready to be pasted into the `select_*` functions below. Picking and filters are shared by all [analysis tools](measure_select.md).
+![select-tool](./assets/select-tool.png) Click on faces, edges, or vertices to select their indices. Picking and filters are shared by all [analysis tools](measure_select.md).
+
+When the selection holds one kind of one object, its indices are copied to the system clipboard as a comma-separated list, e.g. `6,16,7,17`, ready to be pasted into the `select_*` functions below. When it holds several objects or several kinds, the clipboard holds one comment line `# <object path> <kind>` per object and kind, each followed by its indices, so the indices of two objects never end up in one list:
+
+```text
+# /hexapod/top edges
+3,5
+# /hexapod/bottom faces
+12
+```
+
+A selected solid gives its comment line only, `# <path> solid`, since it has no indices. Turning the tool off or pressing `ESC` leaves the clipboard as it is.
 
 ## Python functions
 

@@ -2,6 +2,8 @@
 
 Every `OcpCadViewer.*` setting can be edited from the VS Code Settings UI (search for "OCP CAD Viewer", or the gear button in the Viewer Manager) or directly in `settings.json`. Workspace settings override user settings. These settings are the viewer-settings tier of the [config system](../../config.md): the starting values that `set_defaults()` overrides per Python process and show keywords override per call.
 
+A changed setting reaches an open viewer at once, e.g. a pan speed or `cursor_pivot`; the viewer need not be reopened. Settings an open viewer cannot take — ticks, the tessellation tolerances, the default colors — apply with the next model.
+
 ## OcpCadViewer.view.\*
 
 Visual defaults applied to every newly shown object.

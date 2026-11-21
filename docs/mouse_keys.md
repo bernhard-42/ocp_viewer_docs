@@ -12,7 +12,7 @@
 
 Two control styles exist: **trackball** (the default — free rotation, no fixed up axis) and **orbit** (the up axis stays up). Choose with `orbit_control=True/False` on `show`. The rotate, pan and zoom sensitivities are the `rotate_speed`, `pan_speed` and `zoom_speed` settings.
 
-A rotate drag that starts on the model turns the camera around the point under the cursor, which stays where it is on screen. A drag that starts on the background turns around the centre of the bounding box of the visible objects. The mouse wheel, trackpad pinch and middle-button drag zoom towards the cursor (for a drag, towards where it started). The camera target moves with the pivot; **Reset** and **Recenter** put it back.
+A rotate drag that starts on the model turns the camera around the point under the cursor, which stays where it is on screen. A drag that starts on the background turns around the centre of the bounding box of the visible objects. The mouse wheel, trackpad pinch and middle-button drag zoom towards the cursor (for a drag, towards where it started). A small black sphere marks the pivot for as long as the drag lasts. The camera target moves with the pivot; **Reset** and **Recenter** put it back. On a touchscreen, a one-finger drag rotates around the point under the finger, and two fingers zoom and pan.
 
 Two settings switch this off, separately: `cursor_pivot=False` rotates around the camera target, `zoom_to_cursor=False` zooms towards the centre of the view. Both default to `True`. They are arguments of `show` and `set_defaults`, `set_viewer_config` changes them on a running viewer, and every viewer stores them in its workspace config.
 

@@ -12,4 +12,6 @@ The tab groups them as:
 
 The defaults match the other viewers key for key — a value learnt in one viewer means the same in the next.
 
-Beyond the Viewer tab, Settings holds Studio's own concerns rather than the viewer's, one tab each: **Packages** ([Packages and the environment](packages.md)), **New file** and **Editor** ([The editor](editor.md)), **Debugging** ([Debugging](debugging.md)), **Shortcuts** ([Commands and shortcuts](commands.md)) and **Application** ([Troubleshooting](troubleshooting.md#the-log-files)).
+The open viewer takes a changed setting on **Apply**, the modifier keys included. Settings that shape how a model is drawn — for example the tolerances, the default colours, the up direction and the grid planes — take effect with the next show.
+
+Beyond the Viewer tab, Settings holds Studio's own concerns rather than the viewer's, one tab each: **Packages** ([Packages and the environment](packages.md)), **New file** and **Editor** ([The editor](editor.md)), **Debugging** ([Debugging](debugging.md)), **Shortcuts** ([Commands and shortcuts](commands.md)) and **Application** ([Troubleshooting](troubleshooting.md#the-log-files), with **Restart backend** and **Restart viewer**, see [Restarting the measurement backend and the viewer](troubleshooting.md#restarting-the-measurement-backend-and-the-viewer)).

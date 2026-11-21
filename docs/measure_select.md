@@ -4,11 +4,13 @@ Three analysis tools live in the toolbar — **Distance**, **Properties** and **
 
 ## Picking and filters
 
-- `v` / `e` / `f` / `s` on the keyboard (or the filter dropdown in the toolbar) restrict highlighting and picking to vertices / edges / faces / solids; `n` clears the filter
+- `v` / `e` / `f` / `s` on the keyboard (or the filter dropdown in the toolbar) restrict highlighting and picking to vertices / edges / faces / solids; `a` shows all types again. From Python, `set_viewer_config(shape_filter=...)` sets it on a running viewer, with `"none"` (all), `"vertex"`, `"edge"`, `"face"` or `"solid"`; every new model resets it to `"none"`
 
     ![topo-filter](./assets/topo-filter.png)
 
-- `ESC` clears all selections; `backspace` or right-click removes only the last one
+- `ESC` clears all selections; `backspace` or right-click removes only the last one. With the filter dropdown open, `ESC` closes only the dropdown
+
+The filter keys, `ESC` and `backspace` act only while the viewer has the keyboard focus, so typing elsewhere on the page, e.g. in a notebook cell, changes neither the filter nor the selection.
 
 ## Programmatic activation
 

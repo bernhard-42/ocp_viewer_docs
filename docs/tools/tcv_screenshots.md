@@ -15,7 +15,7 @@ tcv_screenshots renders in an installed Google Chrome or Microsoft Edge when the
 
 !!! info "Version"
 
-    This page describes tcv_screenshots 1.0.0. 0.3.0 used a config dict of renderer names instead of the `show` keywords; see the migration notes in the [README](https://github.com/bernhard-42/tcv_screenshots#migration-from-030).
+    This page describes tcv_screenshots 1.1.0. 0.3.0 used a config dict of renderer names instead of the `show` keywords; see the migration notes in the [README](https://github.com/bernhard-42/tcv_screenshots#migration-from-030).
 
 ## Writing examples
 
@@ -238,4 +238,4 @@ print(collected.failed + failed_screenshots + rendered.failed)  # names of what 
 
 !!! info "Repeated parts"
 
-    A part that appears in several screenshots of one run, also moved or rotated, is tessellated once and taken from the cache afterwards (ocp-tessellate 3.6.3 or newer, which tcv_screenshots 1.0.0 requires).
+    A part that appears in several screenshots of one run, also moved or rotated, is tessellated once and taken from the cache afterwards (ocp-tessellate 3.6.3 or newer; tcv_screenshots 1.1.0 requires 3.7).

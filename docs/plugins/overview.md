@@ -23,10 +23,10 @@ show_all()   # every shape in the current scope, under its variable name
 - Objects of several kernels can be in one scene: `show(plate, build123d_box)`. Each kernel's shapes are measured against each other, but a distance between an smlib shape and an OCCT shape is not; the panel says so.
 - To measure across kernels, convert to OCCT: `show(build123d_box, to_occt(plate))`, with `to_occt` from `ocp_viewer_smlibpy`, shows both as OCCT shapes, and every distance between them is measured, see [Measuring objects of mixed kernels](mixed.md).
 
-The plugin must be installed where the viewer's [measurement backend](../concepts/backend.md) runs, not only where your script runs: for VS Code in the interpreter the extension starts the backend with, for Jupyter CadQuery in the Jupyter server's environment. If objects of the kernel are not drawn or not measured, see [When it does not work](entry_points.md#when-it-does-not-work). Until it is on PyPI, install it from GitHub:
+The plugin must be installed where the viewer's [measurement backend](../concepts/backend.md) runs, not only where your script runs: for VS Code in the interpreter the extension starts the backend with, for OCP Viewer in the environment `ocp_viewer` runs in, for Jupyter CadQuery in the Jupyter server's environment, and for build123d Studio in its own environment, through [Additional packages](../viewers/build123d_studio/packages.md#additional-packages) (installing restarts the measurement backend, which then loads the plugin). If objects of the kernel are not drawn or not measured, see [When it does not work](entry_points.md#when-it-does-not-work). Install it from PyPI:
 
 ```bash
-pip install git+https://github.com/bernhard-42/ocp-viewer-smlibpy.git
+pip install ocp-viewer-smlibpy
 ```
 
 ## Writing a plugin

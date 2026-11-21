@@ -23,6 +23,13 @@ Two failures are reported in the window, each with the button that fixes it:
 
 Neither restarts on its own.
 
+## Restarting the measurement backend and the viewer
+
+Two buttons in **Settings → Application** restart a part of Studio without restarting Studio:
+
+- **Restart backend**, in the Backend section, restarts the [measurement backend](../../concepts/backend.md), which loads its libraries and [kernel plugins](../../plugins/overview.md) again. The model on screen and the active tool carry over. Installing or upgrading packages restarts it as well. It is not the banner's **Restart backend** above, which restarts the whole Python sidecar.
+- **Restart viewer**, in the Viewer section, builds the viewer again and shows the start screen, as at startup, for when a JavaScript error has left it unusable.
+
 ## The log files
 
 Three files in the [data directory](first_run.md#where-it-all-lives), outside the environment so a rebuild of it keeps them:
