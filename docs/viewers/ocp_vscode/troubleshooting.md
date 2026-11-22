@@ -23,6 +23,27 @@
 
 The extension depends on VS Code using the correct Python interpreter. The most reliable ways: start VS Code from the command line in the desired Python environment, or select the interpreter in VS Code first via the Python extension's "Select Interpreter".
 
+## Python Environments ignores the activated environment
+
+VS Code is started from the command line in an activated environment, but selects a different, global Python interpreter. The VS Code extension **Python Environments** only uses `$VIRTUAL_ENV` when it points into the opened work folder (seen with version 1.44). An environment outside the work folder is ignored.
+
+- If you don't use the Python Environments extension **⇒** disable it. Afterwards VS Code finds the activated Python interpreter again.
+- If you need the Python Environments extension **⇒** point the default interpreter at the activated environment in your user settings:
+
+    macOS/Linux:
+
+    ```json
+    "python.defaultInterpreterPath": "${env:VIRTUAL_ENV}/bin/python"
+    ```
+
+    Windows:
+
+    ```json
+    "python.defaultInterpreterPath": "${env:VIRTUAL_ENV}\\Scripts\\python.exe"
+    ```
+
+    The variable is resolved each time VS Code starts, so the interpreter follows whichever environment is active in the shell VS Code is started from. Without an activated environment, the extension falls back to its own detection.
+
 ## Spurious aborts: "KeyboardInterrupt", "Aborted", "Operation cancelled by user"
 
 The "OCP backend" terminal reports `KeyboardInterrupt` or "Aborted" when the viewer opens, and the **Quickstart** buttons in the [Viewer Manager](managers.md#the-viewer-manager) report "Operation cancelled by user" - without anything having been cancelled.
